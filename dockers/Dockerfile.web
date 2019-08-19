@@ -1,0 +1,7 @@
+FROM tiangolo/uwsgi-nginx-flask:python3.7
+
+RUN pip install pymongo
+
+RUN rm -rf /app
+ADD ./web /app
+
