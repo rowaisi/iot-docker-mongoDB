@@ -4,8 +4,18 @@ import json
 import sqlite3
 from pymongo import MongoClient
 import hashlib
-
+import requests
+import logging
+import time
+import uuid
 app = Flask(__name__)
+
+logging.basicConfig(
+    level = logging.INFO,
+    format = '%(asctime)s [%(levelname)s]: %(message)s'
+)
+
+L = logging.getLogger()
 
 def init_db_sqlite3():
     db = get_db_sqlite3()
@@ -26,7 +36,7 @@ CREATE TABLE IF NOT EXISTS `sensor` (
 
 def get_db_sqlite3():
     if 'db' not in g:
-        g.db = sqlite3.connect("iot.db") 
+        g.db = sqlite3.connect("iot.db")
         init_db_sqlite3()
 
     return g.db
@@ -70,19 +80,37 @@ def get_db_mongo():
     return g.db
 
 def insert_record_mongo(r):
+
     m = hashlib.md5()
     m.update(r["sensor_data"].encode('utf-8'))
     dhash = m.hexdigest()[:30]
 
-    db = get_db_mongo()
-    db.sensors.insert({
-        "device": r["dev_id"],
-        "ts": r["ts"],
-        "seq": r["seq_no"],
-        "data": r["sensor_data"][0:32],
-        "size": r["data_size"],
-        "hash": dhash
-    })
+    #db = get_db_mongo()
+    # db.sensors.insert({
+    #     "device": r["dev_id"],
+    #     "ts": r["ts"],
+    #     "seq": r["seq_no"],
+    #     "data": r["sensor_data"][0:32],
+    #     "size": r["data_size"],
+    #     "hash": dhash
+    # })
+    url = "http://ec2-34-235-168-223.compute-1.amazonaws.com:8040/api/records"
+
+    headers = {'content-type': "application/json",
+               'authorization': "eyJhbGciOiJIUzUxMiIsImlhdCI6MTYxMzE2OTM4MCwiZXhwIjoyNjEzMTY5Mzc5fQ.eyJwdWJsaWNfa2V5IjoiMDM4MGQ1NzFhYjk1NGRiMGExYjJhN2MyYzBiYWY5ZjFkYzE4ODI2M2M2YjBkMjlkOGIzNGM3NDM3ZTJhMGQ1NWEwIn0.kUXT8L5CzjLgQLEuUqXt5UtJpnyhVL6MHYCR8AnWGE7pzhOogr1F4zAN12TqD7risCNvcMrHgH5INcBvXJvIow",
+               'cache-control': "no-cache",
+               'postman-token': "020d861f-2c66-35f3-b647-f18f23fcfc28"}
+
+    payload = {"record_id": uuid.uuid4().hex,
+               "device": str(r["dev_id"]),
+               "ts": str(r["ts"]),
+               "seq": str(r["seq_no"]),
+               "ddata": str(r["sensor_data"][0:32]),
+               "dsize": str(r["data_size"]),
+               "dhash": str(dhash)}
+
+    response = requests.request("POST", url, data=json.dumps(payload), headers=headers)
+
 
 def query_record_mongo(page):
     db = get_db_mongo()
@@ -93,8 +121,11 @@ def query_record_mongo(page):
 
 @app.route("/sensor/add", methods = ['POST'])
 def add_sensor_record():
+
     data = json.loads(request.get_data())
+    L.info("####main -- add_sensor_record -- before insert####")
     insert_record_mongo(data)
+    L.info("####main -- add_sensor_record -- after insert####")
     return jsonify({"status": "SUCCEEED"})
 
 @app.route("/sensor/query/<int:page>")

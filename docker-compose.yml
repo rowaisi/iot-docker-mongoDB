@@ -13,7 +13,7 @@ services:
       UWSGI_PROCESSES: 1
       ME_CONFIG_MONGODB_ADMINUSERNAME: root
       ME_CONFIG_MONGODB_ADMINPASSWORD: password
-    cpus: 1.0
+
 
   db:
     image: mongo:3-xenial
