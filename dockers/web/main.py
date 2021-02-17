@@ -94,10 +94,10 @@ def insert_record_mongo(r):
     #     "size": r["data_size"],
     #     "hash": dhash
     # })
-    url = "http://ec2-34-235-168-223.compute-1.amazonaws.com:8040/api/records"
+    url = "http://curator-app:8040/api/records"
 
     headers = {'content-type': "application/json",
-               'authorization': "eyJhbGciOiJIUzUxMiIsImlhdCI6MTYxMzE2OTM4MCwiZXhwIjoyNjEzMTY5Mzc5fQ.eyJwdWJsaWNfa2V5IjoiMDM4MGQ1NzFhYjk1NGRiMGExYjJhN2MyYzBiYWY5ZjFkYzE4ODI2M2M2YjBkMjlkOGIzNGM3NDM3ZTJhMGQ1NWEwIn0.kUXT8L5CzjLgQLEuUqXt5UtJpnyhVL6MHYCR8AnWGE7pzhOogr1F4zAN12TqD7risCNvcMrHgH5INcBvXJvIow",
+               'authorization': "eyJhbGciOiJIUzUxMiIsImlhdCI6MTYxMzU2OTkwNSwiZXhwIjoyNjEzNTY5OTA0fQ.eyJwdWJsaWNfa2V5IjoiMDIyZDlhMzRiNzg5NjEwZGFiZWQ2OTFlYzAzYjJlYmRjZjFmZjNmMDc5MjAxYjk5ODZjNGNlZDI4NGU5ZDZmZjRmIn0.bzE2is5pJCVdC0gxpGQLAx9mMr5QmRmQNG2PHWgiGMfqEFWaYJbKemFmM62Y58qp-JinN9dLwDLWPU0lufI8jA",
                'cache-control': "no-cache",
                'postman-token': "020d861f-2c66-35f3-b647-f18f23fcfc28"}
 
@@ -108,10 +108,10 @@ def insert_record_mongo(r):
                "ddata": str(r["sensor_data"][0:32]),
                "dsize": str(r["data_size"]),
                "dhash": str(dhash)}
-
+    L.info("###before post ##")
     response = requests.request("POST", url, data=json.dumps(payload), headers=headers)
-
-
+    L.info("###post res ###")
+    L.info(response)
 def query_record_mongo(page):
     db = get_db_mongo()
     records = []
