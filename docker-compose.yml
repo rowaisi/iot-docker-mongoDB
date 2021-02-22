@@ -7,16 +7,19 @@ services:
       dockerfile: Dockerfile.web
     links:
     - db
+
     environment:
       TZ: "America/Montreal"
       UWSGI_CHEAPER: 0
       UWSGI_PROCESSES: 1
       ME_CONFIG_MONGODB_ADMINUSERNAME: root
       ME_CONFIG_MONGODB_ADMINPASSWORD: password
-
+    cpus: 1.0
 
   db:
     image: mongo:3-xenial
+    ports:
+    - 27017:27017
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: password
@@ -55,13 +58,13 @@ services:
     volumes:
     - ./IoT:/app/run
 
-#  cadvisor:
-#    image: google/cadvisor:latest
-#    volumes:
-#    - /../:/rootfs:ro
-#    - /var/run:/var/run:rw
-#    - /sys:/sys:ro
-#    - /var/lib/docker:/var/lib/docker:ro
-#    ports:
-#    - 8080:8080
+  cadvisor:
+    image: google/cadvisor:latest
+    volumes:
+    - /../:/rootfs:ro
+    - /var/run:/var/run:rw
+    - /sys:/sys:ro
+    - /var/lib/docker:/var/lib/docker:ro
+    ports:
+    - 8080:8080
     

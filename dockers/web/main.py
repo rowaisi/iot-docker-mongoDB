@@ -4,18 +4,11 @@ import json
 import sqlite3
 from pymongo import MongoClient
 import hashlib
-import requests
-import logging
 import time
+import requests
 import uuid
+
 app = Flask(__name__)
-
-logging.basicConfig(
-    level = logging.INFO,
-    format = '%(asctime)s [%(levelname)s]: %(message)s'
-)
-
-L = logging.getLogger()
 
 def init_db_sqlite3():
     db = get_db_sqlite3()
@@ -36,7 +29,7 @@ CREATE TABLE IF NOT EXISTS `sensor` (
 
 def get_db_sqlite3():
     if 'db' not in g:
-        g.db = sqlite3.connect("iot.db")
+        g.db = sqlite3.connect("iot.db") 
         init_db_sqlite3()
 
     return g.db
@@ -80,38 +73,19 @@ def get_db_mongo():
     return g.db
 
 def insert_record_mongo(r):
-
     m = hashlib.md5()
     m.update(r["sensor_data"].encode('utf-8'))
     dhash = m.hexdigest()[:30]
 
-    #db = get_db_mongo()
-    # db.sensors.insert({
-    #     "device": r["dev_id"],
-    #     "ts": r["ts"],
-    #     "seq": r["seq_no"],
-    #     "data": r["sensor_data"][0:32],
-    #     "size": r["data_size"],
-    #     "hash": dhash
-    # })
-    url = "http://curator-app:8040/api/records"
+    db = get_db_mongo()
+    url = "http://ec2-34-207-173-85.compute-1.amazonaws.com:8040/api/records"
 
-    headers = {'content-type': "application/json",
-               'authorization': "eyJhbGciOiJIUzUxMiIsImlhdCI6MTYxMzU2OTkwNSwiZXhwIjoyNjEzNTY5OTA0fQ.eyJwdWJsaWNfa2V5IjoiMDIyZDlhMzRiNzg5NjEwZGFiZWQ2OTFlYzAzYjJlYmRjZjFmZjNmMDc5MjAxYjk5ODZjNGNlZDI4NGU5ZDZmZjRmIn0.bzE2is5pJCVdC0gxpGQLAx9mMr5QmRmQNG2PHWgiGMfqEFWaYJbKemFmM62Y58qp-JinN9dLwDLWPU0lufI8jA",
-               'cache-control': "no-cache",
-               'postman-token': "020d861f-2c66-35f3-b647-f18f23fcfc28"}
-
-    payload = {"record_id": uuid.uuid4().hex,
-               "device": str(r["dev_id"]),
-               "ts": str(r["ts"]),
-               "seq": str(r["seq_no"]),
-               "ddata": str(r["sensor_data"][0:32]),
-               "dsize": str(r["data_size"]),
-               "dhash": str(dhash)}
-    L.info("###before post ##")
+    headers = { 'content-type': "application/json", 'authorization': "eyJhbGciOiJIUzUxMiIsImlhdCI6MTU4OTkzNTkwNSwiZXhwIjoyNTg5OTM1OTA0fQ.eyJwdWJsaWNfa2V5IjoiMDI3YjAwNmI2ZWYxNDFlYTc1OGU4ZDM5YjM2MjY0ZGNiNTFjYjY4OTAyNWQ0YzIyZTBmMWU1ZDA3YTdjNjcwZTQ1In0.28mi9zXG2jW7YxtorzPejVbn0gLpJhhNKQK1yB14AFUxy-gKtO88RcbZq_wc7quVNeCfnHX8v1_LpJPygPRGbA", 'cache-control': "no-cache", 'postman-token': "020d861f-2c66-35f3-b647-f18f23fcfc28" }
+    payload = { "record_id":uuid.uuid4().hex, "device": str(r["dev_id"]), "ts": str(r["ts"]), "seq": str(r["seq_no"]), "ddata": str(r["sensor_data"][0:32]), "dsize": str(r["data_size"]), "dhash": str(dhash) }
     response = requests.request("POST", url, data=json.dumps(payload), headers=headers)
-    L.info("###post res ###")
-    L.info(response)
+    reply = json.loads(response.text)
+
+
 def query_record_mongo(page):
     db = get_db_mongo()
     records = []
@@ -121,11 +95,8 @@ def query_record_mongo(page):
 
 @app.route("/sensor/add", methods = ['POST'])
 def add_sensor_record():
-
     data = json.loads(request.get_data())
-    L.info("####main -- add_sensor_record -- before insert####")
     insert_record_mongo(data)
-    L.info("####main -- add_sensor_record -- after insert####")
     return jsonify({"status": "SUCCEEED"})
 
 @app.route("/sensor/query/<int:page>")
