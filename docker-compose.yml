@@ -5,38 +5,37 @@ services:
     build:
       context: ./dockers/
       dockerfile: Dockerfile.web
-    links:
-    - db
-
+    extra_hosts:
+      - "service.localhost:172.16.123.1"
     environment:
       TZ: "America/Montreal"
       UWSGI_CHEAPER: 0
       UWSGI_PROCESSES: 1
       ME_CONFIG_MONGODB_ADMINUSERNAME: root
       ME_CONFIG_MONGODB_ADMINPASSWORD: password
-    cpus: 1.0
 
-  db:
-    image: mongo:3-xenial
-    ports:
-    - 27017:27017
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: password
-    volumes:
-    - ./mongodb:/data/db:rw
 
-  dbmanager:
-    image: mongo-express
-    links:
-    - db
-    ports:
-    - 8081:8081
-    environment:
-      ME_CONFIG_MONGODB_SERVER: db
-      ME_CONFIG_MONGODB_ADMINUSERNAME: root
-      ME_CONFIG_MONGODB_ADMINPASSWORD: password
-
+#  db:
+#    image: mongo:3-xenial
+#    ports:
+#    - 27017:27017
+#    environment:
+#      MONGO_INITDB_ROOT_USERNAME: root
+#      MONGO_INITDB_ROOT_PASSWORD: password
+#    volumes:
+#    - ./mongodb:/data/db:rw
+#
+#  dbmanager:
+#    image: mongo-express
+#    links:
+#    - db
+#    ports:
+#    - 8081:8081
+#    environment:
+#      ME_CONFIG_MONGODB_SERVER: db
+#      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+#      ME_CONFIG_MONGODB_ADMINPASSWORD: password
+#
   haproxy:
     image: dockercloud/haproxy:latest
     links:

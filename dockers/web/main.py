@@ -77,14 +77,15 @@ def insert_record_mongo(r):
     m.update(r["sensor_data"].encode('utf-8'))
     dhash = m.hexdigest()[:30]
 
-    db = get_db_mongo()
-    url = "http://ec2-34-207-173-85.compute-1.amazonaws.com:8040/api/records"
+    url = "http://service.localhost:8000/invoke"
+    args = [str(r["dev_id"]), str(r["sensor_data"][0:32])]
+    payload = {"function": "Write", "args": args}
 
-    headers = { 'content-type': "application/json", 'authorization': "eyJhbGciOiJIUzUxMiIsImlhdCI6MTU4OTkzNTkwNSwiZXhwIjoyNTg5OTM1OTA0fQ.eyJwdWJsaWNfa2V5IjoiMDI3YjAwNmI2ZWYxNDFlYTc1OGU4ZDM5YjM2MjY0ZGNiNTFjYjY4OTAyNWQ0YzIyZTBmMWU1ZDA3YTdjNjcwZTQ1In0.28mi9zXG2jW7YxtorzPejVbn0gLpJhhNKQK1yB14AFUxy-gKtO88RcbZq_wc7quVNeCfnHX8v1_LpJPygPRGbA", 'cache-control': "no-cache", 'postman-token': "020d861f-2c66-35f3-b647-f18f23fcfc28" }
-    payload = { "record_id":uuid.uuid4().hex, "device": str(r["dev_id"]), "ts": str(r["ts"]), "seq": str(r["seq_no"]), "ddata": str(r["sensor_data"][0:32]), "dsize": str(r["data_size"]), "dhash": str(dhash) }
+    headers = { 'content-type': "application/json"}
+    #payload = { "record_id":uuid.uuid4().hex, "device": str(r["dev_id"]), "ts": str(r["ts"]), "seq": str(r["seq_no"]), "ddata": str(r["sensor_data"][0:32]), "dsize": str(r["data_size"]), "dhash": str(dhash) }
     response = requests.request("POST", url, data=json.dumps(payload), headers=headers)
     reply = json.loads(response.text)
-
+    print(reply)
 
 def query_record_mongo(page):
     db = get_db_mongo()
