@@ -81,7 +81,22 @@ def insert_record_mongo(r):
     args = [str(r["dev_id"]), str(r["sensor_data"][0:32])]
     payload = {"function": "Write", "args": args}
 
-    headers = { 'content-type': "application/json"}
+    headers = {'content-type': "application/json"}
+    #payload = { "record_id":uuid.uuid4().hex, "device": str(r["dev_id"]), "ts": str(r["ts"]), "seq": str(r["seq_no"]), "ddata": str(r["sensor_data"][0:32]), "dsize": str(r["data_size"]), "dhash": str(dhash) }
+    response = requests.request("POST", url, data=json.dumps(payload), headers=headers)
+    reply = json.loads(response.text)
+    print(reply)
+
+def insert_record_eth(r):
+    m = hashlib.md5()
+    m.update(r["sensor_data"].encode('utf-8'))
+    dhash = m.hexdigest()[:30]
+
+    url = "http://service.localhost:8000/invoke"
+    args = [str(r["dev_id"]), str(r["sensor_data"][0:32])]
+    payload = {"function": "Write", "args": args}
+
+    headers = {'content-type': "application/json"}
     #payload = { "record_id":uuid.uuid4().hex, "device": str(r["dev_id"]), "ts": str(r["ts"]), "seq": str(r["seq_no"]), "ddata": str(r["sensor_data"][0:32]), "dsize": str(r["data_size"]), "dhash": str(dhash) }
     response = requests.request("POST", url, data=json.dumps(payload), headers=headers)
     reply = json.loads(response.text)

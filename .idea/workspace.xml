@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c55ccec5-aaed-43c4-bc9e-07ed30f5d480" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IoT/metrics.csv" beforeDir="false" afterPath="$PROJECT_DIR$/IoT/metrics.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IoT/schedule.list" beforeDir="false" afterPath="$PROJECT_DIR$/IoT/schedule.list" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IoT/sensors.list" beforeDir="false" afterPath="$PROJECT_DIR$/IoT/sensors.list" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dockers/web/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/dockers/web/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -27,7 +23,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$USER_HOME$/sawtooth/blockbench" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../certification--frontendv2" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -41,6 +37,7 @@
       <workItem from="1613126332543" duration="1138000" />
       <workItem from="1613140214896" duration="17434000" />
       <workItem from="1621974582323" duration="3217000" />
+      <workItem from="1622559604797" duration="4690000" />
     </task>
     <servers />
   </component>

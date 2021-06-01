@@ -1,0 +1,15 @@
+# Node.js libraries
+.idea
+node_modules/
+
+data/
+package-lock.json
+.node-*
+msp/
+vendor/
+*log*
+log.txt
+*vscode*
+driver
+*.o
+tmp
