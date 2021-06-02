@@ -1,5 +1,6 @@
 
 
+const { response } = require('express');
 const express = require('express');
 const transaction = require("./transaction");
 const app = express();
@@ -7,15 +8,15 @@ app.use(express.json());
 
 
 app.post('/invoke', (req, res) => {
-    console.log('Got body:', req.body.function);
-    if (! key ||!value) {
-      res.send("args must have a value")
-    }
+    
     key = req.body.args[0]
     value = req.body.args[1]
-    transaction.set(key,value)
-    res.send('Successful response.');
+    transaction.set(key,value).then((result) => {
+      //console.log(result)
+      res.send(result);
+    })
+   
   });
 
-  app.listen(3000, () => console.log('Example app is listening on port 3000.'));
+  app.listen(3000, () => console.log(' listening on port 3000.'));
 
