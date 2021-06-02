@@ -47,7 +47,7 @@ contractAbi = [
 	}
 ]
    
-var contractAddress = "0x34AFe602F642AeDd6322bbd68A9300845B31c27b"
+var contractAddress = "0x34afe602f642aedd6322bbd68a9300845b31c27b"
 var storeContract = new web3.eth.Contract(contractAbi, contractAddress);
 
 const account1 = "0xa7efd857de41dc223cfc8cf6fe052348492864c4"
@@ -97,18 +97,7 @@ async function set(key, value) {
 			  console.log("time = ", time, " latency_ms = ", end)
 			  return {"time": time, "txnID": hash, "latency_ms": end};
 
-            // const transaction = web3.eth.sendSignedTransaction(raw, (err, tx) => {
-			// 	var end = new Date() - start
-			// 	var response = {"status": "0", "txnID": tx, "latency_ms": end}
-			
-        
-			// 	if (err) {
-			// 		console.log(err)
-			// 		var response = {"status": "1", "err": err}
-			// 	}
-                
-			// 	return response = await Promise.resolve(response);
-            // });
+
        
  
 }

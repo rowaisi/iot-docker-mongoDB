@@ -11,11 +11,14 @@ app.post('/invoke', (req, res) => {
     
     key = req.body.args[0]
     value = req.body.args[1]
-    transaction.set(key,value).then((result) => {
+    transaction.set(key,value)
+        .then((result) => {
       //console.log(result)
       res.send(result);
     })
-   
+        .catch(err => console.log(err))
+
+
   });
 
   app.listen(3000, () => console.log(' listening on port 3000.'));
