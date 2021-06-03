@@ -1,7 +1,7 @@
 # Node.js libraries
 .idea
 node_modules/
-venv
+eth-python-client/venv
 data/
 package-lock.json
 .node-*
