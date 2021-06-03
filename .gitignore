@@ -1,7 +1,7 @@
 # Node.js libraries
 .idea
 node_modules/
-
+venv
 data/
 package-lock.json
 .node-*
