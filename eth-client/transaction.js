@@ -2,7 +2,7 @@ const Web3 = require('web3');
 const Tx = require('ethereumjs-tx');
 const { response } = require('express');
 
-var networkUrl = "http://127.0.0.1:8545"
+var networkUrl = "http://3.138.182.146:8545"
 var web3 = new Web3(new Web3.providers.HttpProvider(networkUrl));
 var lastNonce = 0
 
@@ -62,45 +62,64 @@ web3.eth.getTransactionCount(account1, (err, txCount) => {
 });
 
 
-async function set(key, value) {
-	
-    var data = storeContract.methods.set(key, value).encodeABI();
-        // Build the transaction
-          const txObject = {
-            nonce:    web3.utils.toHex(lastNonce),
-            to:       contractAddress,
-            value:    web3.utils.toHex(web3.utils.toWei('0', 'ether')),
-            gasLimit: web3.utils.toHex(2100000),
-            gasPrice: web3.utils.toHex(web3.utils.toWei('0', 'gwei')),
-            data: data,
-            chainId: 13
-          }
-		  lastNonce ++;
-            // Sign the transaction
-            const tx = new Tx(txObject);
-            tx.sign(privateKey1Buffer);
-        
-            const serializedTx = tx.serialize();
-            const raw = '0x' + serializedTx.toString('hex');
-			var start = new Date()
-            // Broadcast the transaction
-            var end;
-			const hash = await new Promise(async (resolve) => {
-				await web3.eth.sendSignedTransaction(raw)
-				  .once('transactionHash', (hash) => {
-					end = new Date() - start
-					resolve(hash)
-				  })
-				
-			  })
-			  var time = new Date().toLocaleTimeString();
-			  console.log("time = ", time, " latency_ms = ", end)
-			  return {"time": time, "txnID": hash, "latency_ms": end};
+// async function set(key, value) {
+//
+//     var data = storeContract.methods.set(key, value).encodeABI();
+//         // Build the transaction
+//           const txObject = {
+//             nonce:    web3.utils.toHex(lastNonce),
+//             to:       contractAddress,
+//             value:    web3.utils.toHex(web3.utils.toWei('0', 'ether')),
+//             gasLimit: web3.utils.toHex(2100000),
+//             gasPrice: web3.utils.toHex(web3.utils.toWei('0', 'gwei')),
+//             data: data,
+//             chainId: 13
+//           }
+// 		  lastNonce ++;
+//             // Sign the transaction
+//             const tx = new Tx(txObject);
+//             tx.sign(privateKey1Buffer);
+//
+//             const serializedTx = tx.serialize();
+//             const raw = '0x' + serializedTx.toString('hex');
+// 			var start = new Date()
+//             // Broadcast the transaction
+//             var end;
+// 			const hash = await new Promise(async (resolve) => {
+// 				await web3.eth.sendSignedTransaction(raw)
+// 				  .once('transactionHash', (hash) => {
+// 					end = new Date() - start
+// 					resolve(hash)
+// 				  })
+//
+// 			  })
+// 			  var time = new Date().toLocaleTimeString();
+// 			  console.log("time = ", time, " latency_ms = ", end)
+// 			  return {"time": time, "txnID": hash, "latency_ms": end};
+//
+//
+//
+//
+// }
+
+	 function set(key, value) {
+		 const data = storeContract.methods.set(key, value).encodeABI();
+		 const start = new Date();
 
 
-       
- 
-}
-
+		 // using the event emitter
+	web3.eth.sendTransaction(  {
+	       from:    "0xa7efd857de41dc223cfc8cf6fe052348492864c4",
+			to:       contractAddress,
+			gas: "0x100000",
+			gasPrice: web3.utils.toHex(web3.utils.toWei('0', 'gwei')),
+			data: data
+	})
+	.on('transactionHash', function(hash){
+		const end = new Date() - start
+		console.log("hash: ", hash, " latency_ms: ", end)
+	})
+	.on('error', console.error); // If a out of gas error, the second parameter is the receipt.
+	}
 
 module.exports = { set };
