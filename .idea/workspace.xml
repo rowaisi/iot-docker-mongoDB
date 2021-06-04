@@ -2,7 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c55ccec5-aaed-43c4-bc9e-07ed30f5d480" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IoT/metrics.csv" beforeDir="false" afterPath="$PROJECT_DIR$/IoT/metrics.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IoT/schedule.list" beforeDir="false" afterPath="$PROJECT_DIR$/IoT/schedule.list" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dockers/web/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/dockers/web/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/eth-python-client/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/eth-python-client/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/eth-python-client/ethereum.py" beforeDir="false" afterPath="$PROJECT_DIR$/eth-python-client/ethereum.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,13 +31,14 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/eth-python-client" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/eth-client-js" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
     <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/eth-client-js" />
       <recent name="$PROJECT_DIR$/eth-python-client" />
       <recent name="$PROJECT_DIR$/eth-client" />
     </key>
@@ -87,7 +93,12 @@
       <workItem from="1622559604797" duration="4690000" />
       <workItem from="1622645806322" duration="4330000" />
       <workItem from="1622660573747" duration="2452000" />
-      <workItem from="1622713826678" duration="26922000" />
+      <workItem from="1622713826678" duration="27214000" />
+      <workItem from="1622750798208" duration="2852000" />
+      <workItem from="1622753923559" duration="202000" />
+      <workItem from="1622754245972" duration="17000" />
+      <workItem from="1622754445225" duration="3157000" />
+      <workItem from="1622795772498" duration="9044000" />
     </task>
     <servers />
   </component>
@@ -104,5 +115,6 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>

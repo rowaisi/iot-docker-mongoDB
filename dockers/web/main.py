@@ -80,7 +80,7 @@ def insert_record_mongo(r):
     m.update(r["sensor_data"].encode('utf-8'))
     dhash = m.hexdigest()[:30]
 
-    url = "http://service.localhost:5000/invoke"
+    url = "http://service.localhost:3000/invoke"
     args = [str(r["dev_id"]), str(r["sensor_data"][0:32])]
     payload = {"function": "Write", "args": args}
 
