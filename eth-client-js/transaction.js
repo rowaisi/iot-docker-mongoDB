@@ -1,7 +1,7 @@
 const Web3 = require('web3');
 const utils = require('./utils')
 const request = require('request');
-const networkUrl = "http://localhost:8545"
+const networkUrl = "http://18.117.143.145:8545"
 const web3 = new Web3(new Web3.providers.HttpProvider(networkUrl));
 const account = "0xa7efd857de41dc223cfc8cf6fe052348492864c4"
 let pendingQueue = []

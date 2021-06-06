@@ -1,13 +1,13 @@
 const Web3 = require('web3');
 const utils = require('./utils')
-const networkUrl = "http://localhost:8545"
+const networkUrl = "http://18.117.143.145:8545"
 const transaction = require("./transaction");
 const web3 = new Web3(new Web3.providers.HttpProvider(networkUrl));
 let latestKnownBlockNumber = -1;
 let blockTime = 2000;
 let latencyTx = []
 let receivedTx = []
-//checkCurrentBlock()
+checkCurrentBlock()
 
 function calculateLatencyToTable(){
     const pending = utils.readFromFile("results/pending.txt")
