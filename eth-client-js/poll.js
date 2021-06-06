@@ -1,19 +1,36 @@
 const Web3 = require('web3');
-const networkUrl = "http://3.138.182.146:8545"
+const utils = require('./utils')
+const networkUrl = "http://localhost:8545"
+const transaction = require("./transaction");
 const web3 = new Web3(new Web3.providers.HttpProvider(networkUrl));
-
 let latestKnownBlockNumber = -1;
-let blockTime = 3000;
+let blockTime = 2000;
+let latencyTx = []
 
-checkCurrentBlock()
+function calculateLatency(pending, received){
+    for (const tx of received){
+          let obj = pending.find(o => o.TXID === tx.TXID);
+          if (obj) {
+              console.log("####  ", obj.TXID, " #######")
+              console.log(tx.addedTime , "=> ", utils.timeStringToSeconds(tx.addedTime))
+              console.log(obj.time , "=> ", utils.timeStringToSeconds(obj.time))
+             const latency = utils.timeStringToSeconds(tx.addedTime) - utils.timeStringToSeconds(obj.time)
+            latencyTx.push({"latency": latency, "time": obj.time})
+          }
+
+
+
+    }
+}
 
 async function processBlock(blockNumber) {
     console.log("We process block: " + blockNumber)
     pollTxsBlocks(blockNumber).then((res) => {
-        for (const tx of res) {
-            console.log("TXID: ", tx.TXID , " time:", tx.addedTime)
-        }
+        const currentTx = transaction.getPendingQueue()
+
+        calculateLatency(currentTx,res)
     })
+
     latestKnownBlockNumber = blockNumber;
 }
 
@@ -26,44 +43,57 @@ async function checkCurrentBlock() {
     setTimeout(checkCurrentBlock, blockTime);
 }
 
+async function pollBlockInRange(start, end) {
+    let allTx = []
+
+    for (let i = start; i < end; i++) {
+         let res = await pollTxsBlocks(i);
+        Array.prototype.push.apply(allTx,res);
+
+    }
+    const currentTx = utils.readFromFile("results/pending.txt")
+
+    calculateLatency(currentTx, allTx)
+
+
+}
+
+function getlatencyTX() {
+	return latencyTx
+}
 
 async function pollTxsBlocks(number) {
+    const event = new Date();
+    //const received = utils.getTimeWithMilliseconds(event)
+    const received = event.toLocaleTimeString('en-IT', { hour12: false });
     let result = []
+
     // process transaction in block
     let block =  await web3.eth.getBlock(number);
-    let time = timestampToTime(block.timestamp);
-    const txs = block.transactions;
-    result = addSendElmtToArray(txs,time)
+    //let received = utils.timestampToTime(block.timestamp);
+    let txs = block.transactions;
+    txs = utils.addSendElmtToArray(txs,received)
 
-    // process transaction in uncle
+     // process transaction in uncle
+    let unclesTx = []
     const uncles = block.uncles;
+
     for (const element of uncles) {
        block = await web3.eth.getBlock(element);
-       time = timestampToTime(block.timestamp);
+       // received = utils.timestampToTime(block.timestamp);
        if (block.transactions){
             for (const tx of block.transactions) {
-       //txs.push(tx)
-                result.push({"TXID": tx, "addedTime": time})
+       unclesTx.push(tx)
+                //result.push({"TXID": tx, "addedTime": time})
     }
        }
     }
-    return result
+    unclesTx = utils.addSendElmtToArray(unclesTx,received)
+    Array.prototype.push.apply(txs,unclesTx);
+    return txs
 }
 
-function timestampToTime(timestamp){
-    const date = new Date(timestamp * 1000);
-    const hours = date.getHours();
-    const minutes = "0" + date.getMinutes();
-    const seconds = "0" + date.getSeconds();
-    const formattedTime = hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
-        return formattedTime
-}
 
-function addSendElmtToArray(array, time  ){
-    let newArray = []
-     for (const element of array) {
-         const newElmt = {"TXID": element, "addedTime": time};
-         newArray.push(newElmt)
-     }
-     return newArray
-}
+
+
+module.exports = {getlatencyTX, pollBlockInRange};

@@ -2,6 +2,7 @@
 .idea
 node_modules/
 eth-python-client/venv
+__pycache__
 eth-client/node_modules
 data/
 package-lock.json

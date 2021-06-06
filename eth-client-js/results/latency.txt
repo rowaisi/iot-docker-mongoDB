@@ -1,0 +1,1 @@
+[{"latency":-1,"time":"12:06:10"},{"latency":0,"time":"12:06:23"},{"latency":0,"time":"12:06:23"},{"latency":-1,"time":"12:06:24"},{"latency":-2,"time":"12:06:25"},{"latency":1,"time":"12:06:29"},{"latency":1,"time":"12:06:34"},{"latency":0,"time":"12:06:35"},{"latency":-3,"time":"12:06:38"},{"latency":1,"time":"12:06:48"},{"latency":1,"time":"12:06:49"}]
