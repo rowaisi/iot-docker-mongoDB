@@ -6,33 +6,64 @@ const web3 = new Web3(new Web3.providers.HttpProvider(networkUrl));
 let latestKnownBlockNumber = -1;
 let blockTime = 2000;
 let latencyTx = []
+let receivedTx = []
+//checkCurrentBlock()
 
-function calculateLatency(pending, received){
+function calculateLatencyToTable(){
+    const pending = utils.readFromFile("results/pending.txt")
+    const received = utils.readFromFile("results/received.txt")
     for (const tx of received){
           let obj = pending.find(o => o.TXID === tx.TXID);
           if (obj) {
-              console.log("####  ", obj.TXID, " #######")
-              console.log(tx.addedTime , "=> ", utils.timeStringToSeconds(tx.addedTime))
-              console.log(obj.time , "=> ", utils.timeStringToSeconds(obj.time))
              const latency = utils.timeStringToSeconds(tx.addedTime) - utils.timeStringToSeconds(obj.time)
             latencyTx.push({"latency": latency, "time": obj.time})
           }
+   }
+
+}
+
+function calculateLatency(){
+    console.log("time,count,latency")
+    const pending = utils.readFromFile("results/pending.txt")
+    const received = utils.readFromFile("results/received.txt")
+    let oldTime = received[0].addedTime;
+     let countTx = 0
+    let latency = 0
+    for (const tx of received){
+          if (tx.addedTime === oldTime){
+             let obj = pending.find(o => o.TXID === tx.TXID);
+          if (obj) {
+              latency += utils.timeStringToSeconds(tx.addedTime) - utils.timeStringToSeconds(obj.time)
+               countTx ++
+          }
+
+         }else {
+               console.log(oldTime+ ","+ countTx+","+ latency)
+               oldTime = tx.addedTime
+                countTx = 0
+                  latency = 0
+          }
 
 
+   }
+
+}
+
+async function pollBlockInRange(start, end) {
+
+
+    for (let i = start; i < end; i++) {
+         let res = await pollTxsBlocks(i);
+        Array.prototype.push.apply(receivedTx,res);
 
     }
+    const currentTx = utils.readFromFile("results/pending.txt")
+
+    calculateLatency(currentTx, receivedTx)
+
+
 }
 
-async function processBlock(blockNumber) {
-    console.log("We process block: " + blockNumber)
-    pollTxsBlocks(blockNumber).then((res) => {
-        const currentTx = transaction.getPendingQueue()
-
-        calculateLatency(currentTx,res)
-    })
-
-    latestKnownBlockNumber = blockNumber;
-}
 
 async function checkCurrentBlock() {
     const currentBlockNumber = await web3.eth.getBlockNumber()
@@ -43,20 +74,28 @@ async function checkCurrentBlock() {
     setTimeout(checkCurrentBlock, blockTime);
 }
 
-async function pollBlockInRange(start, end) {
-    let allTx = []
+async function processBlock(blockNumber) {
+    console.log("We process block: " + blockNumber)
+    pollTxsBlocks(blockNumber).then((res) => {
+        for (const element of res) {
+            console.log("TXID: ", element.TXID , " time: " , element.addedTime)
+        }
+        // const currentTx = transaction.getPendingQueue()
+        // calculateLatency(currentTx,res)
+         Array.prototype.push.apply(receivedTx,res);
 
-    for (let i = start; i < end; i++) {
-         let res = await pollTxsBlocks(i);
-        Array.prototype.push.apply(allTx,res);
+    })
 
-    }
-    const currentTx = utils.readFromFile("results/pending.txt")
-
-    calculateLatency(currentTx, allTx)
-
-
+    latestKnownBlockNumber = blockNumber;
 }
+
+
+
+function writePendingQueueToFile() {
+    console.log(receivedTx.length)
+	utils.writeToFile("results/received.txt", receivedTx)
+}
+
 
 function getlatencyTX() {
 	return latencyTx
@@ -96,4 +135,4 @@ async function pollTxsBlocks(number) {
 
 
 
-module.exports = {getlatencyTX, pollBlockInRange};
+module.exports = {getlatencyTX, pollBlockInRange,writePendingQueueToFile,calculateLatency, checkCurrentBlock};

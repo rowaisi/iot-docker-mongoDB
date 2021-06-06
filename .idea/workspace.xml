@@ -2,13 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c55ccec5-aaed-43c4-bc9e-07ed30f5d480" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/IoT/metrics.csv" beforeDir="false" afterPath="$PROJECT_DIR$/IoT/metrics.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/IoT/schedule.list" beforeDir="false" afterPath="$PROJECT_DIR$/IoT/schedule.list" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/eth-client-js/poll.js" beforeDir="false" afterPath="$PROJECT_DIR$/eth-client-js/poll.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/eth-client-js/results/pending.txt" beforeDir="false" afterPath="$PROJECT_DIR$/eth-client-js/results/pending.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/eth-client-js/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/eth-client-js/server.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/eth-client-js/transaction.js" beforeDir="false" afterPath="$PROJECT_DIR$/eth-client-js/transaction.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -104,6 +103,7 @@
       <workItem from="1622754445225" duration="3157000" />
       <workItem from="1622795772498" duration="22678000" />
       <workItem from="1622968569419" duration="10563000" />
+      <workItem from="1623012429900" duration="5443000" />
     </task>
     <servers />
   </component>

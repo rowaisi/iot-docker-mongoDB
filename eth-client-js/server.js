@@ -23,17 +23,23 @@ app.get('/queue', (req, res) => {
     res.send(queue);
 })
 
-app.get('/write-queue', (req, res) => {
-    transaction.writePendingQueueToFile()
+app.post('/write-queue', (req, res) => {
+    const type = req.body.type
+    if (type === "send"){
+        transaction.writePendingQueueToFile()
+    } else if (type === "received") {
+        poll.writePendingQueueToFile()
+    }
+
     res.send("successful");
 })
 
 app.post('/latency', (req, res) => {
 
-    const start = req.body.start
-    const end = req.body.end
-    poll.pollBlockInRange(start,end)
-
+   // const start = req.body.start
+   // const end = req.body.end
+    //poll.pollBlockInRange(start,end)
+    poll.calculateLatency()
     res.send("successful");
 
   });
