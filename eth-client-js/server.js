@@ -13,8 +13,10 @@ app.post('/invoke', (req, res) => {
     key = req.body.args[0]
     value = req.body.args[1]
 
-    transaction.set(key,value)
-    res.send("successful");
+    transaction.set(key,value).then((result) => {
+        res.send(result);
+    })
+
 
   });
 
