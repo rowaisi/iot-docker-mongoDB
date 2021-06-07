@@ -7,6 +7,7 @@ let latestKnownBlockNumber = -1;
 let blockTime = 2000;
 let latencyTx = []
 let receivedTx = []
+
 checkCurrentBlock()
 
 function calculateLatencyToTable(){
@@ -91,7 +92,7 @@ async function processBlock(blockNumber) {
 
 
 
-function writePendingQueueToFile() {
+function writeReceviedQueueToFile() {
     console.log(receivedTx.length)
 	utils.writeToFile("results/received.txt", receivedTx)
 }
@@ -135,4 +136,4 @@ async function pollTxsBlocks(number) {
 
 
 
-module.exports = {getlatencyTX, pollBlockInRange,writePendingQueueToFile,calculateLatency, checkCurrentBlock};
+module.exports = {getlatencyTX, pollBlockInRange,writeReceviedQueueToFile,calculateLatency, checkCurrentBlock};

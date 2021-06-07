@@ -2,6 +2,7 @@
 .idea
 node_modules/
 eth-python-client/venv
+eth-client-js/results/*
 __pycache__
 eth-client/node_modules
 data/
