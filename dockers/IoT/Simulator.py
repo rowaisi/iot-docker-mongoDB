@@ -294,7 +294,7 @@ def stop_sensors(simulator, new_sensors):
 async def do_statistics(simulator, interval):
     metrics = simulator["metrics"]
     with open("run/metrics.csv", "w") as f:
-        f.write("Time,Sensors,Requests,ErrorRate,AvgLatency\n")
+        f.write("Time,Sensors,Requests,success,ErrorRate,AvgLatency\n")
         while simulator["running"]:
             await asyncio.sleep(interval)
 
@@ -303,13 +303,13 @@ async def do_statistics(simulator, interval):
             succRequests = metrics[0]
             errorRate = metrics[1] / allRequests if allRequests > 0 else 0.0
 
-            L.info("METRIC: %d sensors, %.2f seconds, %d requests, %d succuss , Error Rate: %.2f, Average Latency: %.2f ms" %
+            L.info("METRIC: %d sensors, %.2f seconds, %d requests, %d success , Error Rate: %.2f, Average Latency: %.2f ms" %
                    (simulator["cur_sensors"], interval, allRequests, succRequests, errorRate, avgLatency))
 
             t = time.localtime()
             f.write("%02d:%02d:%02d,%d,%d,%.2f,%.2f\n" % (t.tm_hour, t.tm_min, t.tm_sec,
                                                           simulator["cur_sensors"],
-                                                          allRequests, errorRate, avgLatency))
+                                                          allRequests, succRequests, errorRate, avgLatency))
 
             metrics[0] = 0
             metrics[1] = 0

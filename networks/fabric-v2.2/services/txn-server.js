@@ -87,7 +87,6 @@ getChannel(channelName, contractName).then((contract)=>{
         var txn;
         const funcName = req.body["function"];
         const args = req.body["args"];
-        console.log(`Receive funcName: ${funcName}, args: ${args}`);
         var start; 
         new Promise((resolve, reject)=>{
             txn = contract.createTransaction(funcName);
@@ -96,6 +95,7 @@ getChannel(channelName, contractName).then((contract)=>{
         }).then(()=>{
             var end = new Date() - start
             const txnID = txn.getTransactionId();
+            console.log("txnID: ",txnID, " latency_ms: ", end)
             res.json({"status": "0", "txnID": txnID, "latency_ms": end});
         }).catch((error)=>{
             console.error(`Failed to invoke with error: ${error}`);

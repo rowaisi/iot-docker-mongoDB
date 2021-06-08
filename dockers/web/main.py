@@ -112,7 +112,6 @@ def query_record_mongo(page):
 def add_sensor_record():
     data = json.loads(request.get_data())
     status = insert_record_mongo(data)
-    print(status)
     if status == 1:
         return jsonify({"status": status})
     abort(400)
