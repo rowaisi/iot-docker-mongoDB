@@ -307,7 +307,7 @@ async def do_statistics(simulator, interval):
                    (simulator["cur_sensors"], interval, allRequests, succRequests, errorRate, avgLatency))
 
             t = time.localtime()
-            f.write("%02d:%02d:%02d,%d,%d,%.2f,%.2f\n" % (t.tm_hour, t.tm_min, t.tm_sec,
+            f.write("%02d:%02d:%02d,%d,%d,%d,%.2f,%.2f\n" % (t.tm_hour, t.tm_min, t.tm_sec,
                                                           simulator["cur_sensors"],
                                                           allRequests, succRequests, errorRate, avgLatency))
 
