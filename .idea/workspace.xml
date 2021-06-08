@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c55ccec5-aaed-43c4-bc9e-07ed30f5d480" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IoT/metrics.csv" beforeDir="false" afterPath="$PROJECT_DIR$/IoT/metrics.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IoT/schedule.list" beforeDir="false" afterPath="$PROJECT_DIR$/IoT/schedule.list" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dockers/IoT/Simulator.py" beforeDir="false" afterPath="$PROJECT_DIR$/dockers/IoT/Simulator.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dockers/web/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/dockers/web/main.py" afterDir="false" />
-    </list>
+    <list default="true" id="c55ccec5-aaed-43c4-bc9e-07ed30f5d480" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
@@ -105,7 +104,7 @@
       <workItem from="1623012429900" duration="10253000" />
       <workItem from="1623073430122" duration="3503000" />
       <workItem from="1623095102291" duration="1354000" />
-      <workItem from="1623147366255" duration="9366000" />
+      <workItem from="1623147366255" duration="10060000" />
     </task>
     <servers />
   </component>
