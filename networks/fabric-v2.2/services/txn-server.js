@@ -110,20 +110,18 @@ getChannel(channelName, contractName).then((contract)=>{
         }).then(()=>{
             var end = new Date() - start
             const txnID = txn.getTransactionId();
-            console.log("txnID:",txnID)
-            console.log("latency_ms",end)
             res.json({"status": "0", "txnID": txnID, "latency_ms": end});
         }).catch((error)=>{
             console.error(`Failed to invoke with error: ${error}`);
-            res.status(400).send({"status": "1", "message": error.message});
+            res.json({"status": "1", "message": error.message});
         });
     });
 
-    app.get("/query", (req, res) => { 
+    app.get("/query", (req, res) => {
         const funcName = req.query.function;
         const args = req.query.args.split(',');
         console.log(`Receive funcName: ${funcName}, args: ${args}`);
-        var start; 
+        var start;
         new Promise((resolve, reject)=>{
             start = new Date();
             resolve(contract.evaluateTransaction(funcName, ...args));
