@@ -99,7 +99,7 @@ getChannel(channelName, contractName).then((contract)=>{
             res.json({"status": "0", "txnID": txnID, "latency_ms": end});
         }).catch((error)=>{
             console.error(`Failed to invoke with error: ${error}`);
-            res.json({"status": "1", "message": error.message});
+            res.status(400).send({"status": "1", "message": error.message});
         });
     });
 

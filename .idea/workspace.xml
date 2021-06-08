@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c55ccec5-aaed-43c4-bc9e-07ed30f5d480" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dockers/IoT/Simulator.py" beforeDir="false" afterPath="$PROJECT_DIR$/dockers/IoT/Simulator.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dockers/web/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/dockers/web/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/networks/fabric-v2.2/services/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/networks/fabric-v2.2/services/server.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/networks/fabric-v2.2/services/transaction.js" beforeDir="false" afterPath="$PROJECT_DIR$/networks/fabric-v2.2/services/transaction.js" afterDir="false" />
-    </list>
+    <list default="true" id="c55ccec5-aaed-43c4-bc9e-07ed30f5d480" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -25,6 +19,9 @@
     <setting file="file://$PROJECT_DIR$/dockers/web/main.py" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="JupyterTrust" id="3382e8f8-b095-4398-9c73-df6b3c6b9064" />
+  <component name="ProblemsViewState">
+    <option name="selectedIndex" value="1" />
+  </component>
   <component name="ProjectId" id="1oLgry36NM4I7rBoo0uXNoCjxbb" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
