@@ -116,11 +116,11 @@ async function set(key, value){
                    "id": 1};
 
    const headers = {'Content-type': 'application/json'};
-   const event = new Date();
-   //const send = utils.getTimeWithMilliseconds(event)
-   const send =event.toLocaleTimeString('en-IT', { hour12: false });
 
-   const hash = await new Promise(async (resolve) => {
+
+   const event = new Date();
+   const send =event.toLocaleTimeString('en-IT', { hour12: false });
+   const hash = await new Promise(async (resolve, reject) => {
 
 		 request.post({
 	  headers: headers,
@@ -128,19 +128,25 @@ async function set(key, value){
 	  body:    JSON.stringify(payload)
 	}, function(error, response, body){
 		if (error){
+			console.log("====error====")
 				console.log(error);
+				reject(new Error(error.errno));
 
 		}
 		if(body){
-
 			const data = JSON.parse(body)
-
-			console.log("TXID: ", data.result, "send ", send)
+			if (data.error){
+				console.log(data.error.message)
+				reject(new Error(data.error));
+			}else {
+				console.log("TXID: ", data.result, "send ", send)
 				resolve(data.result)
+			}
+
 		}
 
 
-});
+})
 
 
    })

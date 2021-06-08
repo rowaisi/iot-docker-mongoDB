@@ -15,7 +15,13 @@ app.post('/invoke', (req, res) => {
 
     transaction.set(key,value).then((result) => {
         res.send(result);
-    })
+    }).catch(
+        (error => {
+             res.status(400).send({
+               message: "error"
+            });
+        })
+    )
 
 
   });
