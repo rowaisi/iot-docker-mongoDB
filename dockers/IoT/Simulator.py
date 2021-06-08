@@ -300,10 +300,11 @@ async def do_statistics(simulator, interval):
 
             avgLatency = metrics[2] / metrics[0] * 1000 if metrics[0] > 0 else 0.0
             allRequests = metrics[0] + metrics[1]
+            succRequests = metrics[0]
             errorRate = metrics[1] / allRequests if allRequests > 0 else 0.0
 
-            L.info("METRIC: %d sensors, %.2f seconds, %d requests, Error Rate: %.2f, Average Latency: %.2f ms" %
-                   (simulator["cur_sensors"], interval, allRequests, errorRate, avgLatency))
+            L.info("METRIC: %d sensors, %.2f seconds, %d requests, %d succuss , Error Rate: %.2f, Average Latency: %.2f ms" %
+                   (simulator["cur_sensors"], interval, allRequests, succRequests, errorRate, avgLatency))
 
             t = time.localtime()
             f.write("%02d:%02d:%02d,%d,%d,%.2f,%.2f\n" % (t.tm_hour, t.tm_min, t.tm_sec,

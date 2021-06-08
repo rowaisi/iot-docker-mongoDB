@@ -13,7 +13,7 @@ app = Flask(__name__)
 
 log = logging.getLogger('werkzeug')
 log.setLevel(logging.ERROR)
-
+log.disabled = True
 
 def init_db_sqlite3():
     db = get_db_sqlite3()

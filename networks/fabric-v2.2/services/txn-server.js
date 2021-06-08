@@ -13,30 +13,16 @@ const express = require('express');
 const bodyParser = require('body-parser');
 
 
-const argsLen = process.argv.length;
 
-function helper() {
-    console.error("Expected usage: ")
-    console.error("\tnode txn-server.js <channelName> <contractName> [open_loop|closed_loop] <port>")
-    console.error("\tThe 'open_loop' indicates the invocation will return once the transaction is submitted to orderers. The 'closed_loop' will block until peers finish validation. Their configuration may impact on invocation transactions, not on queries. ")
 
-}
-if ( argsLen <= 5) {
-    console.error(`Too few arguments, expect 6`);
-    helper();
-    process.exit(1);
-}
-const channelName = process.argv[2];
-const contractName = process.argv[3];
 
-if (!(process.argv[4] == "open_loop" || process.argv[4] == "closed_loop")) {
-    console.error(`Invalid invocation mode ${process.argv[4]}. `);
-    helper();
-    process.exit(1);
-}
-const isOpenLoopMode = process.argv[4] == "open_loop";
+const channelName = "mychannel";
+const contractName = "kvstore";
 
-const port = Number(process.argv[5]);
+
+const isOpenLoopMode = true;
+
+const port = 3000;
 
 async function getChannel(channelName, contractName) {
     try {
