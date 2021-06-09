@@ -100,20 +100,20 @@ def main():
     headline = headline[:-1]
     headline += "\n"
 
-   # log_file.write(headline)
-    toBytes('17.1mb')
+    log_file.write(headline)
 
-    # while True:
-    #     start_time = time.time()
-    #     print("INFO:\tStart checking ...")
-    #     check_utilization(source, log_file)
-    #     end_time = time.time()
-    #     sleep_time = check_interval - (end_time - start_time)
-    #     print("INFO:\tFinish checking. Sleeping %.2f seconds ...\n" % sleep_time)
-    #     if sleep_time > 0:
-    #         time.sleep(sleep_time)
-    #
-    # log_file.close()
+
+    while True:
+        start_time = time.time()
+        print("INFO:\tStart checking ...")
+        check_utilization(source, log_file)
+        end_time = time.time()
+        sleep_time = check_interval - (end_time - start_time)
+        print("INFO:\tFinish checking. Sleeping %.2f seconds ...\n" % sleep_time)
+        if sleep_time > 0:
+            time.sleep(sleep_time)
+
+    log_file.close()
 
 
 if __name__ == "__main__":
