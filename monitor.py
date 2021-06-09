@@ -42,7 +42,7 @@ def check_utilization(target, log_file):
                 net_is.append(net_i)
                 net_o = toBytes(ss[9])
                 net_os.append(net_o)
-                print("INFO: container %s: cpu %.2f%%, mem %.2f%%, net_i %d MB, net_o %d MB" % (
+                print("INFO: container %s: cpu %.2f%%, mem %.2f%%, net_i %d B, net_o %d B" % (
                     ss[1], cu, mem, net_i, net_o))
 
     num = len(cpus)
