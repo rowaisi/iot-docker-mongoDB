@@ -13,12 +13,13 @@ log_cpu_path = "utils.csv"
 
 def getName(target):
     pattern = re.compile(r".*%s.*" % target)
+    patternDev = re.compile(r".*%s.*" % "dev")
     names = []
     with os.popen("sudo docker stats --no-stream") as f:
         for s in f.readlines():
             ss = s.split()
-            if pattern.match(ss[1]):
-                names.append(ss[1])
+            if pattern.match(ss[1]) and (not patternDev.match(ss[1])):
+                names.append(ss[1].replace("example.com", ""))
     return names
 
 
@@ -28,19 +29,20 @@ def check_utilization(target, log_file):
     net_is = []
     net_os = []
     pattern = re.compile(r".*%s.*" % target)
+    patternDev = re.compile(r".*%s.*" % "dev")
     with os.popen("sudo docker stats --no-stream") as f:
         for s in f.readlines():
             ss = s.split()
-            if len(ss) >= 3 and pattern.match(ss[1]):
+            if len(ss) >= 3 and pattern.match(ss[1]) and (not patternDev.match(ss[1])):
                 cu = float(ss[2].replace("%", ""))
                 cpus.append(cu)
                 mem = float(ss[6].replace("%", ""))
                 mems.append(mem)
-                net_i = float(ss[7].replace("MB", "").replace("MB", ""))
+                net_i = toBytes(ss[7])
                 net_is.append(net_i)
-                net_o = float(ss[9].replace("MB", "").replace("KB", ""))
+                net_o = toBytes(ss[9])
                 net_os.append(net_o)
-                print("INFO: container %s: cpu %.2f%%, mem %.2f%%, net_i %.3f MB, net_o %.3f MB" % (
+                print("INFO: container %s: cpu %.2f%%, mem %.2f%%, net_i %d MB, net_o %d MB" % (
                     ss[1], cu, mem, net_i, net_o))
 
     num = len(cpus)
@@ -53,6 +55,24 @@ def check_utilization(target, log_file):
                                                        ",".join("%.2f,%.2f,%.3f,%.3f" % (
                                                            cpus[i], mems[i], net_is[i], net_os[i]) for i in
                                                                 range(num))))
+
+
+def toBytes(value):
+    r = re.compile("([+-]?[0-9]+\.[0-9]+)([a-zA-Z]+)")
+    match = r.match(value)
+    if match:
+        value = match.group(1)
+        unit = match.group(2)
+        unit = unit.lower()
+        if unit == "kb":
+            return float(value) * 1000
+        if unit == "mb":
+            return float(value) * 1000000
+        if unit == "gb":
+            return float(value) * 1000000
+    else:
+        print("error")
+    return -1
 
 
 def main():
