@@ -7,7 +7,7 @@ from datetime import datetime
 import requests
 
 target_container = "web"
-check_interval = 2
+check_interval = 5
 log_cpu_path = "utils.csv"
 
 
@@ -50,19 +50,22 @@ def check_utilization(target, log_file):
     avg_mem = sum(mems) / num if num > 0 else -1
     avg_net_i = sum(net_is) / num if num > 0 else -1
     avg_net_o = sum(net_os) / num if num > 0 else -1
-    log_file.write("%s,%d,%.2f,%.2f,%.3f,%.3f,%s\n" % (datetime.now().strftime("%H:%M:%S"),
-                                                       num, avg_cpu, avg_mem, avg_net_i, avg_net_o,
-                                                       ",".join("%.2f,%.2f,%.3f,%.3f" % (
-                                                           cpus[i], mems[i], net_is[i], net_os[i]) for i in
-                                                                range(num))))
+    log_file.write("%s,%d,%.2f,%.2f,%d,%d,%s\n" % (datetime.now().strftime("%H:%M:%S"),
+                                                   num, avg_cpu, avg_mem, avg_net_i, avg_net_o,
+                                                   ",".join("%.2f,%.2f,%.3f,%.3f" % (
+                                                       cpus[i], mems[i], net_is[i], net_os[i]) for i in
+                                                            range(num))))
 
 
-def toBytes(value):
-    r = re.compile("([+-]?[0-9]+\.[0-9]+)([a-zA-Z]+)")
-    match = r.match(value)
+def toBytes(transform):
+    r = re.compile("([-+]?\d*\.\d+|\d+)([a-zA-Z]+)")
+    match = r.match(transform)
+
     if match:
         value = match.group(1)
         unit = match.group(2)
+        print(value)
+        print(unit)
         unit = unit.lower()
         if unit == "kb":
             return float(value) * 1000
@@ -71,8 +74,7 @@ def toBytes(value):
         if unit == "gb":
             return float(value) * 1000000
     else:
-        print("error")
-    return -1
+        raise Exception("error formation %s", transform)
 
 
 def main():
@@ -98,19 +100,20 @@ def main():
     headline = headline[:-1]
     headline += "\n"
 
-    log_file.write(headline)
+   # log_file.write(headline)
+    toBytes('17.1mb')
 
-    while True:
-        start_time = time.time()
-        print("INFO:\tStart checking ...")
-        check_utilization(source, log_file)
-        end_time = time.time()
-        sleep_time = check_interval - (end_time - start_time)
-        print("INFO:\tFinish checking. Sleeping %.2f seconds ...\n" % sleep_time)
-        if sleep_time > 0:
-            time.sleep(sleep_time)
-
-    log_file.close()
+    # while True:
+    #     start_time = time.time()
+    #     print("INFO:\tStart checking ...")
+    #     check_utilization(source, log_file)
+    #     end_time = time.time()
+    #     sleep_time = check_interval - (end_time - start_time)
+    #     print("INFO:\tFinish checking. Sleeping %.2f seconds ...\n" % sleep_time)
+    #     if sleep_time > 0:
+    #         time.sleep(sleep_time)
+    #
+    # log_file.close()
 
 
 if __name__ == "__main__":
