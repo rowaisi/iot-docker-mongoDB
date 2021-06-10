@@ -64,8 +64,6 @@ def toBytes(transform):
     if match:
         value = match.group(1)
         unit = match.group(2)
-        print(value)
-        print(unit)
         unit = unit.lower()
         if unit == "kb":
             return float(value) * 1000
