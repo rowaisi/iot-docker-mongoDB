@@ -11,7 +11,7 @@ const fs = require('fs');
 const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
-
+const transaction = require('./transaction')
 
 
 
@@ -83,11 +83,11 @@ getChannel(channelName, contractName).then((contract)=>{
 
     app.use(bodyParser.json());
 
-    app.post("/invoke", (req, res) => { 
+    app.post("/invoke", (req, res) => {
         var txn;
         const funcName = req.body["function"];
         const args = req.body["args"];
-        var start; 
+        var start;
         new Promise((resolve, reject)=>{
             txn = contract.createTransaction(funcName);
             start = new Date();
@@ -102,6 +102,21 @@ getChannel(channelName, contractName).then((contract)=>{
             res.status(400).send({"status": "1", "message": error.message});
         });
     });
+
+    //  app.post("/invoke", (req, res) => {
+    //     var txn;
+    //     const funcName = req.body["function"];
+    //     const args = req.body["args"];
+    //     var start = new Date();
+    //     transaction.set(args[0],args[1],contract,funcName)
+    //         var end = new Date() - start;
+    //         console.log( " latency_ms: ", end)
+    //         res.json({"status": "0"});
+    //
+    // });
+
+
+
 
     app.get("/query", (req, res) => {
         const funcName = req.query.function;

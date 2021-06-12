@@ -5,6 +5,8 @@ services:
     build:
       context: ./dockers/
       dockerfile: Dockerfile.web
+    sysctls:
+      net.core.somaxconn: 32766
     extra_hosts:
       - "service.localhost:172.16.123.1"
     environment:
@@ -42,6 +44,8 @@ services:
     - web
     ports:
     - 8086:80
+    sysctls:
+      net.core.somaxconn: 65535
     volumes:
     - /var/run/docker.sock:/var/run/docker.sock
 
@@ -54,6 +58,8 @@ services:
     environment:
       TEST_URL: http://haproxy/sensor/add
       TZ: "America/Montreal"
+    sysctls:
+      net.core.somaxconn: 65535
     volumes:
     - ./IoT:/app/run
 

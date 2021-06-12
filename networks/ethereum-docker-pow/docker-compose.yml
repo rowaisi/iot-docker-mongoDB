@@ -1,6 +1,7 @@
-version: "3"
+version: "2.2"
 
 services:
+
 
   eth_bootnode:
     hostname: bootnode
@@ -16,10 +17,10 @@ services:
 
 
   eth_miner1:
-    restart: on-failure:5
     hostname: miner1
     depends_on:
       - eth_bootnode
+    cpus: 0.5
     environment:
       - addr=0xa7EfD857De41dc223Cfc8cf6FE052348492864C4
       - id=4cb7dc25aaeb769ae94ce002e2ecd5232d9421a81c3cc63620a79db127778dd89c61348e7475a1e977cb72121098d364451bcbbaffd2981e306408d4b2405a6e
@@ -39,8 +40,8 @@ services:
       eth_private_network:
         ipv4_address: 172.28.1.12
 
+
   eth_miner2:
-    restart: on-failure:5
     hostname: miner2
     depends_on:
       - eth_bootnode
@@ -61,7 +62,6 @@ services:
         ipv4_address: 172.28.1.15
 
   eth_miner3:
-    restart: on-failure:5
     hostname: miner3
     depends_on:
       - eth_bootnode
@@ -82,7 +82,6 @@ services:
         ipv4_address: 172.28.1.11
 
   eth_miner4:
-    restart: on-failure:5
     hostname: miner4
     depends_on:
       - eth_bootnode
@@ -103,7 +102,6 @@ services:
         ipv4_address: 172.28.1.13
 
   eth_miner5:
-    restart: on-failure:5
     hostname: miner5
     depends_on:
       - eth_bootnode

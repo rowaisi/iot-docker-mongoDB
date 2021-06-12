@@ -4,7 +4,7 @@ const request = require('request');
 const networkUrl = "http://localhost:8545"
 const web3 = new Web3(new Web3.providers.HttpProvider(networkUrl));
 const account = "0xa7efd857de41dc223cfc8cf6fe052348492864c4"
-let pendingQueue = []
+let queue = []
 contractAbi = [
 	{
 		"constant": false,
@@ -88,16 +88,15 @@ function setWithoutWait(key, value){
    		const data = JSON.parse(body)
 
 		console.log("TXID: ", data.result, "send ", send)
-		pendingQueue.push({"TXID": data.result, "time": send})
+		queue.push({"TXID": data.result, "time": send})
 	}
 
 
 });
 
-
 }
 
-async function set(key, value){
+async function set(key, value,start){
 
 
    const method = 'eth_sendTransaction';
@@ -118,8 +117,8 @@ async function set(key, value){
    const headers = {'Content-type': 'application/json'};
 
 
-   const event = new Date();
-   const send =event.toLocaleTimeString('en-IT', { hour12: false });
+   // const event = new Date();
+   // const send =event.toLocaleTimeString('en-IT', { hour12: false });
    const hash = await new Promise(async (resolve, reject) => {
 
 		 request.post({
@@ -134,12 +133,15 @@ async function set(key, value){
 
 		}
 		if(body){
+
 			const data = JSON.parse(body)
 			if (data.error){
 				console.log(data.error.message)
 				reject(new Error(data.error));
 			}else {
-				console.log("TXID: ", data.result, "send ", send)
+				const end = new Date() - start;
+				console.log("TXID: ", data.result," send:", start, " latency_ms", end)
+				queue.push({"TXID": data.result, "send": start, "latency_ms": end})
 				resolve(data.result)
 			}
 
@@ -150,18 +152,69 @@ async function set(key, value){
 
 
    })
-     return {"TXID": hash, "send": send}
+     return {"TXID": hash, "send": start}
 
 
 }
 
+function calculateLatencyAVG(){
 
-function getPendingQueue() {
-	return pendingQueue
+	const pending = utils.readFromFile("results/pending.txt")
+	console.log(pending.length)
+	console.log("time count latency")
+	let oldTime = pending[0].send
+	let count = 0
+	let sumLatency = 0
+	let avgLatency =0
+	let i = 0
+	while (i < pending.length){
+		while (i < pending.length && ((new Date(pending[i].send) - new Date(oldTime))<= 10000) && i <= pending.length){
+			sumLatency += pending[i].latency_ms
+			count ++;
+			i ++
+		}
+		let localtime = new Date(oldTime).toLocaleTimeString('en-IT', { hour12: false });
+			avgLatency = sumLatency / count
+			console.log(localtime,count,avgLatency)
+		if (i < pending.length ){
+			oldTime = pending[i].send
+			count = 0
+			sumLatency = 0
+			avgLatency =0
+		}
+
+
+	}
+
+
+	//
+	// for (const tx of pending){
+	//
+	// 	if ((new Date(tx.send) - new Date(oldTime)) <= 10000) {
+	// 			sumLatency += tx.latency_ms
+	// 			count ++;
+	// 	}else {
+	// 		avgLatency = sumLatency / count
+	// 		console.log(time,count,avgLatency)
+	// 		oldTime = tx.send
+	// 		count = 1
+	// 		sumLatency =tx.latency_ms
+	// 		avgLatency =0
+	// 		time += 10
+	// 	}
+	//
+	//
+	// }
+	// console.log(total)
+
 }
 
-function writePendingQueueToFile() {
-	utils.writeToFile("results/pending.txt", pendingQueue)
+function getQueue() {
+	return queue
 }
 
-module.exports = { set, getPendingQueue, writePendingQueueToFile };
+function writeQueueToFile() {
+	utils.writeToFile("results/pending.txt", queue)
+}
+
+module.exports = { set, getQueue, calculateLatencyAVG, writeQueueToFile };

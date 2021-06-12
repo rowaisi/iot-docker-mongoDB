@@ -14,11 +14,13 @@ log_cpu_path = "utils.csv"
 def getName(target):
     pattern = re.compile(r".*%s.*" % target)
     patternDev = re.compile(r".*%s.*" % "dev")
+    order = re.compile(r".*%s.*" % "order")
+    orderCa = re.compile(r".*%s.*" % "ca")
     names = []
     with os.popen("sudo docker stats --no-stream") as f:
         for s in f.readlines():
             ss = s.split()
-            if pattern.match(ss[1]) and (not patternDev.match(ss[1])):
+            if (pattern.match(ss[1]) or order.match(ss[1]) )and (not patternDev.match(ss[1]) and not orderCa.match(ss[1])):
                 names.append(ss[1].replace("example.com", ""))
     return names
 
@@ -30,10 +32,13 @@ def check_utilization(target, log_file):
     net_os = []
     pattern = re.compile(r".*%s.*" % target)
     patternDev = re.compile(r".*%s.*" % "dev")
+    order = re.compile(r".*%s.*" % "order")
+    orderCa = re.compile(r".*%s.*" % "ca")
     with os.popen("sudo docker stats --no-stream") as f:
         for s in f.readlines():
             ss = s.split()
-            if len(ss) >= 3 and pattern.match(ss[1]) and (not patternDev.match(ss[1])):
+            if len(ss) >= 3 and (pattern.match(ss[1]) or order.match(ss[1])) \
+                    and (not patternDev.match(ss[1]) and not orderCa.match(ss[1])):
                 cu = float(ss[2].replace("%", ""))
                 cpus.append(cu)
                 mem = float(ss[6].replace("%", ""))
@@ -42,6 +47,11 @@ def check_utilization(target, log_file):
                 net_is.append(net_i)
                 net_o = toBytes(ss[9])
                 net_os.append(net_o)
+                if net_o is None:
+                    net_o = 0
+                if net_i is None:
+                    net_i = 0
+
                 print("INFO: container %s: cpu %.2f%%, mem %.2f%%, net_i %d B, net_o %d B" % (
                     ss[1], cu, mem, net_i, net_o))
 

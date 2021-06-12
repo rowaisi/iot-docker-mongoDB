@@ -9,14 +9,15 @@ app.use(express.json());
 
 
 app.post('/invoke', (req, res) => {
-
+    const start = new Date();
     key = req.body.args[0]
     value = req.body.args[1]
 
-    transaction.set(key,value).then((result) => {
+    transaction.set(key,value,start).then((result) => {
         res.send(result);
     }).catch(
         (error => {
+            print(error)
              res.status(400).send({
                message: "error"
             });
@@ -24,12 +25,22 @@ app.post('/invoke', (req, res) => {
     )
 
 
-  });
+
+    });
 
 
 app.post('/write-queue', (req, res) => {
 
-        transaction.writePendingQueueToFile()
+        transaction.writeQueueToFile()
+
+
+    res.send("successful");
+})
+
+
+app.post('/latency', (req, res) => {
+
+        transaction.calculateLatencyAVG()
 
 
     res.send("successful");

@@ -227,17 +227,25 @@ def init_sensor(simulator, id, config):
 
 
 # Send the message to the server
-async def send_sensor_msg(session, url, msg):
+async def send_sensor_msg(session, url, msg,simulator):
     # L.info("Url: %s, data: %s" % (url, msg))
     headers = {'content-type': 'application/json'}
+
     try:
-        async with session.post(url, data=msg, headers=headers) as resp:
-            if resp.status == 200:
-                return True
-            else:
-                return False
+        simulator["loop"].create_task(session.post(url, data=msg, headers=headers))
+        return True
+
     except:
         return False
+
+    # try:
+    #     async with session.post(url, data=msg, headers=headers) as resp:
+    #         if resp.status == 200:
+    #             return True
+    #         else:
+    #             return False
+    # except:
+    #     return False
 
 
 # Run the id-th sensor
@@ -250,9 +258,10 @@ async def run_sensor(simulator, id, config):
         msg, st = sensor["func"](sensor)
         # L.info("Sensor %d: Send %d bytes, Sleep %.2f" % (id, len(msg), st))
         starttime = time.time()
-        success = await send_sensor_msg(sensor["session"], sensor["url"], msg)
+        # success = await  send_sensor_msg(sensor["session"], sensor["url"], msg)
+        simulator["loop"].create_task(send_sensor_msg(sensor["session"], sensor["url"], msg,simulator))
         endtime = time.time()
-
+        success = True
         if success:
             # send request
             metrics[0] += 1
@@ -303,13 +312,14 @@ async def do_statistics(simulator, interval):
             succRequests = metrics[0]
             errorRate = metrics[1] / allRequests if allRequests > 0 else 0.0
 
-            L.info("METRIC: %d sensors, %.2f seconds, %d requests, %d success , Error Rate: %.2f, Average Latency: %.2f ms" %
-                   (simulator["cur_sensors"], interval, allRequests, succRequests, errorRate, avgLatency))
+            L.info(
+                "METRIC: %d sensors, %.2f seconds, %d requests, %d success , Error Rate: %.2f, Average Latency: %.2f ms" %
+                (simulator["cur_sensors"], interval, allRequests, succRequests, errorRate, avgLatency))
 
             t = time.localtime()
             f.write("%02d:%02d:%02d,%d,%d,%d,%.2f,%.2f\n" % (t.tm_hour, t.tm_min, t.tm_sec,
-                                                          simulator["cur_sensors"],
-                                                          allRequests, succRequests, errorRate, avgLatency))
+                                                             simulator["cur_sensors"],
+                                                             allRequests, succRequests, errorRate, avgLatency))
 
             metrics[0] = 0
             metrics[1] = 0
