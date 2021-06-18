@@ -7,7 +7,7 @@ from datetime import datetime
 import requests
 
 target_container = "web"
-check_interval = 5
+check_interval = 10
 log_cpu_path = "utils.csv"
 
 
@@ -75,6 +75,8 @@ def toBytes(transform):
         value = match.group(1)
         unit = match.group(2)
         unit = unit.lower()
+        if value is None:
+            return 0
         if unit == "kb":
             return float(value) * 1000
         if unit == "mb":

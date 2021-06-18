@@ -22,6 +22,20 @@ sleep 2
 ./addPeer.sh -o 2 -p 2 -t 8054
 sleep 2
 ./deployCC.sh -t 4051 -c mychannel -d kvstore -p 2 -o 2
+#sleep 2
+#./addPeer.sh -o 2 -p 3 -t 8054
+#sleep 2
+#./deployCC.sh -t 2051 -c mychannel -d kvstore -p 3 -o 2
+#sleep 2
+#./addPeer.sh -o 1 -p 3 -t 7054
+#sleep 2
+#./deployCC.sh -t 3051 -c mychannel -d kvstore -p 3 -o 1
+#sleep 2
+#sleep 2
+#./addPeer.sh -o 1 -p 4 -t 7054
+#sleep 2
+#./deployCC.sh -t 1051 -c mychannel -d kvstore -p 4 -o 1
+sleep 2
 echo "services"
 cd services
 node enrollAdmin.js

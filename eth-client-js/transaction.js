@@ -2,6 +2,10 @@ const Web3 = require('web3');
 const utils = require('./utils')
 const request = require('request');
 const networkUrl = "http://localhost:8545"
+const urls = [
+      {"url": "http://localhost:8545", "account": "0xa7efd857de41dc223cfc8cf6fe052348492864c4"},
+    {"url": "http://localhost:8546", "account": "0x116C95B6f0599b80EdaEF96dB4A0a03890bAf812"},
+{"url": "http://localhost:8547", "account": "0xe062C6acEF6e44a009dfF67bCBdDf2C780DdbC91"}]
 const web3 = new Web3(new Web3.providers.HttpProvider(networkUrl));
 const account = "0xa7efd857de41dc223cfc8cf6fe052348492864c4"
 let queue = []
@@ -102,6 +106,8 @@ async function set(key, value,start){
    const method = 'eth_sendTransaction';
    let data = encodeABI(key,value);
 
+
+   // const urlRad = urls[Math.floor(Math.random()*urls.length)];
    const params = [{"gas": "0x100000",
                    "gasPrice": "0x0",
                    "from": account,
@@ -115,7 +121,6 @@ async function set(key, value,start){
                    "id": 1};
 
    const headers = {'Content-type': 'application/json'};
-
 
    // const event = new Date();
    // const send =event.toLocaleTimeString('en-IT', { hour12: false });
@@ -141,7 +146,7 @@ async function set(key, value,start){
 			}else {
 				const end = new Date() - start;
 				console.log("TXID: ", data.result," send:", start, " latency_ms", end)
-				queue.push({"TXID": data.result, "send": start, "latency_ms": end})
+				//queue.push({"TXID": data.result, "send": start, "latency_ms": end})
 				resolve(data.result)
 			}
 

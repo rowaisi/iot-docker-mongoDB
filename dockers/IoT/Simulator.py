@@ -78,12 +78,17 @@ def load_schedule_settings(path):
 # ON / OFF
 def get_device_sensor_msg(sensor):
     val = random.choice(["OFF", "ON"])
+    valString = str(val)
+    n = 3
+    for i in range(n):
+        valString += valString
+
     msg = {
         "dev_id": str(sensor["id"]),
         "ts": round(time.time(), 5),
         "seq_no": sensor["seqno"],
-        "data_size": len(val),
-        "sensor_data": str(val)
+        "data_size": len(valString),
+        "sensor_data": str(valString)
     }
     sensor["seqno"] += 1
     st = random.gauss(sensor["mean"], sensor["sigma"])
@@ -93,13 +98,18 @@ def get_device_sensor_msg(sensor):
 # Generate messages from temperature sensor
 # the temperature value
 def get_temp_sensor_msg(sensor):
-    val = str(round(random.normalvariate(sensor["mean"], 10), 1)) + " C"
+    val = str(round(random.normalvariate(sensor["mean"], 10), 1))
+    valString = str(val)
+    n = 3
+    for i in range(n):
+        valString += valString
+    valString += " C"
     msg = {
         "dev_id": str(sensor["id"]),
         "ts": round(time.time(), 5),
         "seq_no": sensor["seqno"],
-        "data_size": len(val),
-        "sensor_data": str(val)
+        "data_size": len(valString),
+        "sensor_data": str(valString)
     }
     sensor["seqno"] += 1
     st = sensor["interval"]
@@ -111,12 +121,16 @@ def get_temp_sensor_msg(sensor):
 def get_gps_sensor_msg(sensor):
     j = sensor["spot"]
     val = "(%f,%f)" % (gps_paths[j][0], gps_paths[j][1])
+    valString = str(val)
+    n = 3
+    for i in range(n):
+        valString += valString
     msg = {
         "dev_id": str(sensor["id"]),
         "ts": round(time.time(), 5),
         "seq_no": sensor["seqno"],
-        "data_size": len(val),
-        "sensor_data": str(val)
+        "data_size": len(valString),
+        "sensor_data": str(valString)
     }
 
     sensor["seqno"] += 1
@@ -158,12 +172,16 @@ def get_camera_sensor_msg(sensor):
         sensor["motion_time"] = float(random.uniform(1, 10))
         sensor["cur_time"] = 0
 
+    valString = str(val)
+    n = 3
+    for i in range(n):
+        valString += valString
     msg = {
         "dev_id": str(sensor["id"]),
         "ts": round(time.time(), 5),
         "seq_no": sensor["seqno"],
-        "data_size": len(val),
-        "sensor_data": str(val)
+        "data_size": len(valString),
+        "sensor_data": valString
     }
     sensor["seqno"] += 1
     return json.dumps(msg), st
@@ -172,8 +190,11 @@ def get_camera_sensor_msg(sensor):
 # Generate messages from ASD sensor
 # Sound value
 def get_asd_sensor_msg(sensor):
+    n = 3
     j = sensor["spot"]
     val = str(wave_data[j])
+    for i in range(n):
+        val += str(val)
     msg = {
         "dev_id": str(sensor["id"]),
         "ts": round(time.time(), 5),
@@ -227,25 +248,17 @@ def init_sensor(simulator, id, config):
 
 
 # Send the message to the server
-async def send_sensor_msg(session, url, msg,simulator):
+async def send_sensor_msg(session, url, msg):
     # L.info("Url: %s, data: %s" % (url, msg))
     headers = {'content-type': 'application/json'}
-
     try:
-        simulator["loop"].create_task(session.post(url, data=msg, headers=headers))
-        return True
-
+        async with session.post(url, data=msg, headers=headers) as resp:
+            if resp.status == 200:
+                return True
+            else:
+                return False
     except:
         return False
-
-    # try:
-    #     async with session.post(url, data=msg, headers=headers) as resp:
-    #         if resp.status == 200:
-    #             return True
-    #         else:
-    #             return False
-    # except:
-    #     return False
 
 
 # Run the id-th sensor
@@ -258,10 +271,9 @@ async def run_sensor(simulator, id, config):
         msg, st = sensor["func"](sensor)
         # L.info("Sensor %d: Send %d bytes, Sleep %.2f" % (id, len(msg), st))
         starttime = time.time()
-        # success = await  send_sensor_msg(sensor["session"], sensor["url"], msg)
-        simulator["loop"].create_task(send_sensor_msg(sensor["session"], sensor["url"], msg,simulator))
+        success = await send_sensor_msg(sensor["session"], sensor["url"], msg)
         endtime = time.time()
-        success = True
+
         if success:
             # send request
             metrics[0] += 1
@@ -312,14 +324,13 @@ async def do_statistics(simulator, interval):
             succRequests = metrics[0]
             errorRate = metrics[1] / allRequests if allRequests > 0 else 0.0
 
-            L.info(
-                "METRIC: %d sensors, %.2f seconds, %d requests, %d success , Error Rate: %.2f, Average Latency: %.2f ms" %
-                (simulator["cur_sensors"], interval, allRequests, succRequests, errorRate, avgLatency))
+            L.info("METRIC: %d sensors, %.2f seconds, %d requests, %d success , Error Rate: %.2f, Average Latency: %.2f ms" %
+                   (simulator["cur_sensors"], interval, allRequests, succRequests, errorRate, avgLatency))
 
             t = time.localtime()
             f.write("%02d:%02d:%02d,%d,%d,%d,%.2f,%.2f\n" % (t.tm_hour, t.tm_min, t.tm_sec,
-                                                             simulator["cur_sensors"],
-                                                             allRequests, succRequests, errorRate, avgLatency))
+                                                          simulator["cur_sensors"],
+                                                          allRequests, succRequests, errorRate, avgLatency))
 
             metrics[0] = 0
             metrics[1] = 0

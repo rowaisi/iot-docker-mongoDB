@@ -1,6 +1,7 @@
-version: "3"
+version: "2.2"
 
 services:
+
 
   eth_bootnode:
     hostname: bootnode
@@ -16,7 +17,6 @@ services:
 
 
   eth_miner1:
-    restart: on-failure:5
     hostname: miner1
     depends_on:
       - eth_bootnode
@@ -39,8 +39,8 @@ services:
       eth_private_network:
         ipv4_address: 172.28.1.12
 
+
   eth_miner2:
-    restart: on-failure:5
     hostname: miner2
     depends_on:
       - eth_bootnode
@@ -64,7 +64,6 @@ services:
         ipv4_address: 172.28.1.15
 
   eth_miner3:
-    restart: on-failure:5
     hostname: miner3
     depends_on:
       - eth_bootnode
@@ -88,7 +87,6 @@ services:
         ipv4_address: 172.28.1.11
 
   eth_miner4:
-    restart: on-failure:5
     hostname: miner4
     depends_on:
       - eth_bootnode
@@ -109,7 +107,6 @@ services:
         ipv4_address: 172.28.1.13
 
   eth_miner5:
-    restart: on-failure:5
     hostname: miner5
     depends_on:
       - eth_bootnode
@@ -129,6 +126,67 @@ services:
       eth_private_network:
         ipv4_address: 172.28.1.14
 
+  eth_miner6:
+    hostname: miner6
+    depends_on:
+      - eth_bootnode
+    environment:
+      - addr=0xcAe40e1Acfc7eb9Cf4a5D8e640F6a983060b84e4
+      - id=4cb7dc25aaeb769ae94ce002e2ecd5232d9421a81c3cc63620a79db127778dd89c61348e7475a1e977cb72121098d364451bcbbaffd2981e306408d4b2405a6e
+      - ip=172.28.1.10
+    build:
+      context: ./miner
+      args:
+        pk: 1d69dcc2542e1543dfc677e6beeb8a92abab4cb6afcd452678ec59656e10779d # BIP39 Mnemonic: destroy afraid mimic ahead rich evolve inform fit industry put bronze marble
+        pwd: A2LJGdRUvAKhq682 # destroy afraid mimic ahead rich evolve inform fit industry put bronze marble
+    container_name: miner6
+    volumes:
+      - eth_data_miner6:/root/.ethash
+    networks:
+      eth_private_network:
+        ipv4_address: 172.28.1.18
+
+  eth_miner7:
+    hostname: miner7
+    depends_on:
+      - eth_bootnode
+    environment:
+      - addr=0xDc09E0575966B9485BdE05BAc70cF7524fE47439
+      - id=4cb7dc25aaeb769ae94ce002e2ecd5232d9421a81c3cc63620a79db127778dd89c61348e7475a1e977cb72121098d364451bcbbaffd2981e306408d4b2405a6e
+      - ip=172.28.1.10
+    build:
+      context: ./miner
+      args:
+        pk: 5fb7c3dfa9bba6ace3e8d55f5f2c3f46820d33456dff3191d6621b236955daa8 # BIP39 Mnemonic: destroy afraid mimic ahead rich evolve inform fit industry put bronze marble
+        pwd: A2LJGdRUvAKhq682 # destroy afraid mimic ahead rich evolve inform fit industry put bronze marble
+    container_name: miner7
+    volumes:
+      - eth_data_miner7:/root/.ethash
+    networks:
+      eth_private_network:
+        ipv4_address: 172.28.1.16
+
+
+  eth_miner8:
+    hostname: miner8
+    depends_on:
+      - eth_bootnode
+    environment:
+      - addr=0x60E35bD2E43d696b8F303165833fe35A2bFeE707
+      - id=4cb7dc25aaeb769ae94ce002e2ecd5232d9421a81c3cc63620a79db127778dd89c61348e7475a1e977cb72121098d364451bcbbaffd2981e306408d4b2405a6e
+      - ip=172.28.1.10
+    build:
+      context: ./miner
+      args:
+        pk: ec9b70ddafc3012dd3abdec7deec7917fb22d465f31ff24eaf0a8381f37f33bf # BIP39 Mnemonic: destroy afraid mimic ahead rich evolve inform fit industry put bronze marble
+        pwd: A2LJGdRUvAKhq682 # destroy afraid mimic ahead rich evolve inform fit industry put bronze marble
+    container_name: miner8
+    volumes:
+      - eth_data_miner8:/root/.ethash
+    networks:
+      eth_private_network:
+        ipv4_address: 172.28.1.17
+
 
 
 networks:
@@ -144,5 +202,8 @@ volumes:
   eth_data_miner3:
   eth_data_miner4:
   eth_data_miner5:
+  eth_data_miner6:
+  eth_data_miner7:
+  eth_data_miner8:
 
 

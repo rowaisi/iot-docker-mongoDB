@@ -8,6 +8,7 @@ import time
 import requests
 import uuid
 import logging
+from sys import getsizeof
 
 app = Flask(__name__)
 
@@ -20,11 +21,11 @@ def init_db_sqlite3():
     sql = """
 CREATE TABLE IF NOT EXISTS `sensor` (
  `id` bigint PRIMARY KEY,
- `device` varchar(32) NOT NULL,
+ `device` varchar(128) NOT NULL,
  `ts` double NOT NULL,
  `seq` bigint NOT NULL,
  `dsize` int NOT NULL,
- `dhash` varchar(32) NOT NULL
+ `dhash` varchar(128) NOT NULL
 )
 """
     cursor = db.cursor()
@@ -89,10 +90,14 @@ def insert_record_mongo(r):
 
     url = "http://service.localhost:3000/invoke"
     args = [str(r["dev_id"]), str(r["sensor_data"][0:32])]
-    payload = {"function": "Write", "args": args}
 
+    payload = {"function": "Write", "args": args}
+    # print("send data: ")
+    # print(str(r["sensor_data"][0:128]))
+    # print("bytes:")
+    # print(getsizeof(str(r["sensor_data"][0:128])))
     headers = {'content-type': "application/json"}
-    # payload = { "record_id":uuid.uuid4().hex, "device": str(r["dev_id"]), "ts": str(r["ts"]), "seq": str(r["seq_no"]), "ddata": str(r["sensor_data"][0:32]), "dsize": str(r["data_size"]), "dhash": str(dhash) }
+    # payload = { "record_id":uuid.uuid4().hex, "device": str(r["dev_id"]), "ts": str(r["ts"]), "seq": str(r["seq_no"]), "ddata": str(r["sensor_data"][0:128]), "dsize": str(r["data_size"]), "dhash": str(dhash) }
     response = requests.request("POST", url, data=json.dumps(payload), headers=headers)
     # reply = json.loads(response.status_code)
     if response.status_code == 200:
