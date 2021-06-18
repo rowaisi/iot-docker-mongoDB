@@ -2,22 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c55ccec5-aaed-43c4-bc9e-07ed30f5d480" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/eth-web3-client/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/eth-web3-client/server.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/eth-web3-client/transaction.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IoT/best_sched.list" beforeDir="false" afterPath="$PROJECT_DIR$/IoT/best_sched.list" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IoT/metrics.csv" beforeDir="false" afterPath="$PROJECT_DIR$/IoT/metrics.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IoT/schedule.list" beforeDir="false" afterPath="$PROJECT_DIR$/IoT/schedule.list" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IoT/sensors.list" beforeDir="false" afterPath="$PROJECT_DIR$/IoT/sensors.list" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dockers/IoT/Simulator.py" beforeDir="false" afterPath="$PROJECT_DIR$/dockers/IoT/Simulator.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dockers/web/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/dockers/web/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dockers/web/nginx.conf" beforeDir="false" afterPath="$PROJECT_DIR$/dockers/web/nginx.conf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dockers/web/uwsgi.ini" beforeDir="false" afterPath="$PROJECT_DIR$/dockers/web/uwsgi.ini" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/eth-client-js/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/eth-client-js/server.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/eth-client-js/transaction.js" beforeDir="false" afterPath="$PROJECT_DIR$/eth-client-js/transaction.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/monitor.py" beforeDir="false" afterPath="$PROJECT_DIR$/monitor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/networks/ethereum-clique/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/networks/ethereum-clique/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/networks/ethereum-clique/miner/application.json" beforeDir="false" afterPath="$PROJECT_DIR$/networks/ethereum-clique/miner/application-5-nodes.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/networks/ethereum-docker-pow/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/networks/ethereum-docker-pow/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/networks/fabric-v2.2/start_network_five_peers.sh" beforeDir="false" afterPath="$PROJECT_DIR$/networks/fabric-v2.2/start_network_five_peers.sh" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -148,7 +136,7 @@
       <workItem from="1623941625500" duration="5481000" />
       <workItem from="1623969441637" duration="367000" />
       <workItem from="1624025764445" duration="1130000" />
-      <workItem from="1624029761764" duration="1399000" />
+      <workItem from="1624029761764" duration="11462000" />
     </task>
     <servers />
   </component>
