@@ -89,13 +89,13 @@ def insert_record_mongo(r):
     dhash = m.hexdigest()[:30]
 
     url = "http://service.localhost:3000/invoke"
-    args = [str(r["dev_id"]), str(r["sensor_data"][0:32])]
+    args = [str(r["dev_id"]), str(r["sensor_data"][0:256])]
 
     payload = {"function": "Write", "args": args}
     # print("send data: ")
     # print(str(r["sensor_data"][0:128]))
     # print("bytes:")
-    # print(getsizeof(str(r["sensor_data"][0:128])))
+    #print(getsizeof(str(r["sensor_data"][0:256])))
     headers = {'content-type': "application/json"}
     # payload = { "record_id":uuid.uuid4().hex, "device": str(r["dev_id"]), "ts": str(r["ts"]), "seq": str(r["seq_no"]), "ddata": str(r["sensor_data"][0:128]), "dsize": str(r["data_size"]), "dhash": str(dhash) }
     response = requests.request("POST", url, data=json.dumps(payload), headers=headers)

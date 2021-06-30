@@ -79,7 +79,7 @@ def load_schedule_settings(path):
 def get_device_sensor_msg(sensor):
     val = random.choice(["OFF", "ON"])
     valString = str(val)
-    n = 3
+    n = 8
     for i in range(n):
         valString += valString
 
@@ -100,7 +100,7 @@ def get_device_sensor_msg(sensor):
 def get_temp_sensor_msg(sensor):
     val = str(round(random.normalvariate(sensor["mean"], 10), 1))
     valString = str(val)
-    n = 3
+    n = 8
     for i in range(n):
         valString += valString
     valString += " C"
@@ -122,7 +122,7 @@ def get_gps_sensor_msg(sensor):
     j = sensor["spot"]
     val = "(%f,%f)" % (gps_paths[j][0], gps_paths[j][1])
     valString = str(val)
-    n = 3
+    n = 8
     for i in range(n):
         valString += valString
     msg = {
@@ -173,7 +173,7 @@ def get_camera_sensor_msg(sensor):
         sensor["cur_time"] = 0
 
     valString = str(val)
-    n = 3
+    n = 8
     for i in range(n):
         valString += valString
     msg = {
@@ -190,7 +190,7 @@ def get_camera_sensor_msg(sensor):
 # Generate messages from ASD sensor
 # Sound value
 def get_asd_sensor_msg(sensor):
-    n = 3
+    n = 8
     j = sensor["spot"]
     val = str(wave_data[j])
     for i in range(n):
