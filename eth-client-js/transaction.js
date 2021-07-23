@@ -1,56 +1,18 @@
 const Web3 = require('web3');
 const utils = require('./utils')
 const request = require('request');
-const networkUrl = "http://localhost:8545"
-const urls = [
-      {"url": "http://localhost:8545", "account": "0xa7efd857de41dc223cfc8cf6fe052348492864c4"},
-    {"url": "http://localhost:8546", "account": "0x116C95B6f0599b80EdaEF96dB4A0a03890bAf812"},
-{"url": "http://localhost:8547", "account": "0xe062C6acEF6e44a009dfF67bCBdDf2C780DdbC91"}]
-const web3 = new Web3(new Web3.providers.HttpProvider(networkUrl));
-const account = "0xa7efd857de41dc223cfc8cf6fe052348492864c4"
-let queue = []
-contractAbi = [
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "key",
-				"type": "string"
-			},
-			{
-				"name": "value",
-				"type": "string"
-			}
-		],
-		"name": "set",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [
-			{
-				"name": "key",
-				"type": "string"
-			}
-		],
-		"name": "get",
-		"outputs": [
-			{
-				"name": "",
-				"type": "string"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	}
-]
+var config = require('./config');
 
-const contractAddress = "0x34afe602f642aedd6322bbd68a9300845b31c27b"
-const storeContract = new web3.eth.Contract(contractAbi, contractAddress);
+var fs = require('fs');
+
+var contractAbi = JSON.parse(fs.readFileSync(config.contractABI, 'utf8'));
+console.log(contractAbi)
+
+const web3 = new Web3(new Web3.providers.HttpProvider(config.receiver[0].url));
+let queue = []
+
+
+const storeContract = new web3.eth.Contract(contractAbi, config.contractAddress);
 
 function encodeABI(key,value){
 	return storeContract.methods.set(key, value).encodeABI()
@@ -62,10 +24,10 @@ function setWithoutWait(key, value){
    const method = 'eth_sendTransaction';
    let data = encodeABI(key,value);
 
-   const params = [{"gas": "0x100000",
-                   "gasPrice": "0x0",
-                   "from": account,
-                   "to": contractAddress,
+   const params = [{"gas": config.gas,
+                   "gasPrice": config.gasPrice,
+                   "from": config.receiver[0].account,
+                   "to": config.contractAddress,
                    "data": data
                    }];
 
@@ -80,7 +42,7 @@ function setWithoutWait(key, value){
    const send =event.toLocaleTimeString('en-IT', { hour12: false });
    request.post({
   headers: headers,
-  url:     networkUrl,
+  url:     config.receiver[0].url,
   body:    JSON.stringify(payload)
 }, function(error, response, body){
    	if (error){
@@ -107,11 +69,11 @@ async function set(key, value,start){
    let data = encodeABI(key,value);
 
 
-   // const urlRad = urls[Math.floor(Math.random()*urls.length)];
+   const urlRad = config.receiver[Math.floor(Math.random()*config.receiver.length)];
    const params = [{"gas": "0x100000",
                    "gasPrice": "0x0",
-                   "from": account,
-                   "to": contractAddress,
+                   "from": urlRad.account,
+                   "to": config.contractAddress,
                    "data": data
                    }];
 
@@ -128,7 +90,7 @@ async function set(key, value,start){
 
 		 request.post({
 	  headers: headers,
-	  url:     networkUrl,
+	  url:     urlRad.url,
 	  body:    JSON.stringify(payload)
 	}, function(error, response, body){
 		if (error){
