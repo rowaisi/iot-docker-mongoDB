@@ -2,20 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c55ccec5-aaed-43c4-bc9e-07ed30f5d480" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/docker-compose-mongo-replicaset.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test-replicat/helpers/swarm.db.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/iot-docker-mongoDB.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/iot-docker-mongoDB.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test-replicat/services/changeStream.service.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IoT/schedule.list" beforeDir="false" afterPath="$PROJECT_DIR$/IoT/schedule.list" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/eth-client-js/transaction.js" beforeDir="false" afterPath="$PROJECT_DIR$/eth-client-js/transaction.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/networks/sawtooth_v1_2/block_server_api/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/networks/sawtooth_v1_2/block_server_api/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/networks/sawtooth_v1_2/block_server_subscriber/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/networks/sawtooth_v1_2/block_server_subscriber/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/networks/sawtooth_v1_2/docker-compose-pbft.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/networks/sawtooth_v1_2/docker-compose-pbft.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/networks/sawtooth_v1_2/docker-compose-raft.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/networks/sawtooth_v1_2/docker-compose-raft.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/networks/sawtooth_v1_2/kvstoreprocessor/DockerFile" beforeDir="false" afterPath="$PROJECT_DIR$/networks/sawtooth_v1_2/kvstoreprocessor/DockerFile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/networks/sawtooth_v1_2/rest_api/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/networks/sawtooth_v1_2/rest_api/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/networks/sawtooth_v1_2/rest_api/intkey_client.py" beforeDir="false" afterPath="$PROJECT_DIR$/networks/sawtooth_v1_2/rest_api/intkey_client.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/front/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/app/app.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/app/app.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/app/components/sidebar/sidebar.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/app/components/sidebar/sidebar.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/app/components/sidebar/sidebar.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/app/components/sidebar/sidebar.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/app/pages/dashboard/dashboard.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/app/pages/dashboard/dashboard.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/environments/environment.prod.ts" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/environments/environment.prod.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/environments/environment.ts" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/environments/environment.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-replicat/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/test-replicat/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,11 +25,11 @@
         <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/front" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/networks/sawtooth_v1_2/kvstoreprocessor/DockerFile" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/networks/sawtooth_v1_2/rest_api/Dockerfile" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/networks/sawtooth_v1_2/kvstoreprocessor/DockerFile" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/networks/sawtooth_v1_2/docker-compose-pbft.yaml" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/dockers/web/main.py" root0="FORCE_HIGHLIGHTING" />
   </component>
@@ -41,6 +38,7 @@
     <option name="directoryName" value="5dssh7l3" />
   </component>
   <component name="ProjectId" id="1oLgry36NM4I7rBoo0uXNoCjxbb" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -59,7 +57,7 @@
     <property name="node.js.selected.package.standard" value="" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
-    <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
+    <property name="ts.external.directory.path" value="$PROJECT_DIR$/front/node_modules/typescript/lib" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -186,7 +184,10 @@
       <workItem from="1627116893071" duration="1219000" />
       <workItem from="1627380733116" duration="4351000" />
       <workItem from="1627500847293" duration="7405000" />
-      <workItem from="1627549987617" duration="6899000" />
+      <workItem from="1627549987617" duration="10085000" />
+      <workItem from="1627570157169" duration="3324000" />
+      <workItem from="1627574439044" duration="2070000" />
+      <workItem from="1627587713015" duration="6631000" />
     </task>
     <servers />
   </component>
