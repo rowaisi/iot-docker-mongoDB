@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c55ccec5-aaed-43c4-bc9e-07ed30f5d480" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/test-replicat/services/changeStream.service.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="c55ccec5-aaed-43c4-bc9e-07ed30f5d480" name="Default Changelist" comment="add dashboard with live stream chart">
       <change beforePath="$PROJECT_DIR$/front/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/front/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/front/src/app/app.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/app/app.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/front/src/app/components/sidebar/sidebar.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/app/components/sidebar/sidebar.component.html" afterDir="false" />
@@ -12,7 +9,6 @@
       <change beforePath="$PROJECT_DIR$/front/src/app/pages/dashboard/dashboard.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/app/pages/dashboard/dashboard.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/front/src/environments/environment.prod.ts" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/environments/environment.prod.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/front/src/environments/environment.ts" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/environments/environment.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test-replicat/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/test-replicat/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -187,8 +183,23 @@
       <workItem from="1627549987617" duration="10085000" />
       <workItem from="1627570157169" duration="3324000" />
       <workItem from="1627574439044" duration="2070000" />
-      <workItem from="1627587713015" duration="6631000" />
+      <workItem from="1627587713015" duration="6998000" />
     </task>
+    <task id="LOCAL-00001" summary="add server that listen to change stream and emit the new data to the client">
+      <created>1627598267312</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1627598267312</updated>
+    </task>
+    <task id="LOCAL-00002" summary="add dashboard with live stream chart">
+      <created>1627598321359</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1627598321360</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -208,5 +219,10 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="add server that listen to change stream and emit the new data to the client" />
+    <MESSAGE value="add dashboard with live stream chart" />
+    <option name="LAST_COMMIT_MESSAGE" value="add dashboard with live stream chart" />
   </component>
 </project>
