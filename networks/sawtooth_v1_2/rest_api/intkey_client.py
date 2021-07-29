@@ -117,10 +117,17 @@ class IntkeyClient:
         return prefix + game_address
 
     def _send_request(self, suffix, data=None, content_type=None, name=None):
+
+        multiple_rec = ["rest-api-0:8008","rest-api-1:8008","rest-api-2:8008",
+                        "rest-api-3:8008", "rest-api-4:8008"]
+
+        random_rec_url = random.choice(multiple_rec)
+        LOGGER.warning("receiver: ")
+        LOGGER.warning(random_rec_url)
         if self.url.startswith("http://"):
-            url = "{}/{}".format(self.url, suffix)
+            url = "{}/{}".format(random_rec_url, suffix)
         else:
-            url = "http://{}/{}".format(self.url, suffix)
+            url = "http://{}/{}".format(random_rec_url, suffix)
 
         headers = {}
 

@@ -28,6 +28,19 @@ services:
     expose:
       - 4004
     depends_on:
+      - validator-0
+    command: |
+      bash -c "
+        settings-tp -vvv -C tcp://validator-0:4004
+      "
+    stop_signal: SIGKILL
+
+  settings-tp-2:
+    image: hyperledger/sawtooth-settings-tp:chime
+    container_name: sawtooth-settings-tp-2
+    expose:
+      - 4004
+    depends_on:
       - validator-1
     command: |
       bash -c "
@@ -35,9 +48,9 @@ services:
       "
     stop_signal: SIGKILL
 
-  settings-tp-2:
+  settings-tp-3:
     image: hyperledger/sawtooth-settings-tp:chime
-    container_name: sawtooth-settings-tp-2
+    container_name: sawtooth-settings-tp-3
     expose:
       - 4004
     depends_on:
@@ -48,9 +61,9 @@ services:
       "
     stop_signal: SIGKILL
 
-  settings-tp-3:
+  settings-tp-4:
     image: hyperledger/sawtooth-settings-tp:chime
-    container_name: sawtooth-settings-tp-3
+    container_name: sawtooth-settings-tp-4
     expose:
       - 4004
     depends_on:
@@ -61,9 +74,9 @@ services:
       "
     stop_signal: SIGKILL
 
-  settings-tp-4:
+  settings-tp-5:
     image: hyperledger/sawtooth-settings-tp:chime
-    container_name: sawtooth-settings-tp-4
+    container_name: sawtooth-settings-tp-5
     expose:
       - 4004
     depends_on:
@@ -71,19 +84,6 @@ services:
     command: |
       bash -c "
         settings-tp -vvv -C tcp://validator-4:4004
-      "
-    stop_signal: SIGKILL
-
-  settings-tp-5:
-    image: hyperledger/sawtooth-settings-tp:chime
-    container_name: sawtooth-settings-tp-5
-    expose:
-      - 4004
-    depends_on:
-      - validator-5
-    command: |
-      bash -c "
-        settings-tp -vvv -C tcp://validator-5:4004
       "
     stop_signal: SIGKILL
 
@@ -97,8 +97,25 @@ services:
       context: .
       dockerfile: kvstoreprocessor/DockerFile
     depends_on:
-      - validator-1
+      - validator-0
     container_name: kvstore-processor-1
+    volumes:
+      - ./:/project/sawtooth-kvstore
+    command: |
+      bash -c "
+       chmod +x /project/sawtooth-kvstore/bin/build_kvstore
+       ../bin/build_kvstore
+          chmod +x /project/sawtooth-kvstore/bin/kvstore
+       ../bin/kvstore tcp://validator-0:4004
+       "
+
+  kvstore-processor-2:
+    build:
+      context: .
+      dockerfile: kvstoreprocessor/DockerFile
+    depends_on:
+      - validator-1
+    container_name: kvstore-processor-2
     volumes:
       - ./:/project/sawtooth-kvstore
     command: |
@@ -109,13 +126,13 @@ services:
        ../bin/kvstore tcp://validator-1:4004
        "
 
-  kvstore-processor-2:
+  kvstore-processor-3:
     build:
       context: .
       dockerfile: kvstoreprocessor/DockerFile
     depends_on:
-      - validator-2
-    container_name: kvstore-processor-2
+      - validator-0
+    container_name: kvstore-processor-3
     volumes:
       - ./:/project/sawtooth-kvstore
     command: |
@@ -126,13 +143,13 @@ services:
        ../bin/kvstore tcp://validator-2:4004
        "
 
-  kvstore-processor-3:
+  kvstore-processor-4:
     build:
       context: .
       dockerfile: kvstoreprocessor/DockerFile
     depends_on:
-      - validator-1
-    container_name: kvstore-processor-3
+      - validator-0
+    container_name: kvstore-processor-4
     volumes:
       - ./:/project/sawtooth-kvstore
     command: |
@@ -143,30 +160,13 @@ services:
        ../bin/kvstore tcp://validator-3:4004
        "
 
-  kvstore-processor-4:
-    build:
-      context: .
-      dockerfile: kvstoreprocessor/DockerFile
-    depends_on:
-      - validator-1
-    container_name: kvstore-processor-4
-    volumes:
-      - ./:/project/sawtooth-kvstore
-    command: |
-      bash -c "
-       chmod +x /project/sawtooth-kvstore/bin/build_kvstore
-       ../bin/build_kvstore
-          chmod +x /project/sawtooth-kvstore/bin/kvstore
-       ../bin/kvstore tcp://validator-4:4004
-       "
-
 
   kvstore-processor-5:
     build:
       context: .
       dockerfile: kvstoreprocessor/DockerFile
     depends_on:
-      - validator-5
+      - validator-4
     container_name: kvstore-processor-5
     volumes:
       - ./:/project/sawtooth-kvstore
@@ -175,7 +175,7 @@ services:
        chmod +x /project/sawtooth-kvstore/bin/build_kvstore
        ../bin/build_kvstore
           chmod +x /project/sawtooth-kvstore/bin/kvstore
-       ../bin/kvstore tcp://validator-5:4004
+       ../bin/kvstore tcp://validator-4:4004
        "
 
 
@@ -198,7 +198,7 @@ services:
       rest-api \
           -b intkey-rest-api:8000 \
           --keyfile /root/.sawtooth/keys/root.priv \
-          --url rest-api-1:8008
+          --url rest-api-0:8008
       "
 
   block-server-subscriber:
@@ -212,13 +212,13 @@ services:
     ports:
       - '9002:9002'
     depends_on:
-      - validator-1
+      - validator-0
     command: |
       sh -c "
       chmod +x /project/sawtooth_sdk_python/bin/block-server-subscriber
       block-server-subscriber \
-          -C tcp://validator-1:4004 \
-          --url rest-api-1:8008 \
+          -C tcp://validator-0:4004 \
+          --url rest-api-0:8008 \
           --uri  mongodb://root:password@bb:27017/ \
           -vv
       "
@@ -255,9 +255,9 @@ services:
     stop_signal: SIGKILL
 
 # -------------=== validators ===-------------
-  validator-1:
-    image: hyperledger/sawtooth-validator:chime
-    container_name: sawtooth-validator-1
+  validator-0:
+    image: sawtooth-validator:latest
+    container_name: sawtooth-validator-0
     expose:
       - 4004
       - 8800
@@ -267,10 +267,10 @@ services:
     working_dir: /root
     command: |
       bash -c "
+            sawadm keygen validator-1 && \
             sawadm keygen validator-2 && \
             sawadm keygen validator-3 && \
             sawadm keygen validator-4 && \
-            sawadm keygen validator-5 && \
             sawadm keygen && \
 
       sawset genesis \
@@ -281,7 +281,7 @@ services:
                 -k /etc/sawtooth/keys/validator.priv \
                 sawtooth.consensus.algorithm.name=raft \
                 sawtooth.consensus.algorithm.version=0.1 \
-                sawtooth.consensus.raft.peers=\\['\"'$$(cat /etc/sawtooth/keys/validator.pub )'\"','\"'$$(cat /etc/sawtooth/keys/validator-2.pub )'\"','\"'$$(cat /etc/sawtooth/keys/validator-3.pub )'\"','\"'$$(cat /etc/sawtooth/keys/validator-4.pub )'\"','\"'$$(cat /etc/sawtooth/keys/validator-5.pub )'\"'\\] \
+                sawtooth.consensus.raft.peers=\\['\"'$$(cat /etc/sawtooth/keys/validator.pub )'\"','\"'$$(cat /etc/sawtooth/keys/validator-1.pub )'\"','\"'$$(cat /etc/sawtooth/keys/validator-2.pub )'\"','\"'$$(cat /etc/sawtooth/keys/validator-3.pub )'\"','\"'$$(cat /etc/sawtooth/keys/validator-4.pub )'\"'\\] \
                 sawtooth.consensus.raft.period=1 \
                 sawtooth.publisher.max_batches_per_block=100 \
                 sawtooth.validator.max_transactions_per_block=100 \
@@ -293,20 +293,20 @@ services:
       mv /etc/sawtooth/keys/validator-* /shared_keys && \
              echo $$(cat /etc/sawtooth/keys/validator.pub); \
              sawtooth-validator -v \
-                 --endpoint tcp://validator-1:8800 \
+                 --endpoint tcp://validator-0:8800 \
                  --bind component:tcp://eth0:4004 \
                  --bind network:tcp://eth0:8800 \
                  --bind consensus:tcp://eth0:5050 \
                  --peering static \
-                 --peers tcp://validator-2:8800,tcp://validator-3:8800,tcp://validator-4:8800,tcp://validator-5:8800 \
+                 --peers tcp://validator-1:8800,tcp://validator-2:8800,tcp://validator-3:8800,tcp://validator-4:8800 \
                  --scheduler parallel \
       "
 
     stop_signal: SIGKILL
 
-  validator-2:
-    image: hyperledger/sawtooth-validator:chime
-    container_name: sawtooth-validator-2
+  validator-1:
+    image: sawtooth-validator:latest
+    container_name: sawtooth-validator-1
     volumes:
       - keys:/shared_keys
     expose:
@@ -316,26 +316,56 @@ services:
     command: |
       bash -c "
        while true;
-      do if [ -e /shared_keys/validator-2.pub ];
-      then mv /shared_keys/validator-2.priv /etc/sawtooth/keys/validator.priv &&
-      mv /shared_keys/validator-2.pub /etc/sawtooth/keys/validator.pub;
+      do if [ -e /shared_keys/validator-1.pub ];
+      then mv /shared_keys/validator-1.priv /etc/sawtooth/keys/validator.priv &&
+      mv /shared_keys/validator-1.pub /etc/sawtooth/keys/validator.pub;
       break; fi; sleep 0.5; done; \
       echo $$(cat /etc/sawtooth/keys/validator.pub); \
               sawtooth-validator -v \
-                  --endpoint tcp://validator-2:8800 \
+                  --endpoint tcp://validator-1:8800 \
                   --bind component:tcp://eth0:4004 \
                   --bind network:tcp://eth0:8800 \
                   --bind consensus:tcp://eth0:5050 \
                   --peering static \
-                  --peers tcp://validator-1:8800,tcp://validator-3:8800,tcp://validator-4:8800,tcp://validator-5:8800 \
+                  --peers tcp://validator-0:8800,tcp://validator-2:8800,tcp://validator-3:8800,tcp://validator-4:8800 \
                   --scheduler parallel \
       "
     stop_signal: SIGKILL
 
 
 
+  validator-2:
+    image: sawtooth-validator:latest
+    container_name: sawtooth-validator-2
+    expose:
+      - 4004
+      - 8800
+      - 5050
+    volumes:
+      - keys:/shared_keys
+    command: |
+      bash -c "
+       while true;
+      do if [ -e /shared_keys/validator-2.pub ];
+      then mv /shared_keys/validator-2.priv /etc/sawtooth/keys/validator.priv &&
+      mv /shared_keys/validator-2.pub /etc/sawtooth/keys/validator.pub;
+      break; fi; sleep 0.5; done; \
+       echo $$(cat /etc/sawtooth/keys/validator.pub); \
+
+      sawtooth-validator -v \
+                 --endpoint tcp://validator-2:8800 \
+                 --bind component:tcp://eth0:4004 \
+                 --bind network:tcp://eth0:8800 \
+                 --bind consensus:tcp://eth0:5050 \
+                 --peering static \
+                 --peers tcp://validator-0:8800,tcp://validator-1:8800,tcp://validator-3:8800,tcp://validator-4:8800 \
+                 --scheduler parallel \
+
+      "
+    stop_signal: SIGKILL
+
   validator-3:
-    image: hyperledger/sawtooth-validator:chime
+    image: sawtooth-validator:latest
     container_name: sawtooth-validator-3
     expose:
       - 4004
@@ -358,14 +388,14 @@ services:
                  --bind network:tcp://eth0:8800 \
                  --bind consensus:tcp://eth0:5050 \
                  --peering static \
-                 --peers tcp://validator-1:8800,tcp://validator-2:8800,tcp://validator-4:8800,tcp://validator-5:8800 \
+                 --peers tcp://validator-0:8800,tcp://validator-1:8800,tcp://validator-2:8800,tcp://validator-4:8800 \
                  --scheduler parallel \
 
       "
     stop_signal: SIGKILL
 
   validator-4:
-    image: hyperledger/sawtooth-validator:chime
+    image: sawtooth-validator:latest
     container_name: sawtooth-validator-4
     expose:
       - 4004
@@ -388,37 +418,7 @@ services:
                  --bind network:tcp://eth0:8800 \
                  --bind consensus:tcp://eth0:5050 \
                  --peering static \
-                 --peers tcp://validator-1:8800,tcp://validator-2:8800,tcp://validator-3:8800,tcp://validator-5:8800 \
-                 --scheduler parallel \
-
-      "
-    stop_signal: SIGKILL
-
-  validator-5:
-    image: hyperledger/sawtooth-validator:chime
-    container_name: sawtooth-validator-5
-    expose:
-      - 4004
-      - 8800
-      - 5050
-    volumes:
-      - keys:/shared_keys
-    command: |
-      bash -c "
-       while true;
-      do if [ -e /shared_keys/validator-5.pub ];
-      then mv /shared_keys/validator-5.priv /etc/sawtooth/keys/validator.priv &&
-      mv /shared_keys/validator-5.pub /etc/sawtooth/keys/validator.pub;
-      break; fi; sleep 0.5; done; \
-       echo $$(cat /etc/sawtooth/keys/validator.pub); \
-
-      sawtooth-validator -v \
-                 --endpoint tcp://validator-5:8800 \
-                 --bind component:tcp://eth0:4004 \
-                 --bind network:tcp://eth0:8800 \
-                 --bind consensus:tcp://eth0:5050 \
-                 --peering static \
-                 --peers tcp://validator-1:8800,tcp://validator-2:8800,tcp://validator-3:8800,tcp://validator-4:8800 \
+                 --peers tcp://validator-0:8800,tcp://validator-1:8800,tcp://validator-2:8800,tcp://validator-3:8800 \
                  --scheduler parallel \
 
       "
@@ -432,9 +432,22 @@ services:
 
 
 
-  rest-api-1:
+  rest-api-0:
     image: hyperledger/sawtooth-rest-api:chime
     container_name: sawtooth-rest-api-default-1
+    expose:
+      - 8008
+    command: |
+      bash -c "
+        sawtooth-rest-api \
+          --connect tcp://validator-0:4004 \
+          --bind rest-api-0:8008
+      "
+    stop_signal: SIGKILL
+
+  rest-api-1:
+    image: hyperledger/sawtooth-rest-api:chime
+    container_name: sawtooth-rest-api-default-2
     expose:
       - 8008
     command: |
@@ -447,7 +460,7 @@ services:
 
   rest-api-2:
     image: hyperledger/sawtooth-rest-api:chime
-    container_name: sawtooth-rest-api-default-2
+    container_name: sawtooth-rest-api-default-3
     expose:
       - 8008
     command: |
@@ -460,7 +473,7 @@ services:
 
   rest-api-3:
     image: hyperledger/sawtooth-rest-api:chime
-    container_name: sawtooth-rest-api-default-3
+    container_name: sawtooth-rest-api-default-4
     expose:
       - 8008
     command: |
@@ -473,7 +486,7 @@ services:
 
   rest-api-4:
     image: hyperledger/sawtooth-rest-api:chime
-    container_name: sawtooth-rest-api-default-4
+    container_name: sawtooth-rest-api-default-5
     expose:
       - 8008
     command: |
@@ -484,23 +497,19 @@ services:
       "
     stop_signal: SIGKILL
 
-  rest-api-5:
-    image: hyperledger/sawtooth-rest-api:chime
-    container_name: sawtooth-rest-api-default-5
-    expose:
-      - 8008
-    command: |
-      bash -c "
-        sawtooth-rest-api \
-          --connect tcp://validator-5:4004 \
-          --bind rest-api-5:8008
-      "
-    stop_signal: SIGKILL
-
 
 
 # ------------- raft engine ------------------------
 
+
+
+  raft-engine-0:
+    image: hyperledger/sawtooth-raft-engine:chime
+    container_name: sawtooth-raft-engine-0
+    command: raft-engine --connect tcp://validator-0:5050 -v
+    stop_signal: SIGKILL
+    environment:
+      RUST_BACKTRACE: full
 
 
   raft-engine-1:
@@ -510,7 +519,6 @@ services:
     stop_signal: SIGKILL
     environment:
       RUST_BACKTRACE: full
-
 
   raft-engine-2:
     image: hyperledger/sawtooth-raft-engine:chime
@@ -532,14 +540,6 @@ services:
     image: hyperledger/sawtooth-raft-engine:chime
     container_name: sawtooth-raft-engine-4
     command: raft-engine --connect tcp://validator-4:5050 -v
-    stop_signal: SIGKILL
-    environment:
-      RUST_BACKTRACE: full
-
-  raft-engine-5:
-    image: hyperledger/sawtooth-raft-engine:chime
-    container_name: sawtooth-raft-engine-5
-    command: raft-engine --connect tcp://validator-5:5050 -v
     stop_signal: SIGKILL
     environment:
       RUST_BACKTRACE: full

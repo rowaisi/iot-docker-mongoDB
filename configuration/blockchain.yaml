@@ -1,0 +1,37 @@
+blockchain:
+  type: ethereum-clique
+  start: "docker-compose -f network/ethereum-clique/docker-compose.yaml up"
+  end: "docker-compose -f network/ethereum-clique/docker-compose.yaml down"
+ethereum:
+  receivers:
+    - url: "http://localhost:8545"
+      account: "0xa7efd857de41dc223cfc8cf6fe052348492864c4"
+    - url: "http://localhost:8546"
+      account: "0x116C95B6f0599b80EdaEF96dB4A0a03890bAf812"
+    - url: "http://localhost:8547"
+      account : "0xe062C6acEF6e44a009dfF67bCBdDf2C780DdbC91"
+  contract:
+    address: "0x34afe602f642aedd6322bbd68a9300845b31c27b"
+    contractABI: "../configuration/contractABI.json"
+    gas: "0x100000"
+    gasPrice : "0x0"
+fabric:
+  contract:
+    name: "kvstore"
+  channle:
+    name: "mychannel"
+  organizations:
+    org1:
+      id: "org1.example.com"
+      connection: "connection-org1.json"
+      caAuthority: "ca.org1.example.com"
+      admin: "admin"
+      adminpw: "adminpw"
+      user: "appUser"
+
+
+
+
+
+
+

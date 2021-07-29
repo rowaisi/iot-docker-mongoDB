@@ -45,6 +45,8 @@ RUN apt-get install -y -q \
     python3-yaml \
     python3-zmq
 
+RUN  apt-get install libpq-dev -y -q
+
 RUN pip3 install \
     cbor \
     psycopg2-binary \

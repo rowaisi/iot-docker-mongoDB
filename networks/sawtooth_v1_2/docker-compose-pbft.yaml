@@ -102,8 +102,6 @@ services:
           chmod +x /project/sawtooth-kvstore/bin/kvstore
        ../bin/kvstore tcp://validator-0:4004
        "
-
-
   kvstore-processor-1:
     build:
       context: .
@@ -120,7 +118,6 @@ services:
           chmod +x /project/sawtooth-kvstore/bin/kvstore
        ../bin/kvstore tcp://validator-1:4004
        "
-
   kvstore-processor-2:
     build:
       context: .
@@ -137,7 +134,6 @@ services:
           chmod +x /project/sawtooth-kvstore/bin/kvstore
        ../bin/kvstore tcp://validator-2:4004
        "
-
   kvstore-processor-3:
     build:
       context: .
@@ -154,7 +150,6 @@ services:
           chmod +x /project/sawtooth-kvstore/bin/kvstore
        ../bin/kvstore tcp://validator-3:4004
        "
-
   kvstore-processor-4:
     build:
       context: .
@@ -171,8 +166,6 @@ services:
           chmod +x /project/sawtooth-kvstore/bin/kvstore
        ../bin/kvstore tcp://validator-4:4004
        "
-
-
 # --------------- block server subscriber & transaction server ----------------#
   intkey-rest-api:
     build:
@@ -193,7 +186,6 @@ services:
           --keyfile /root/.sawtooth/keys/root.priv \
           --url rest-api-0:8008
       "
-
   block-server-subscriber:
     build:
       context: .
@@ -215,7 +207,6 @@ services:
           --uri  mongodb://root:password@bb:27017/ \
           -vv
       "
-
   block-server-rest-api:
     build:
       context: .
@@ -328,7 +319,6 @@ services:
           --peering static \
           --maximum-peer-connectivity 10000
       "
-
   validator-1:
     image: hyperledger/sawtooth-validator:chime
     container_name: sawtooth-validator-default-1
@@ -361,7 +351,6 @@ services:
           --maximum-peer-connectivity 10000 \
           --peers tcp://validator-0:8800
       "
-
   validator-2:
     image: hyperledger/sawtooth-validator:chime
     container_name: sawtooth-validator-default-2
@@ -395,7 +384,6 @@ services:
           --peers tcp://validator-0:8800 \
           --peers tcp://validator-1:8800
       "
-
   validator-3:
     image: hyperledger/sawtooth-validator:chime
     container_name: sawtooth-validator-default-3
@@ -430,7 +418,6 @@ services:
           --peers tcp://validator-1:8800 \
           --peers tcp://validator-2:8800
       "
-
   validator-4:
     image: hyperledger/sawtooth-validator:chime
     container_name: sawtooth-validator-default-4
@@ -466,7 +453,6 @@ services:
           --peers tcp://validator-2:8800 \
           --peers tcp://validator-3:8800
       "
-
 # -------------=== rest api ===-------------
 
   rest-api-0:

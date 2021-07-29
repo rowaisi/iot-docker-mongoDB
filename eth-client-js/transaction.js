@@ -6,7 +6,7 @@ var config = require('./config');
 var fs = require('fs');
 
 var contractAbi = JSON.parse(fs.readFileSync(config.contractABI, 'utf8'));
-console.log(contractAbi)
+
 
 const web3 = new Web3(new Web3.providers.HttpProvider(config.receiver[0].url));
 let queue = []
