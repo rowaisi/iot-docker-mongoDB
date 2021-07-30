@@ -66,12 +66,22 @@ def check_utilization(target, collection):
     avg_net_i = sum(net_is) / num if num > 0 else -1
     avg_net_o = sum(net_os) / num if num > 0 else -1
     data = {
-        "time": datetime.now().strftime("%H:%M:%S"),
+        "time": datetime.now(),
         "avgCPU": avg_cpu,
         "avgMEM": avg_mem,
         "avgNetI": avg_net_i,
-        "avgNetO": avg_net_o
+        "avgNetO": avg_net_o,
+        "containers": []
     }
+
+    for i in range(len(names)):
+        data["containers"].append( {
+                  "name": names[i],
+                  "cpu": cpus[i],
+                  "mem": mems[i]
+                  } )
+
+    print(data)
     insertToDB(collection, data)
 
 
