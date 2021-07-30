@@ -14,9 +14,7 @@ export class AppComponent {
 
   ngOnInit() {
     if (this.socketioService.getSocketInstance() == null){
-      console.log(`whoops, there's no socket connection .. :(, creating ...`);
       this.socketioService.setupSocketConnection();
-      console.log(`wohoo, socket created successfully`);
     }
   }
 }
