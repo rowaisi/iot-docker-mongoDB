@@ -42,16 +42,47 @@
       </div>
     </div>
   </div>
-  <div class="col-12 grid-margin stretch-card">
+
+
+</div>
+<div class="row">
+  <div class="col-lg-6 grid-margin stretch-card">
     <div class="card">
       <div class="card-body">
-        <h4 class="card-title">Bar chart</h4>
-        <canvas baseChart [chartType]="'bar'" [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions" [colors]="barChartColors"></canvas>
+        <h4 class="card-title">Average network input (Bytes)</h4>
+        <canvas baseChart [chartType]="'line'" [datasets]="netInData" [labels]="lineChartLabels" [options]="lineChartOptions" ></canvas>
       </div>
     </div>
   </div>
-
+  <div class="col-lg-6 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Average network input output (Bytes)</h4>
+        <canvas baseChart [chartType]="'line'" [datasets]="netOuData" [labels]="lineChartLabels" [options]="lineChartOptions" ></canvas>
+      </div>
+    </div>
+  </div>
 </div>
+
+<div class="row">
+  <div class="col-lg-6 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title"> Network input (Bytes) Per container</h4>
+        <canvas baseChart [chartType]="'line'" [datasets]="netInPerNodeData" [labels]="lineChartLabels" [options]="lineChartOptions" ></canvas>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-6 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title"> Network input output (Bytes) Per container</h4>
+        <canvas baseChart [chartType]="'line'" [datasets]="netOuPerNodeData" [labels]="lineChartLabels" [options]="lineChartOptions" ></canvas>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="row">
   <div class="col-lg-6 grid-margin stretch-card">
     <div class="card">

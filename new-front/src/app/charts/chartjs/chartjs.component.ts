@@ -12,8 +12,12 @@ export class ChartjsComponent implements OnInit {
   private firstLoad: boolean = true;
   private cpus = [];
   private mems = [];
+  private netI = [];
+  private netO = [];
   private cpusPerContainer = [];
   private memPerContainer = [];
+  private netIperContainer = [];
+  private netOperContainer = [];
   private labels = [];
   public metrics: any;
   public backgroundColor = [
@@ -41,6 +45,8 @@ export class ChartjsComponent implements OnInit {
     fill: false
   }];
   public memPerNodeData = [];
+  public netInPerNodeData = [];
+  public netOuPerNodeData = [];
 
   cpuData = [{
     label: 'Average CPU %',
@@ -51,6 +57,19 @@ export class ChartjsComponent implements OnInit {
   memData = [{
     label: 'Average MEM %',
     data: this.mems,
+    borderWidth: 1,
+    fill: false
+  }];
+
+  netInData = [{
+    label: 'Average Net Input (B)',
+    data: this.netI,
+    borderWidth: 1,
+    fill: false
+  }];
+  netOuData = [{
+    label: 'Average Net output (B)',
+    data: this.netO,
     borderWidth: 1,
     fill: false
   }];
@@ -317,19 +336,65 @@ export class ChartjsComponent implements OnInit {
 
   }
 
+  setNetInPerNodeData() {
+    var i = 0;
+    if(this.firstLoad){
+      this.netInPerNodeData.pop()
+    }
+    for (let name in this.netIperContainer) {
+
+      this.netInPerNodeData.push({
+        data: this.netIperContainer[name],
+        label: name,
+        borderWidth: 1,
+        borderColor: this.borderColor[i],
+        backgroundColor: this.backgroundColor[i],
+        fill: false
+      })
+      i++;
+    }
+
+  }
+
+  setNetOuPerNodeData() {
+    var i = 0;
+    if(this.firstLoad){
+      this.netOuPerNodeData.pop()
+    }
+    for (let name in this.netOperContainer) {
+
+      this.netOuPerNodeData.push({
+        data: this.netOperContainer[name],
+        label: name,
+        borderWidth: 1,
+        borderColor: this.borderColor[i],
+        backgroundColor: this.backgroundColor[i],
+        fill: false
+      })
+      i++;
+    }
+
+  }
+
   splitData(data) {
     this.labels.push(this.datePipe.transform(data.time, 'hh:mm:ss'))
     this.cpus.push(data.avgCPU)
     this.mems.push(data.avgMEM)
+    this.netI.push(data.avgNetI)
+    this.netO.push(data.avgNetO)
     if (data.containers){
       data.containers.forEach(
         x => {
           if (!this.cpusPerContainer[x.name]) {
             this.cpusPerContainer[x.name] = []
             this.memPerContainer[x.name] = []
+            this.netIperContainer[x.name] = []
+            this.netOperContainer[x.name] = []
           }
           this.cpusPerContainer[x.name].push(x.cpu)
           this.memPerContainer[x.name].push(x.mem)
+          this.netIperContainer[x.name].push(x.netI)
+          this.netOperContainer[x.name].push(x.netO)
         }
       )
     }
@@ -349,6 +414,8 @@ export class ChartjsComponent implements OnInit {
         })
       this.setCpuPerNodeData()
       this.setMemPerNodeData()
+      this.setNetInPerNodeData()
+      this.setNetOuPerNodeData()
       this.firstLoad = false
     });
 
