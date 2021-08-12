@@ -17,32 +17,48 @@ app.use(cors());
 const dbConfig = require('./config/database.config.js');
 const mongoose = require('mongoose');
 
-// Connecting to the users database
-mongoose.connect(dbConfig.url, {
-    useUnifiedTopology: true,
-    useNewUrlParser: true
-}).then((client) => {
-    console.log("Connected successfully to the  database");
-
-}).catch(err => {
-    console.log('Could not connect to the database. Exiting now...', err);
-    process.exit();
-});
 
 // define a simple route
 app.get('/', (req, res) => {
     res.json({"message": "Welcome to our application !"});
 });
+
+app.get('/resource',  (req, res) => {
+     changeStream.getResourceMetricsFromDatabase().then(resource =>{
+        res.json({"data": resource});
+    })
+
+});
+
+app.get('/performance',  (req, res) => {
+     changeStream.getPerformanceMetricsFromDatabase.then(performance =>{
+        res.json({"data": performance});
+    })
+});
+
 //Middleware
 app.use(express.json());
 // require an http server which is essential for our socket-io
 const http = require('http').createServer(app);
 const io = require('socket.io')(http);
 
-io.on("connection", socket => {
-    console.log('a user connected');
-    changeStream.initChangeStream(socket)
 
+
+io.on("connection", socket => {
+    console.log('[i] a user connected')
+
+    changeStream.initChangeStream(socket)
+    changeStream.initChangeStreamPerformance(socket)
+
+    socket.on('initialData', () => {
+        console.log('[i] request resource initial data');
+        changeStream.emitResourceMetrics(socket)
+    });
+
+    socket.on('initialPerformance', () => {
+        console.log('[i] request initial performance data');
+        changeStream.emitPerformanceMetrics(socket)
+    });
     // handle disconnect event..
     socket.on('disconnect', () => {
         console.log('[i] User closed connection (logout)');
@@ -56,6 +72,6 @@ io.on("connection", socket => {
 });
 
 // listen for requests
-http.listen(3000, () => {
-    console.log("Server is listening on port 3000");
+http.listen(3001, () => {
+    console.log("Server is listening on port 3001");
 });
