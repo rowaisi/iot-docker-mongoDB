@@ -28,7 +28,12 @@ fabric:
       admin: "admin"
       adminpw: "adminpw"
       user: "appUser"
-
+sawtooth:
+  receivers:
+    - "rest-api-0:8008"
+    - "rest-api-1:8008"
+    - "rest-api-2:8008"
+    - "rest-api-3:8008"
 
 
 
