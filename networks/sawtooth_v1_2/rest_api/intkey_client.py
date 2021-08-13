@@ -33,6 +33,7 @@ from sawtooth_sdk.protobuf.transaction_pb2 import Transaction
 from sawtooth_sdk.protobuf.batch_pb2 import BatchList
 from sawtooth_sdk.protobuf.batch_pb2 import BatchHeader
 from sawtooth_sdk.protobuf.batch_pb2 import Batch
+import config
 import logging
 LOGGER = logging.getLogger(__file__)
 
@@ -118,8 +119,7 @@ class IntkeyClient:
 
     def _send_request(self, suffix, data=None, content_type=None, name=None):
 
-        multiple_rec = ["rest-api-0:8008","rest-api-1:8008","rest-api-2:8008",
-                        "rest-api-3:8008", "rest-api-4:8008"]
+        multiple_rec = config.receivers
 
         random_rec_url = random.choice(multiple_rec)
         LOGGER.warning("receiver: ")

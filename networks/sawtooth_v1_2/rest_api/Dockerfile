@@ -54,7 +54,8 @@ RUN pip3 install \
     colorlog \
     sawtooth-sdk \
     aiohttp \
-    aiopg
+    aiopg \
+    pyyaml
 
 RUN mkdir -p /var/log/sawtooth
 

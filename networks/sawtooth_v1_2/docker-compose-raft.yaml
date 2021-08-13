@@ -188,6 +188,7 @@ services:
     image: intkey-rest-api
     container_name: intkey-rest-api
     volumes:
+      - ./.././../configuration/:/configuration
       - ./:/project/sawtooth_sdk_python
     ports:
       - '3000:8000'

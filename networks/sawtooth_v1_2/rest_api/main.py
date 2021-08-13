@@ -5,7 +5,7 @@ import logging
 import os
 import sys
 import traceback
-
+import yaml
 
 import pkg_resources
 from aiohttp import web
@@ -17,6 +17,7 @@ from rest_api.intkey_client import IntkeyClient
 from rest_api.exceptions import IntKeyCliException
 from rest_api.exceptions import IntkeyClientException
 from rest_api.route_handler import RouteHandler
+import config
 from zmq.asyncio import ZMQEventLoop
 
 from sawtooth_signing import create_context
@@ -183,7 +184,10 @@ def main(prog_name=os.path.basename(sys.argv[0]), args=None):
               " host:port".format(args.bind))
         sys.exit(1)
 
+
+    config.init_config()
     start_rest_api(host, port)
+
 
 
 def main_wrapper():
