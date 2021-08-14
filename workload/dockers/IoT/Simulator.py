@@ -8,6 +8,9 @@ import csv
 import wave
 import asyncio
 import aiohttp
+import pymongo
+import yaml
+from datetime import datetime
 
 logging.basicConfig(
     level=logging.INFO,
@@ -309,10 +312,27 @@ def stop_sensors(simulator, new_sensors):
     # for i in range(len(simulator["tasks"]), new_sensors, -1):
     #    old_tasks.append(simulator["tasks"].pop())
     # return old_tasks
+def insertToDB(collection, item):
+    collection.insert_one(item)
+
+def get_collection():
+    connection_string = []
+    with open("/configuration/blockchain.yaml", 'r') as stream:
+        try:
+            loaded_config = yaml.safe_load(stream)
+            if (loaded_config['replicaSet']):
+                connection_string = loaded_config['replicaSet']
+        except yaml.YAMLError as exc:
+            L.error(exc)
+
+    client = pymongo.MongoClient(connection_string
+                                 , replicaSet='rs0')
+    collection = client.benchmarker.performance
+    return collection
 
 
 # Do statistics and output
-async def do_statistics(simulator, interval):
+async def do_statistics(simulator, interval, collection):
     metrics = simulator["metrics"]
     with open("run/metrics.csv", "w") as f:
         f.write("Time,Sensors,Requests,success,ErrorRate,AvgLatency\n")
@@ -332,14 +352,24 @@ async def do_statistics(simulator, interval):
                                                           simulator["cur_sensors"],
                                                           allRequests, succRequests, errorRate, avgLatency))
 
+            data = {
+                "time": datetime.now(),
+                "sensors": simulator["cur_sensors"],
+                "allRequests": allRequests,
+                "succRequests": succRequests,
+                "errorRate": errorRate,
+                "avgLatency": avgLatency
+
+            }
+            insertToDB(collection, data)
             metrics[0] = 0
             metrics[1] = 0
             metrics[2] = 0.0
 
 
 # Run the scheduler
-async def run_scheduler(simulator, schedules, sensors):
-    simulator["loop"].create_task(do_statistics(simulator, 10))
+async def run_scheduler(simulator, schedules, sensors, collection):
+    simulator["loop"].create_task(do_statistics(simulator, 10, collection))
     for sched in schedules:
         L.info("%d sensors in %d seconds" % sched)
         if sched[0] > simulator["cur_sensors"]:
@@ -356,7 +386,7 @@ def main(argv):
     if len(argv) != 2:
         L.error("Usage: %s server_url" % argv[0])
         return
-
+    collection = get_collection()
     load_gps_paths()
     load_wave()
     sensors = load_sensors_settings("run/sensors.list")
@@ -371,7 +401,7 @@ def main(argv):
         "metrics": metrics,
         "running": True
     }
-    loop.run_until_complete(run_scheduler(simulator, schedules, sensors))
+    loop.run_until_complete(run_scheduler(simulator, schedules, sensors,collection))
     loop.close()
 
 

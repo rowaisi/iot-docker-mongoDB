@@ -2,6 +2,8 @@ FROM python:3.6
 
 RUN pip install aiohttp
 RUN pip install requests
+RUN pip install pymongo
+RUN pip install pyyaml
 
 ADD ./IoT /app
 
