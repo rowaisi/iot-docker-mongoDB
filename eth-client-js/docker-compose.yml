@@ -1,0 +1,14 @@
+version: '3.8'
+services:
+    web:
+        build:
+            context: .
+        command: node server.js
+        volumes:
+            - .:/app/
+            - /app/node_modules
+            - ../configuration/:/configuration
+        ports:
+            - '3000:3000'
+        extra_hosts:
+            - "service.localhost:172.16.123.1"

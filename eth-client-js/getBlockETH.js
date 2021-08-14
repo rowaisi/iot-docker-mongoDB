@@ -1,6 +1,6 @@
 var Web3 = require('web3');
 const utils = require('./utils')
-var web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
+var web3 = new Web3(new Web3.providers.HttpProvider("http://service.localhost:8545"));
 const start = 1;
 const end = 200;
 

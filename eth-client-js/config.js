@@ -6,7 +6,7 @@ var config = {};
 
 
 try {
-    let fileContents = fs.readFileSync('../configuration/blockchain.yaml', 'utf8');
+    let fileContents = fs.readFileSync('/configuration/blockchain.yaml', 'utf8');
     let data = yaml.load(fileContents);
     if (data.ethereum ){
           config.receiver = data.ethereum.receivers;
