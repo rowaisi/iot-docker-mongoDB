@@ -6,15 +6,26 @@ import re
 import time
 from datetime import datetime
 
+import yaml
 import pymongo
 
 check_interval = 10
 
 
 def get_collection():
-    client = pymongo.MongoClient(['192.168.1.15:27011', '192.168.1.15:27012', '192.168.1.15:27013']
+    connection_string = []
+    with open("../configuration/blockchain.yaml", 'r') as stream:
+         try:
+             loaded_config = yaml.safe_load(stream)
+             if (loaded_config['replicaSet']):
+                connection_string = loaded_config['replicaSet']
+                print(connection_string)
+
+         except yaml.YAMLError as exc:
+                     LOGGER.warning(exc)
+    client = pymongo.MongoClient(connection_string
                                  , replicaSet='rs0')
-    collection = client.benchmarker.benchmarker
+    collection = client.benchmarker.resource
     # collection.drop()
     return collection
 
@@ -78,7 +89,9 @@ def check_utilization(target, collection):
         data["containers"].append( {
                   "name": names[i],
                   "cpu": cpus[i],
-                  "mem": mems[i]
+                  "mem": mems[i],
+                  "netI": net_is[i],
+                  "netO": net_os[i]
                   } )
 
     print(data)
