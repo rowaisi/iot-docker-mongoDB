@@ -47,14 +47,14 @@ export class PerformanceComponent implements OnInit {
 
 
   requestsData = [{
-    label: '# Total Requests',
+    label: '# Transmission rate',
     data: this.allRequests,
     borderWidth: 1,
     fill: false,
     borderColor: this.borderColor[0],
     backgroundColor: this.backgroundColor[0],
   }, {
-    label: '# Successful Requests',
+    label: '# Throughput',
     data: this.succRequests,
     borderWidth: 1,
     fill: false,
