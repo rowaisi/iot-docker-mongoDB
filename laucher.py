@@ -22,26 +22,36 @@ with open("./configuration/blockchain.yaml", 'r') as stream:
                 cmd = "docker-compose -f ./eth-client-js/docker-compose.yml up -d"
                 subprocess.call(cmd.split())
 
-            # 2.2 case hyperledger sawtooth PBFT
+            if loaded_config['blockchain']['type'] == "ethereum-pow":
+                # 2.1.1 start ethereum clique network
+                print("[x] Start ethereum pow network ")
+                cmd = "docker-compose -f ./networks/ethereum-docker-pow/docker-compose.yml up -d"
+                subprocess.call(cmd.split())
+                # 2.1.2 start ethereum adapter
+                print("[x] Start ethereum clique adapter ")
+                cmd = "docker-compose -f ./eth-client-js/docker-compose.yml up -d"
+                subprocess.call(cmd.split())
+
+            # 2.3 case hyperledger sawtooth PBFT
             elif loaded_config['blockchain']['type'] == "sawtooth-pbft":
-                # 2.1.1 start sawtooth PBFT network + client adapter
+                # 2.3.1 start sawtooth PBFT network + client adapter
 
                 cmd = "docker-compose -f ./networks/sawtooth_v1_2/docker-compose-pbft.yml up -d"
                 subprocess.call(cmd.split())
 
-            # 2.2 case hyperledger sawtooth RAFT
+            # 2.4 case hyperledger sawtooth RAFT
             elif loaded_config['blockchain']['type'] == "sawtooth-raft":
-                # 2.1.1 start sawtooth PBFT network + client adapter
+                # 2.4.1 start sawtooth PBFT network + client adapter
                 cmd = "docker-compose -f ./networks/sawtooth_v1_2/docker-compose-raft.yml up -d"
                 subprocess.call(cmd.split())
 
-            # 2.2 case hyperledger sawtooth POET
+            # 2.5 case hyperledger sawtooth POET
             elif loaded_config['blockchain']['type'] == "sawtooth-poet":
-                # 2.1.1 start sawtooth PBFT network + client adapter
+                # 2.5.1 start sawtooth PBFT network + client adapter
                 cmd = "docker-compose -f ./networks/sawtooth_v1_2/docker-compose-poet.yml up -d"
                 subprocess.call(cmd.split())
 
-            # 2.2 case hyperledger Fabric
+            # 2.6 case hyperledger Fabric
             elif loaded_config['blockchain']['type'] == "fabric":
                 pass
 
