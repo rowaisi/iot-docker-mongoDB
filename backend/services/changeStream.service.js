@@ -22,10 +22,9 @@ exports.initChangeStream = async(socket) => {
             const changeStream = resourceCollection.watch(pipeline);
             // start listen resource to changes
             changeStream.on("change", function(change) {
-                console.log(change.fullDocument);
                 // send data using socket.io to the client app
                 socket.emit('resource', change.fullDocument);
-                console.log(' [x] Sent an emit() ..');
+                console.log(' [x] Sent resource emit() ..');
 
             })
         }).catch(err => {
@@ -48,12 +47,9 @@ exports.initChangeStreamPerformance = async(socket) => {
             const changeStreamPerformance = performanceCollection.watch(pipeline);
             // start listen performance to changes
             changeStreamPerformance.on("change", function(change) {
-                console.log(change.fullDocument);
                 // send data using socket.io to the client app
                 socket.emit('performance', change.fullDocument);
-                console.log(' [x] Sent an emit() ..');
-                console.log(change.fullDocument)
-
+                console.log(' [x] Sent performance emit() ..');
             })
         }).catch(err => {
         console.error(err);

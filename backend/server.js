@@ -50,15 +50,15 @@ io.on("connection", socket => {
     changeStream.initChangeStream(socket)
     changeStream.initChangeStreamPerformance(socket)
 
-    socket.on('initialData', () => {
-        console.log('[i] request resource initial data');
-        changeStream.emitResourceMetrics(socket)
-    });
-
-    socket.on('initialPerformance', () => {
-        console.log('[i] request initial performance data');
-        changeStream.emitPerformanceMetrics(socket)
-    });
+    // socket.on('initialData', () => {
+    //     console.log('[i] request resource initial data');
+    //     changeStream.emitResourceMetrics(socket)
+    // });
+    //
+    // socket.on('initialPerformance', () => {
+    //     console.log('[i] request initial performance data');
+    //     changeStream.emitPerformanceMetrics(socket)
+    // });
     // handle disconnect event..
     socket.on('disconnect', () => {
         console.log('[i] User closed connection (logout)');
