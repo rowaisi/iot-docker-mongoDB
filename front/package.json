@@ -1,6 +1,6 @@
 {
-  "name": "Purple_angular_free",
-  "version": "4.0.0",
+  "name": "benchmarker",
+  "version": "1.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
