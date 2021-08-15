@@ -10,6 +10,8 @@ import asyncio
 import aiohttp
 import pymongo
 import yaml
+import pytz
+
 from datetime import datetime
 
 logging.basicConfig(
@@ -21,6 +23,8 @@ L = logging.getLogger()
 
 gps_paths = []
 wave_data = []
+
+timezone = "Africa/Tunis"
 
 
 def load_gps_paths():
@@ -312,16 +316,22 @@ def stop_sensors(simulator, new_sensors):
     # for i in range(len(simulator["tasks"]), new_sensors, -1):
     #    old_tasks.append(simulator["tasks"].pop())
     # return old_tasks
+
+
 def insertToDB(collection, item):
     collection.insert_one(item)
+
 
 def get_collection():
     connection_string = []
     with open("/configuration/blockchain.yaml", 'r') as stream:
         try:
             loaded_config = yaml.safe_load(stream)
-            if (loaded_config['replicaSet']):
+            if loaded_config['replicaSet']:
                 connection_string = loaded_config['replicaSet']
+            global timezone
+            if loaded_config['timezone']:
+                timezone = loaded_config['timezone']
         except yaml.YAMLError as exc:
             L.error(exc)
 
@@ -344,16 +354,17 @@ async def do_statistics(simulator, interval, collection):
             succRequests = metrics[0]
             errorRate = metrics[1] / allRequests if allRequests > 0 else 0.0
 
-            L.info("METRIC: %d sensors, %.2f seconds, %d requests, %d success , Error Rate: %.2f, Average Latency: %.2f ms" %
-                   (simulator["cur_sensors"], interval, allRequests, succRequests, errorRate, avgLatency))
+            L.info(
+                "METRIC: %d sensors, %.2f seconds, %d requests, %d success , Error Rate: %.2f, Average Latency: %.2f ms" %
+                (simulator["cur_sensors"], interval, allRequests, succRequests, errorRate, avgLatency))
 
             t = time.localtime()
             f.write("%02d:%02d:%02d,%d,%d,%d,%.2f,%.2f\n" % (t.tm_hour, t.tm_min, t.tm_sec,
-                                                          simulator["cur_sensors"],
-                                                          allRequests, succRequests, errorRate, avgLatency))
-
+                                                             simulator["cur_sensors"],
+                                                             allRequests, succRequests, errorRate, avgLatency))
+            tz = pytz.timezone(timezone)
             data = {
-                "time": datetime.now(),
+                "time": datetime.now(tz),
                 "sensors": simulator["cur_sensors"],
                 "allRequests": allRequests,
                 "succRequests": succRequests,
@@ -401,7 +412,7 @@ def main(argv):
         "metrics": metrics,
         "running": True
     }
-    loop.run_until_complete(run_scheduler(simulator, schedules, sensors,collection))
+    loop.run_until_complete(run_scheduler(simulator, schedules, sensors, collection))
     loop.close()
 
 

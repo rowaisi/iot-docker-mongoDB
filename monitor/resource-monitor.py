@@ -2,6 +2,7 @@ import time
 import os
 import sys
 import getopt
+import pytz
 import re
 import time
 from datetime import datetime
@@ -12,7 +13,7 @@ import pymongo
 check_interval = 10
 connection_string = []
 blockchain = ""
-
+timezone = "Africa/Tunis"
 
 def read_configuration():
     with open("../configuration/blockchain.yaml", 'r') as stream:
@@ -23,6 +24,9 @@ def read_configuration():
                 connection_string = loaded_config['replicaSet']
                 global blockchain
                 blockchain = loaded_config["blockchain"]["type"]
+            global timezone
+            if loaded_config['timezone']:
+                timezone = loaded_config['timezone']
 
         except yaml.YAMLError as exc:
             print(exc)
@@ -79,8 +83,11 @@ def check_utilization(target, collection):
     avg_mem = sum(mems) / num if num > 0 else -1
     avg_net_i = sum(net_is) / num if num > 0 else -1
     avg_net_o = sum(net_os) / num if num > 0 else -1
+
+    tz = pytz.timezone(timezone)
+
     data = {
-        "time": datetime.now(),
+        "time": datetime.now(tz),
         "avgCPU": avg_cpu,
         "avgMEM": avg_mem,
         "avgNetI": avg_net_i,
