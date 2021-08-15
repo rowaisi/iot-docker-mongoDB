@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { SocketioService } from './socketio.service';
+import { SocketioServiceService } from './socketio.service';
 
-describe('SocketioService', () => {
-  let service: SocketioService;
+describe('SocketioServiceService', () => {
+  let service: SocketioServiceService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(SocketioService);
+    service = TestBed.inject(SocketioServiceService);
   });
 
   it('should be created', () => {
