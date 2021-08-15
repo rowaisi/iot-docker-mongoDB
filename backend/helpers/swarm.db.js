@@ -2,7 +2,6 @@ const MongoClient = require("mongodb").MongoClient;
 const dbConfig = require('../config/database.config');
 
 const connectionString = dbConfig.url;
-
 exports.dbConnect = () =>  {
 
     return new Promise((resolve, reject) => {

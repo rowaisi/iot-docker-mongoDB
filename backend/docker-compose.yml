@@ -1,0 +1,11 @@
+version: '3.8'
+services:
+    backend:
+        build:
+            context: .
+        command: node server.js
+        volumes:
+            - .:/app/
+            - ../configuration/:/configuration
+        ports:
+            - '3001:3001'
