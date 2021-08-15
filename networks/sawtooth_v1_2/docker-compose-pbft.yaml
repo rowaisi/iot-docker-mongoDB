@@ -176,10 +176,8 @@ services:
     volumes:
       - ./.././../configuration/:/configuration
       - ./:/project/sawtooth_sdk_python
-
     ports:
       - '3000:8000'
-
     command: |
       bash -c "
       chmod +x /project/sawtooth_sdk_python/bin/rest-api

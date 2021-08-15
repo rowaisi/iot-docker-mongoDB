@@ -10,5 +10,3 @@ services:
             - ../configuration/:/configuration
         ports:
             - '3000:3000'
-        extra_hosts:
-            - "service.localhost:172.16.123.1"

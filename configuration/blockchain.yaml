@@ -1,14 +1,12 @@
 blockchain:
   type: ethereum-clique
-  start: "docker-compose -f network/ethereum-clique/docker-compose.yaml up"
-  end: "docker-compose -f network/ethereum-clique/docker-compose.yaml down"
 ethereum:
   receivers:
-    - url: "http://localhost:8545"
+    - url: "http://192.168.1.16:8545"
       account: "0xa7efd857de41dc223cfc8cf6fe052348492864c4"
-    - url: "http://localhost:8546"
+    - url: "http://192.168.1.16:8546"
       account: "0x116C95B6f0599b80EdaEF96dB4A0a03890bAf812"
-    - url: "http://localhost:8547"
+    - url: "http://192.168.1.16:8547"
       account : "0xe062C6acEF6e44a009dfF67bCBdDf2C780DdbC91"
   contract:
     address: "0x34afe602f642aedd6322bbd68a9300845b31c27b"
@@ -34,6 +32,10 @@ sawtooth:
     - "rest-api-1:8008"
     - "rest-api-2:8008"
     - "rest-api-3:8008"
+replicaSet:
+  - '192.168.1.16:27011'
+  - '192.168.1.16:27012'
+  - '192.168.1.16:27013'
 
 
 

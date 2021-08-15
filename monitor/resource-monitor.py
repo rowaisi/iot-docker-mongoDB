@@ -51,7 +51,7 @@ def check_utilization(target, collection):
     order = re.compile(r".*%s.*" % "order")
     orderCa = re.compile(r".*%s.*" % "ca")
 
-    with os.popen("sudo docker stats --no-stream") as f:
+    with os.popen("docker stats --no-stream") as f:
         for s in f.readlines():
             ss = s.split()
             if len(ss) >= 3 and (pattern.match(ss[1]) or order.match(ss[1])) \
@@ -97,7 +97,6 @@ def check_utilization(target, collection):
             "netO": net_os[i]
         })
 
-    print(data)
     insertToDB(collection, data)
 
 
