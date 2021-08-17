@@ -132,14 +132,14 @@ def main():
     collection = get_collection()
 
     print(blockchain)
-    if blockchain == "sawtooth":
+    if blockchain in  ["sawtooth-pbft", "sawtooth-raft", "sawtooth-poet"]:
         source = "validator"
     elif blockchain == "fabric":
         source = "peer"
     elif blockchain == "ethereum-clique" or blockchain == "ethereum-pow":
         source = "miner"
     else:
-        print("target must be sawtooth, fabric or ethereum-clique or ethereum-pow")
+        print("target must be sawtooth-pbft, sawtooth-raf ,sawtooth-poet, fabric or ethereum-clique or ethereum-pow")
         exit(0)
     while True:
         start_time = time.time()

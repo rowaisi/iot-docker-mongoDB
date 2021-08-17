@@ -36,28 +36,30 @@ with open("./configuration/blockchain.yaml", 'r') as stream:
             elif loaded_config['blockchain']['type'] == "sawtooth-pbft":
                 # 2.3.1 start sawtooth PBFT network + client adapter
 
-                cmd = "docker-compose -f ./networks/sawtooth_v1_2/docker-compose-pbft.yml up -d"
+                cmd = "docker-compose -f ./networks/sawtooth_v1_2/docker-compose-pbft.yaml up -d"
                 subprocess.call(cmd.split())
 
             # 2.4 case hyperledger sawtooth RAFT
             elif loaded_config['blockchain']['type'] == "sawtooth-raft":
                 # 2.4.1 start sawtooth PBFT network + client adapter
-                cmd = "docker-compose -f ./networks/sawtooth_v1_2/docker-compose-raft.yml up -d"
+                cmd = "docker-compose -f ./networks/sawtooth_v1_2/docker-compose-raft.yaml up -d"
                 subprocess.call(cmd.split())
 
             # 2.5 case hyperledger sawtooth POET
             elif loaded_config['blockchain']['type'] == "sawtooth-poet":
                 # 2.5.1 start sawtooth PBFT network + client adapter
-                cmd = "docker-compose -f ./networks/sawtooth_v1_2/docker-compose-poet.yml up -d"
+                cmd = "docker-compose -f ./networks/sawtooth_v1_2/docker-compose-poet.yaml up -d"
                 subprocess.call(cmd.split())
 
             # 2.6 case hyperledger Fabric
             elif loaded_config['blockchain']['type'] == "fabric":
-                pass
+                print("[x] Start fabric network ")
+                 cmd = "./start_network_five_peers.sh"
+                 subprocess.call(cmd.split())
 
-            else:
-                raise IOError("blockchain type must be: ethereum-clique, ethereum-pow,sawtooth-pbft, sawtooth-raft or "
-                              "sawtooth-poet")
+#             else:
+#                 raise IOError("blockchain type must be: ethereum-clique, ethereum-pow,sawtooth-pbft, sawtooth-raft or "
+#                               "sawtooth-poet")
 
         else:
             raise IOError("blockchain type is not defined")

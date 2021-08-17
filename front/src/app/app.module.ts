@@ -19,6 +19,10 @@ import { TodoListComponent } from './apps/todo-list/todo-list.component';
 
 import { HttpClientModule } from '@angular/common/http';
 
+
+
+import { PrintReportComponent } from './print-report/print-report.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,6 +34,7 @@ import { HttpClientModule } from '@angular/common/http';
     TodoComponent,
     SpinnerComponent,
     ContentAnimateDirective,
+    PrintReportComponent
   ],
   imports: [
     BrowserModule,
