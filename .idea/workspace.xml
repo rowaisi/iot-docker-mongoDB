@@ -2,12 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c55ccec5-aaed-43c4-bc9e-07ed30f5d480" name="Default Changelist" comment="add dashboard with live stream chart">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/docker-compose.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/configuration/blockchain.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/configuration/blockchain.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/laucher.py" beforeDir="false" afterPath="$PROJECT_DIR$/laucher.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dependencies.sh" beforeDir="false" afterPath="$PROJECT_DIR$/dependencies.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/monitor/resource-monitor.py" beforeDir="false" afterPath="$PROJECT_DIR$/monitor/resource-monitor.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/replicaset.sh" beforeDir="false" afterPath="$PROJECT_DIR$/replicaset.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,17 +23,15 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/configuration/blockchain.yaml" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/networks/sawtooth_v1_2/rest_api/Dockerfile" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/monitor/logs/resource-monitor-output.txt" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/front/Dockerfile" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/workload/dockers/web/main.py" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/front/package.json" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/front/package-lock.json" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/networks/sawtooth_v1_2/rest_api/Dockerfile" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/monitor/resource-monitor.py" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/networks/sawtooth_v1_2/kvstoreprocessor/DockerFile" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/networks/sawtooth_v1_2/docker-compose-pbft.yaml" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/laucher.py" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/workload/dockers/web/main.py" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/configuration/blockchain.yaml" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="JupyterTrust" id="3382e8f8-b095-4398-9c73-df6b3c6b9064" />
   <component name="MacroExpansionManager">
@@ -221,6 +219,7 @@
       <workItem from="1629121421097" duration="4688000" />
       <workItem from="1629145661039" duration="2601000" />
       <workItem from="1629195245899" duration="6542000" />
+      <workItem from="1629217604907" duration="1361000" />
     </task>
     <task id="LOCAL-00001" summary="add server that listen to change stream and emit the new data to the client">
       <created>1627598267312</created>

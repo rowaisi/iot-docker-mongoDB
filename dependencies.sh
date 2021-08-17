@@ -11,6 +11,7 @@ chmod +x networks/fabric-v2.2/drop-node.sh
 
 sudo apt install mongodb-clients
 sudo apt-get install python3-venv
-apt-get install python3-venv
+apt-get install python3-venv0
+python3 -m venv env
 source env/bin/activate
-pip -r requirements.txt
+pip install -r requirements.txt

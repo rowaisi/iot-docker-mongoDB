@@ -22,6 +22,7 @@ def read_configuration():
             if (loaded_config['replicaSet']):
                 global connection_string
                 connection_string = loaded_config['replicaSet']
+                print(connection_string)
                 global blockchain
                 blockchain = loaded_config["blockchain"]["type"]
             global timezone
