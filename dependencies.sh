@@ -10,3 +10,7 @@ chmod +x networks/fabric-v2.2/addPeer.sh
 chmod +x networks/fabric-v2.2/drop-node.sh
 
 sudo apt install mongodb-clients
+sudo apt-get install python3-venv
+apt-get install python3-venv
+source env/bin/activate
+pip -r requirements.txt
