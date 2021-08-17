@@ -2,11 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c55ccec5-aaed-43c4-bc9e-07ed30f5d480" name="Default Changelist" comment="add dashboard with live stream chart">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/docker-compose.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/configuration/blockchain.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/configuration/blockchain.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/laucher.py" beforeDir="false" afterPath="$PROJECT_DIR$/laucher.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/monitor/resource-monitor.py" beforeDir="false" afterPath="$PROJECT_DIR$/monitor/resource-monitor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workload/IoT/schedule.list" beforeDir="false" afterPath="$PROJECT_DIR$/workload/IoT/schedule.list" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/replicaset.sh" beforeDir="false" afterPath="$PROJECT_DIR$/replicaset.sh" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -219,7 +220,7 @@
       <workItem from="1629111165293" duration="1507000" />
       <workItem from="1629121421097" duration="4688000" />
       <workItem from="1629145661039" duration="2601000" />
-      <workItem from="1629195245899" duration="4654000" />
+      <workItem from="1629195245899" duration="6542000" />
     </task>
     <task id="LOCAL-00001" summary="add server that listen to change stream and emit the new data to the client">
       <created>1627598267312</created>

@@ -53,7 +53,7 @@ with open("./configuration/blockchain.yaml", 'r') as stream:
 
             # 2.6 case hyperledger Fabric
             elif loaded_config['blockchain']['type'] == "fabric":
-                print("[x] Start fabric network ")
+                 print("[x] Start fabric network ")
                  cmd = "./start_network_five_peers.sh"
                  subprocess.call(cmd.split())
 
@@ -77,7 +77,8 @@ with open("./configuration/blockchain.yaml", 'r') as stream:
         # # 5. start workload
         cmd = "./start.sh"
         print("[x] start workload client")
-        resource = subprocess.Popen(cmd, cwd="workload",shell=True).pid
+        resource = subprocess.Popen(cmd, cwd="workload",shell=True)
+        resource.communicate()
         # 6. start frontend
         cmd = "docker-compose up -d"
         print("[x] start frontend client")
