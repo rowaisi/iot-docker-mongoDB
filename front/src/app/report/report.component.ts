@@ -1,14 +1,10 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import jsPDF from 'jspdf';
-import pdfMake from 'pdfmake/build/pdfmake';
-import pdfFonts from 'pdfmake/build/vfs_fonts';
-pdfMake.vfs = pdfFonts.pdfMake.vfs;
-import htmlToPdfmake from 'html-to-pdfmake';
-import {CrudService} from "../../services/crud.service";
-import {API_URL, PERFORMANCE, RESOURCE} from "../../globals/global_variables";
-import {DatePipe} from "@angular/common";
-import html2canvas from "html2canvas";
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {API_URL, PERFORMANCE, RESOURCE} from '../globals/global_variables';
+import {DatePipe} from '@angular/common';
+import {CrudService} from '../services/crud.service';
 
+import html2canvas from "html2canvas";
+import jsPDF from 'jspdf';
 @Component({
   selector: 'app-report',
   templateUrl: './report.component.html',
@@ -16,6 +12,8 @@ import html2canvas from "html2canvas";
   providers: [DatePipe]
 })
 export class ReportComponent implements OnInit {
+
+
   private cpus = [];
   private mems = [];
   private netI = [];
@@ -210,7 +208,7 @@ export class ReportComponent implements OnInit {
     this.crudService.getAll(API_URL + RESOURCE).subscribe(
       (response) => {
         console.log(response)
-      this.metrics = response.data
+        this.metrics = response.data
         this.metrics.forEach(
           x => {
             this.splitData(x)
@@ -353,29 +351,15 @@ export class ReportComponent implements OnInit {
     }
 
   }
+
   @ViewChild('contentToConvert', {static: false}) contentToConvert: ElementRef;
   public downloadAsPDF() {
-    //
-    // const doc = new jsPDF();
-    //
-    // const specialElementHandlers = {
-    //   '#editor': function (element, renderer) {
-    //     return true;
-    //   }
-    // };
-    // const contentToConvert = this.contentToConvert.nativeElement;
-    //
-    // doc.fromHTML(contentToConvert.innerHTML, 15, 15, {
-    //   width: 190,
-    //   'elementHandlers': specialElementHandlers
-    // });
-    //
-    // doc.save('tableToPdf.pdf');
-
-  var data = document.getElementById('contentToConvert');
 
 
-    html2canvas(data ,{scrollY: -window.scrollY, scale: 1}).then(canvas => {
+    var data = document.getElementById('contentToConvert');
+
+
+    html2canvas(data , {scrollY: -window.scrollY, scale: 1}).then(canvas => {
       var options = {
         background: '#fff',
         pagesplit: true
@@ -390,6 +374,8 @@ export class ReportComponent implements OnInit {
 
       doc.save('exportedPdf.pdf');
     });
-   }
+  }
+
+
 
 }

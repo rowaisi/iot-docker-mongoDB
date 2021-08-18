@@ -1,12 +1,12 @@
 blockchain:
-  type: sawtooth-pbft
+  type: ethereum-clique
 ethereum:
   receivers:
-    - url: !ENV 'http://${IP}:8545'
+    - url:  'http://192.168.1.16:8545'
       account: '0xa7efd857de41dc223cfc8cf6fe052348492864c4'
-    - url: !ENV 'http://${IP}:8546'
+    - url:  'http://192.168.1.16:8546'
       account: '0x116C95B6f0599b80EdaEF96dB4A0a03890bAf812'
-    - url: !ENV  'http://${IP}:8547'
+    - url:   'http://192.168.1.16:8547'
       account : '0xe062C6acEF6e44a009dfF67bCBdDf2C780DdbC91'
   contract:
     address: '0x34afe602f642aedd6322bbd68a9300845b31c27b'
@@ -33,9 +33,9 @@ sawtooth:
     - 'rest-api-2:8008'
     - 'rest-api-3:8008'
 replicaSet:
-  - !ENV '${IP}:27011'
-  - !ENV '${IP}:27012'
-  - !ENV '${IP}:27013'
+  -  '192.168.1.16:27011'
+  -  '192.168.1.16:27012'
+  -  '192.168.1.16:27013'
 timezone:
   'Africa/Tunis'
 

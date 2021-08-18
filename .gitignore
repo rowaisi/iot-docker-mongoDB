@@ -10,7 +10,6 @@ package-lock.json
 .node-*
 msp/
 vendor/
-*log*
 log.txt
 *vscode*
 driver

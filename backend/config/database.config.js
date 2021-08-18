@@ -4,7 +4,7 @@ const fs = require("fs");
 let connectionString = ""
 
 try {
-    let fileContents = fs.readFileSync('/configuration/blockchain.yaml', 'utf8');
+    let fileContents = fs.readFileSync('../configuration/blockchain.yaml', 'utf8');
     let data = yaml.load(fileContents);
     if (data.replicaSet ){
           connectionString =data.replicaSet.join(',')

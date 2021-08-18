@@ -1,15 +1,8 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import jsPDF from 'jspdf';
-import pdfMake from 'pdfmake/build/pdfmake';
-import pdfFonts from 'pdfmake/build/vfs_fonts';
-pdfMake.vfs = pdfFonts.pdfMake.vfs;
-import htmlToPdfmake from 'html-to-pdfmake';
-import { SocketioService } from 'src/app/services/socketio.service';
-import { DatePipe } from '@angular/common';
-import html2canvas from "html2canvas";
-import {API_URL, PERFORMANCE} from "../../globals/global_variables";
-import {CrudService} from "../../services/crud.service";
-
+import { Component, OnInit } from '@angular/core';
+import {DatePipe} from '@angular/common';
+import {SocketioService} from '../../services/socketio.service';
+import {CrudService} from '../../services/crud.service';
+import {API_URL, PERFORMANCE} from '../../globals/global_variables';
 
 @Component({
   selector: 'app-performance',
@@ -18,6 +11,7 @@ import {CrudService} from "../../services/crud.service";
   providers: [DatePipe]
 })
 export class PerformanceComponent implements OnInit {
+
 
 
 
@@ -129,7 +123,6 @@ export class PerformanceComponent implements OnInit {
   ) { }
 
   splitData(data) {
-    //this.datePipe.transform(data.time, 'hh:mm:ss')
     this.labels.push(this.datePipe.transform(data.time, 'hh:mm:ss'))
     this.allRequests.push(data.allRequests)
     this.avgLatency.push(data.avgLatency)
@@ -155,22 +148,10 @@ export class PerformanceComponent implements OnInit {
 
 
   ngOnInit() {
-    // // send an event to request metrics whenever the user opens the dashboard page
-    // this.socketioService.getSocketInstance().emit('initialPerformance');
-    // // receive initial data
-    // this.socketioService.getSocketInstance().on('initial_performance', (metrics) => {
-    //   this.metrics = metrics
-    //   console.log(this.metrics)
-    //   this.metrics.forEach(
-    //     x => {
-    //       this.splitData(x)
-    //     })
-    // });
-
     this.getPerformanceMetrics()
     this.socketioService.getSocketInstance().on('performance', (metric) => {
       this.splitData(metric)
-   });
+    });
 
   }
 

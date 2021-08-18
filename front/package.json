@@ -1,6 +1,6 @@
 {
-  "name": "benchmarker",
-  "version": "1.0.0",
+  "name": "Purple_angular_free",
+  "version": "4.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -23,20 +23,17 @@
     "@mdi/font": "^5.7.55",
     "@ng-bootstrap/ng-bootstrap": "^6.1.0",
     "bootstrap": "^4.5.3",
-    "chart.js": "^2.9.3",
+    "chart.js": "^2.9.4",
     "compass-mixins": "^0.12.10",
-    "html-to-pdfmake": "^2.3.2",
-    "html2canvas": "^1.2.1",
-    "html2pdf.js": "^0.9.3",
     "jquery": "^3.5.1",
-    "jspdf": "1.4.1",
     "ng2-charts": "^2.4.2",
     "node-sass": "^4.14.1",
-    "pdfmake": "^0.2.2",
     "rxjs": "~6.6.3",
     "socket.io-client": "^2.3.0",
     "tslib": "^2.0.3",
-    "zone.js": "~0.11.1"
+    "zone.js": "~0.11.1",
+    "html2canvas": "^1.2.1",
+    "jspdf": "1.4.1"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.1001.7",
@@ -49,7 +46,6 @@
     "@types/jasmine": "~3.5.14",
     "@types/jasminewd2": "~2.0.8",
     "@types/jquery": "^3.5.3",
-    "@types/jspdf": "^2.0.0",
     "@types/node": "~14.11.8",
     "@types/socket.io-client": "^1.4.33",
     "codelyzer": "^6.0.1",

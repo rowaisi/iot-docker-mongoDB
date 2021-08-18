@@ -2,12 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c55ccec5-aaed-43c4-bc9e-07ed30f5d480" name="Default Changelist" comment="add dashboard with live stream chart">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/config/database.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/config/database.config.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/configuration/blockchain.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/configuration/blockchain.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dependencies.sh" beforeDir="false" afterPath="$PROJECT_DIR$/dependencies.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/monitor/resource-monitor.py" beforeDir="false" afterPath="$PROJECT_DIR$/monitor/resource-monitor.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/replicaset.sh" beforeDir="false" afterPath="$PROJECT_DIR$/replicaset.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workload/IoT/metrics.csv" beforeDir="false" afterPath="$PROJECT_DIR$/workload/IoT/metrics.csv" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,6 +32,8 @@
     <setting file="file://$PROJECT_DIR$/networks/sawtooth_v1_2/docker-compose-pbft.yaml" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/laucher.py" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/configuration/blockchain.yaml" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/replicaset.sh" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/backend/config/database.config.js" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="JupyterTrust" id="3382e8f8-b095-4398-9c73-df6b3c6b9064" />
   <component name="MacroExpansionManager">
@@ -50,7 +52,7 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="javascript.nodejs.core.library.configured.version" value="10.24.1" />
     <property name="javascript.nodejs.core.library.typings.version" value="10.17.60" />
-    <property name="last_opened_file_path" value="$USER_HOME$/tuto/print" />
+    <property name="last_opened_file_path" value="$USER_HOME$/blockcompass/front" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -220,6 +222,10 @@
       <workItem from="1629145661039" duration="2601000" />
       <workItem from="1629195245899" duration="6542000" />
       <workItem from="1629217604907" duration="1361000" />
+      <workItem from="1629222530931" duration="617000" />
+      <workItem from="1629223704986" duration="4000" />
+      <workItem from="1629223729572" duration="2111000" />
+      <workItem from="1629226527919" duration="2588000" />
     </task>
     <task id="LOCAL-00001" summary="add server that listen to change stream and emit the new data to the client">
       <created>1627598267312</created>

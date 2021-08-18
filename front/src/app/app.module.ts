@@ -16,12 +16,8 @@ import { TodoComponent } from './apps/todo-list/todo/todo.component';
 import { SpinnerComponent } from './shared/spinner/spinner.component';
 import { ContentAnimateDirective } from './shared/directives/content-animate.directive';
 import { TodoListComponent } from './apps/todo-list/todo-list.component';
-
-import { HttpClientModule } from '@angular/common/http';
-
-
-
-import { PrintReportComponent } from './print-report/print-report.component';
+import { ReportComponent } from './report/report.component';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -34,7 +30,7 @@ import { PrintReportComponent } from './print-report/print-report.component';
     TodoComponent,
     SpinnerComponent,
     ContentAnimateDirective,
-    PrintReportComponent
+    ReportComponent
   ],
   imports: [
     BrowserModule,

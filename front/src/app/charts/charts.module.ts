@@ -4,19 +4,16 @@ import { RouterModule, Routes } from '@angular/router';
 import { ChartsModule } from 'ng2-charts';
 import { ChartjsComponent } from './chartjs/chartjs.component';
 import { PerformanceComponent } from './performance/performance.component';
-import { ReportComponent } from './report/report.component';
-
-
+import { ResourceComponent } from './resource/resource.component';
 
 const routes: Routes = [
-  { path: 'resources', component: ChartjsComponent },
-  { path: 'performances', component: PerformanceComponent },
-  {path: 'report', component:ReportComponent},
-
+  { path: 'chartjs', component: ChartjsComponent },
+  { path: 'resource', component: ResourceComponent },
+  {path: 'performance', component: PerformanceComponent}
 ]
 
 @NgModule({
-  declarations: [ChartjsComponent, PerformanceComponent, ReportComponent],
+  declarations: [ChartjsComponent, PerformanceComponent, ResourceComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),

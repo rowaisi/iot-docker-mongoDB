@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PrintReportComponent } from './print-report.component';
+import { ResourceComponent } from './resource.component';
 
-describe('PrintReportComponent', () => {
-  let component: PrintReportComponent;
-  let fixture: ComponentFixture<PrintReportComponent>;
+describe('ResourceComponent', () => {
+  let component: ResourceComponent;
+  let fixture: ComponentFixture<ResourceComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PrintReportComponent ]
+      declarations: [ ResourceComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PrintReportComponent);
+    fixture = TestBed.createComponent(ResourceComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
