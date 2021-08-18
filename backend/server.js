@@ -45,18 +45,73 @@ app.get('/configuration',  (req, res) => {
         let fileContents = fs.readFileSync('../configuration/blockchain.yaml', 'utf8');
         let data = yaml.load(fileContents);
         const blockchain = data["blockchain"]["type"]
-        let result =  data["ethereum"]["receivers"].map(a => a.name);
+
 
         if (blockchain === "ethereum-clique"){
+            let result =  data["ethereum"]["receivers"].map(a => a.name);
             configuration = {
-                blockchain: "ethereum",
-                consensus: "clique | Proof of Authority",
+                blockchain: "Ethereum",
+                consensus: "Clique | Proof of Authority",
                 receivers: result,
                 nodes: data["nodeNumber"],
                 size: data["dataSize"]
             }
         }
 
+        if (blockchain === "ethereum-pow"){
+            let result =  data["ethereum"]["receivers"].map(a => a.name);
+            configuration = {
+                blockchain: "Ethereum",
+                consensus: "Proof of Work",
+                receivers: result,
+                nodes: data["nodeNumber"],
+                size: data["dataSize"]
+            }
+        }
+
+        if (blockchain === "sawtooth-pbft"){
+            let result =  data["sawtooth"]["receivers"]
+            configuration = {
+                blockchain: "Sawtooth",
+                consensus: "Practical Byzantine Fault Tolerance (PBFT)",
+                receivers: result,
+                nodes: data["nodeNumber"],
+                size: data["dataSize"]
+            }
+        }
+
+        if (blockchain === "sawtooth-poet"){
+            let result =  data["sawtooth"]["receivers"]
+            configuration = {
+                blockchain: "Sawtooth",
+                consensus: "Proof of Elapsed Time (PoET)",
+                receivers: result,
+                nodes: data["nodeNumber"],
+                size: data["dataSize"]
+            }
+        }
+
+        if (blockchain === "sawtooth-raft"){
+            let result =  data["sawtooth"]["receivers"]
+            configuration = {
+                blockchain: "Sawtooth",
+                consensus: "Raft",
+                receivers: result,
+                nodes: data["nodeNumber"],
+                size: data["dataSize"]
+            }
+        }
+
+        if (blockchain === "fabric"){
+            let result =  ["peer 1 organization 1"]
+            configuration = {
+                blockchain: "Hyperledger Fabric",
+                consensus: "Raft",
+                receivers: result,
+                nodes: data["nodeNumber"],
+                size: data["dataSize"]
+            }
+        }
 
 
         res.json({"data": configuration});

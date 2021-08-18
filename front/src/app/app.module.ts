@@ -18,31 +18,34 @@ import { ContentAnimateDirective } from './shared/directives/content-animate.dir
 import { TodoListComponent } from './apps/todo-list/todo-list.component';
 import { ReportComponent } from './report/report.component';
 import {HttpClientModule} from '@angular/common/http';
+import {ChartsDemoModule} from "./charts/charts.module";
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    NavbarComponent,
-    SidebarComponent,
-    FooterComponent,
-    DashboardComponent,
-    TodoListComponent,
-    TodoComponent,
-    SpinnerComponent,
-    ContentAnimateDirective,
-    ReportComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    NgbModule,
-    BrowserAnimationsModule,
-    FormsModule,
-    ReactiveFormsModule,
-    ChartsModule,
-    HttpClientModule
-  ],
-  providers: [ThemeService],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        NavbarComponent,
+        SidebarComponent,
+        FooterComponent,
+        DashboardComponent,
+        TodoListComponent,
+        TodoComponent,
+        SpinnerComponent,
+        ContentAnimateDirective,
+        ReportComponent
+    ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        NgbModule,
+        BrowserAnimationsModule,
+        FormsModule,
+        ReactiveFormsModule,
+        ChartsModule,
+        HttpClientModule,
+        ChartsDemoModule
+    ],
+    providers: [ThemeService],
+
+    bootstrap: [AppComponent]
 })
 export class AppModule { }

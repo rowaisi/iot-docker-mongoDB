@@ -3,6 +3,7 @@ import {DatePipe} from '@angular/common';
 import {SocketioService} from '../../services/socketio.service';
 import {CrudService} from '../../services/crud.service';
 import {API_URL, RESOURCE} from '../../globals/global_variables';
+import * as math from 'mathjs';
 
 @Component({
   selector: 'app-resource',
@@ -17,6 +18,10 @@ export class ResourceComponent implements OnInit {
   private mems = [];
   private netI = [];
   private netO = [];
+  public cpuSum = [0,0,0];
+  public memSum = [0,0,0];
+  public netOSum = [0,0,0];
+  public netISum = [0,0,0];
   private cpusPerContainer = [];
   private memPerContainer = [];
   private netIperContainer = [];
@@ -402,6 +407,25 @@ export class ResourceComponent implements OnInit {
         }
       )
     }
+    this.calculateSummary()
+  }
+
+  calculateSummary() {
+    this.cpuSum[0] = math.mean(this.cpus)
+    this.cpuSum[1] = math.variance(this.cpus)
+    this.cpuSum[2] = math.std(this.cpus)
+
+    this.memSum[0] = math.mean(this.mems)
+    this.memSum[1] = math.variance(this.mems)
+    this.memSum[2] = math.std(this.mems)
+
+    this.netISum[0] = math.mean(this.netI)
+    this.netISum[1] = math.variance(this.netI)
+    this.netISum[2] = math.std(this.netI)
+
+    this.netOSum[0] = math.mean(this.netO)
+    this.netOSum[1] = math.variance(this.netO)
+    this.netOSum[2] = math.std(this.netO)
 
   }
 
@@ -419,6 +443,7 @@ export class ResourceComponent implements OnInit {
         this.setNetInPerNodeData()
         this.setNetOuPerNodeData()
         this.firstLoad = false
+        this.calculateSummary()
       });
   }
 
@@ -427,6 +452,7 @@ export class ResourceComponent implements OnInit {
 
     this.socketioService.getSocketInstance().on('resource', (metric) => {
       this.splitData(metric)
+
     });
 
   }

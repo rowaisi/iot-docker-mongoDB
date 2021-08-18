@@ -5,6 +5,7 @@ import {CrudService} from '../services/crud.service';
 
 import html2canvas from "html2canvas";
 import jsPDF from 'jspdf';
+import * as math from "mathjs";
 @Component({
   selector: 'app-report',
   templateUrl: './report.component.html',
@@ -13,6 +14,17 @@ import jsPDF from 'jspdf';
 })
 export class ReportComponent implements OnInit {
 
+  public allRequestsSum = [0,0,0];
+  public latencySum = [0,0,0];
+  public errorRateSum = [0,0,0];
+  public sensorsSum = [0,0,0];
+  public succRequestsSum = [0,0,0]
+
+
+  public cpuSum = [0,0,0];
+  public memSum = [0,0,0];
+  public netOSum = [0,0,0];
+  public netISum = [0,0,0];
 
   private cpus = [];
   private mems = [];
@@ -219,6 +231,7 @@ export class ReportComponent implements OnInit {
         this.setNetOuPerNodeData()
         this.firstLoad = false
       });
+
   }
 
   getPerformanceMetrics() {
@@ -256,6 +269,29 @@ export class ReportComponent implements OnInit {
         }
       )
     }
+    this.calculateSummaryResource()
+  }
+
+  calculateSummaryPerformance() {
+    this.allRequestsSum[0] = math.mean(this.allRequests)
+    this.allRequestsSum[1] = math.variance(this.allRequests)
+    this.allRequestsSum[2] = math.std(this.allRequests)
+
+    this.latencySum[0] = math.mean(this.avgLatency)
+    this.latencySum[1] = math.variance(this.avgLatency)
+    this.latencySum[2] = math.std(this.avgLatency)
+
+    this.errorRateSum[0] = math.mean(this.errorRate)
+    this.errorRateSum[1] = math.variance(this.errorRate)
+    this.errorRateSum[2] = math.std(this.errorRate)
+
+    this.succRequestsSum[0] = math.mean(this.succRequests)
+    this.succRequestsSum[1] = math.variance(this.succRequests)
+    this.succRequestsSum[2] = math.std(this.succRequests)
+
+    this.sensorsSum[0] = math.mean(this.sensors)
+    this.sensorsSum[1] = math.variance(this.sensors)
+    this.sensorsSum[2] = math.std(this.sensors)
 
   }
 
@@ -267,6 +303,7 @@ export class ReportComponent implements OnInit {
     this.errorRate.push(data.errorRate)
     this.succRequests.push(data.succRequests)
     this.sensors.push(data.sensors)
+    this.calculateSummaryPerformance()
 
   }
 
@@ -329,6 +366,26 @@ export class ReportComponent implements OnInit {
       })
       i++;
     }
+
+  }
+
+
+  calculateSummaryResource() {
+    this.cpuSum[0] = math.mean(this.cpus)
+    this.cpuSum[1] = math.variance(this.cpus)
+    this.cpuSum[2] = math.std(this.cpus)
+
+    this.memSum[0] = math.mean(this.mems)
+    this.memSum[1] = math.variance(this.mems)
+    this.memSum[2] = math.std(this.mems)
+
+    this.netISum[0] = math.mean(this.netI)
+    this.netISum[1] = math.variance(this.netI)
+    this.netISum[2] = math.std(this.netI)
+
+    this.netOSum[0] = math.mean(this.netO)
+    this.netOSum[1] = math.variance(this.netO)
+    this.netOSum[2] = math.std(this.netO)
 
   }
 

@@ -1,0 +1,37 @@
+
+
+
+<div class="col-12 grid-margin stretch-card">
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title">Configuration Details</h4>
+
+      <form class="forms-sample">
+        <div class="form-group">
+          <label for="exampleInputName1">Blockchain Platform</label>
+          <input type="text" class="form-control" id="exampleInputName1" name="blockchain"  [(ngModel)]="configuration.blockchain" readonly>
+        </div>
+        <div class="form-group">
+          <label for="exampleInputEmail3">Consensus</label>
+          <input type="text" class="form-control" id="exampleInputEmail3" name="consensus" [(ngModel)]="configuration.consensus" readonly>
+        </div>
+        <div class="form-group">
+          <label for="Receivers">Receivers Nodes</label>
+          <textarea style="white-space: pre;" class="form-control" id="Receivers" name=Receivers rows="4" [(ngModel)]="receivers" readonly>
+
+          </textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="exampleInputCity1">Number of Nodes</label>
+          <input type="text" class="form-control" id="exampleInputCity1" name="nodes" [(ngModel)]="configuration.nodes" readonly>
+        </div>
+        <div class="form-group">
+          <label for="datasize">Data Size</label>
+          <input type="text" class="form-control" id="datasize" name="size" [(ngModel)]="configuration.size" readonly>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>
