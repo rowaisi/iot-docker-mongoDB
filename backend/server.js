@@ -46,7 +46,7 @@ app.get('/configuration',  (req, res) => {
         let data = yaml.load(fileContents);
         const blockchain = data["blockchain"]["type"]
         let result =  data["ethereum"]["receivers"].map(a => a.name);
-        console.log(result)
+
         if (blockchain === "ethereum-clique"){
             configuration = {
                 blockchain: "ethereum",
