@@ -16,6 +16,8 @@ app.use(cors());
 // Configuring the database
 const dbConfig = require('./config/database.config.js');
 const mongoose = require('mongoose');
+const fs = require("fs");
+const yaml = require("js-yaml");
 
 
 // define a simple route
@@ -34,6 +36,36 @@ app.get('/performance',  (req, res) => {
      changeStream.getPerformanceMetricsFromDatabase().then(performance =>{
         res.json({"data": performance});
     })
+});
+
+app.get('/configuration',  (req, res) => {
+
+    try {
+        let configuration = {}
+        let fileContents = fs.readFileSync('../configuration/blockchain.yaml', 'utf8');
+        let data = yaml.load(fileContents);
+        const blockchain = data["blockchain"]["type"]
+        let result =  data["ethereum"]["receivers"].map(a => a.name);
+        console.log(result)
+        if (blockchain === "ethereum-clique"){
+            configuration = {
+                blockchain: "ethereum",
+                consensus: "clique | Proof of Authority",
+                receivers: result,
+                nodes: data["nodeNumber"],
+                size: data["dataSize"]
+            }
+        }
+
+
+
+        res.json({"data": configuration});
+
+
+    } catch (e) {
+        console.log(e);
+    }
+
 });
 
 //Middleware
