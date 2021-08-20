@@ -8,12 +8,13 @@ var resourceCollection = null;
 var performanceCollection = null;
 
 exports.initChangeStream = async(socket) => {
+    console.log("initChangeStream")
     const pipeline = [
         {
             $project: { documentKey: false }
         }
     ];
-
+    console.log("initChangeStream dbConnect")
     database.dbConnect().then(
         (client) => {
             console.log(" [x] Mongodb connection is open");
@@ -60,7 +61,7 @@ exports.initChangeStreamPerformance = async(socket) => {
 exports.getResourceMetricsFromDatabase = async()=> {
 
     if (!resourceCollection) {
-        console.log("1")
+        console.log("getResourceMetricsFromDatabase")
         const client =await database.dbConnect()
         console.log(" [x] Mongodb connection is open");
         const db = client.db("benchmarker");
@@ -73,7 +74,7 @@ exports.getResourceMetricsFromDatabase = async()=> {
 exports.getPerformanceMetricsFromDatabase = async()=> {
 
     if (!performanceCollection) {
-        console.log("1")
+        console.log("getPerformanceMetricsFromDatabase")
         const client =await database.dbConnect()
         console.log(" [x] Mongodb connection is open");
         const db = client.db("benchmarker");

@@ -319,13 +319,20 @@ def stop_sensors(simulator, new_sensors):
 
 
 def insertToDB(collection, item):
-    collection.insert_one(item)
+    L.info('insert to db')
+    try:
+        collection.insert_one(item)
+    except Exception as error:
+        L.error(error)
+
 
 
 def get_collection():
     connection_string = []
     with open("/configuration/blockchain.yaml", 'r') as stream:
+
         try:
+
             loaded_config = yaml.safe_load(stream)
             if loaded_config['replicaSet']:
                 connection_string = loaded_config['replicaSet']
@@ -334,11 +341,13 @@ def get_collection():
                 timezone = loaded_config['timezone']
         except yaml.YAMLError as exc:
             L.error(exc)
-
-    client = pymongo.MongoClient(connection_string
-                                 , replicaSet='rs0')
-    collection = client.benchmarker.performance
-    return collection
+    try:
+        #connection_string = ['service.localhost:27011','service.localhost:27012', 'service.localhost:27013']
+        client = pymongo.MongoClient(connection_string , replicaSet='rs0')
+        collection = client.benchmarker.performance
+        return collection
+    except Exception as error:
+        L.error(error)
 
 
 # Do statistics and output

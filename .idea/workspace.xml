@@ -3,8 +3,15 @@
   <component name="ChangeListManager">
     <list default="true" id="c55ccec5-aaed-43c4-bc9e-07ed30f5d480" name="Default Changelist" comment="add dashboard with live stream chart">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/server.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configuration/blockchain.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/configuration/blockchain.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/backend/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/config/database.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/config/database.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/services/changeStream.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/services/changeStream.service.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/eth-client-js/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/eth-client-js/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/app/charts/performance/performance.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/app/charts/performance/performance.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/replicaset.sh" beforeDir="false" afterPath="$PROJECT_DIR$/replicaset.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workload/IoT/metrics.csv" beforeDir="false" afterPath="$PROJECT_DIR$/workload/IoT/metrics.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workload/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/workload/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workload/dockers/IoT/Simulator.py" beforeDir="false" afterPath="$PROJECT_DIR$/workload/dockers/IoT/Simulator.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,7 +24,7 @@
         <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/front" />
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/workload/dockers/web/main.py" root0="FORCE_HIGHLIGHTING" />
@@ -222,7 +229,10 @@
       <workItem from="1629223704986" duration="4000" />
       <workItem from="1629223729572" duration="2111000" />
       <workItem from="1629226527919" duration="2588000" />
-      <workItem from="1629296945744" duration="10075000" />
+      <workItem from="1629296945744" duration="10393000" />
+      <workItem from="1629367114540" duration="367000" />
+      <workItem from="1629479864031" duration="8731000" />
+      <workItem from="1629498429111" duration="2348000" />
     </task>
     <task id="LOCAL-00001" summary="add server that listen to change stream and emit the new data to the client">
       <created>1627598267312</created>

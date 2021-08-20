@@ -8,6 +8,7 @@ try {
     let data = yaml.load(fileContents);
     if (data.replicaSet ){
           connectionString =data.replicaSet.join(',')
+        console.log(connectionString)
     }else {
         new Error('connection string for replicaset is not defined in the configuration file')
     }

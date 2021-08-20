@@ -136,6 +136,8 @@ export class PerformanceComponent implements OnInit {
     this.succRequests.push(data.succRequests)
     this.sensors.push(data.sensors)
 
+    this.calculateSummary()
+
   }
 
   calculateSummary() {

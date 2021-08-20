@@ -58,6 +58,8 @@ services:
     environment:
       TEST_URL: http://haproxy/sensor/add
       TZ: "America/Montreal"
+    extra_hosts:
+      - "service.localhost:172.16.123.1"
     sysctls:
       net.core.somaxconn: 65535
     volumes:
