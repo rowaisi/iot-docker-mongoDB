@@ -14,17 +14,17 @@ import * as math from "mathjs";
 })
 export class ReportComponent implements OnInit {
 
-  public allRequestsSum = [0,0,0];
-  public latencySum = [0,0,0];
-  public errorRateSum = [0,0,0];
-  public sensorsSum = [0,0,0];
-  public succRequestsSum = [0,0,0]
+  public allRequestsSum = [0, 0, 0];
+  public latencySum = [0, 0, 0];
+  public errorRateSum = [0, 0, 0];
+  public sensorsSum = [0, 0, 0];
+  public succRequestsSum = [0, 0, 0]
 
 
-  public cpuSum = [0,0,0];
-  public memSum = [0,0,0];
-  public netOSum = [0,0,0];
-  public netISum = [0,0,0];
+  public cpuSum = [0, 0, 0];
+  public memSum = [0, 0, 0];
+  public netOSum = [0, 0, 0];
+  public netISum = [0, 0, 0];
 
   private cpus = [];
   private mems = [];
@@ -135,8 +135,6 @@ export class ReportComponent implements OnInit {
   }];
 
 
-
-
   lineChartLabels = this.labels;
   lineChartLabelsPerformance = this.labelsPerformance;
 
@@ -147,7 +145,7 @@ export class ReportComponent implements OnInit {
         display: true,
         scaleLabel: {
           display: true,
-          labelString:  'Time',
+          labelString: 'Time',
         }
       }],
       yAxes: [{
@@ -178,7 +176,7 @@ export class ReportComponent implements OnInit {
         display: true,
         scaleLabel: {
           display: true,
-          labelString:  'Time',
+          labelString: 'Time',
         }
       }],
       yAxes: [{
@@ -208,7 +206,8 @@ export class ReportComponent implements OnInit {
   ];
 
   constructor(private crudService: CrudService,
-              private datePipe: DatePipe) { }
+              private datePipe: DatePipe) {
+  }
 
   ngOnInit(): void {
     this.getResourceMetrics()
@@ -253,7 +252,7 @@ export class ReportComponent implements OnInit {
     this.mems.push(data.avgMEM)
     this.netI.push(data.avgNetI)
     this.netO.push(data.avgNetO)
-    if (data.containers){
+    if (data.containers) {
       data.containers.forEach(
         x => {
           if (!this.cpusPerContainer[x.name]) {
@@ -310,7 +309,7 @@ export class ReportComponent implements OnInit {
   setCpuPerNodeData() {
 
     var i = 0;
-    if(this.firstLoad){
+    if (this.firstLoad) {
       this.cpuPerNodeData.pop()
     }
 
@@ -331,7 +330,7 @@ export class ReportComponent implements OnInit {
 
   setMemPerNodeData() {
     var i = 0;
-    if(this.firstLoad){
+    if (this.firstLoad) {
       this.memPerNodeData.pop()
     }
     for (let name in this.memPerContainer) {
@@ -351,7 +350,7 @@ export class ReportComponent implements OnInit {
 
   setNetInPerNodeData() {
     var i = 0;
-    if(this.firstLoad){
+    if (this.firstLoad) {
       this.netInPerNodeData.pop()
     }
     for (let name in this.netIperContainer) {
@@ -391,7 +390,7 @@ export class ReportComponent implements OnInit {
 
   setNetOuPerNodeData() {
     var i = 0;
-    if(this.firstLoad){
+    if (this.firstLoad) {
       this.netOuPerNodeData.pop()
     }
     for (let name in this.netOperContainer) {
@@ -409,30 +408,7 @@ export class ReportComponent implements OnInit {
 
   }
 
-  @ViewChild('contentToConvert', {static: false}) contentToConvert: ElementRef;
   public downloadAsPDF() {
 
-
-    var data = document.getElementById('contentToConvert');
-
-
-    html2canvas(data , {scrollY: -window.scrollY, scale: 1}).then(canvas => {
-      var options = {
-        background: '#fff',
-        pagesplit: true
-      };
-      let docWidth = 208;
-      let docHeight = canvas.height * docWidth / canvas.width;
-
-      const contentDataURL = canvas.toDataURL('image/png')
-      let doc = new jsPDF('p', 'mm', 'a4');
-      let position = 0;
-      doc.addImage(contentDataURL, 'PNG', 0, position, docWidth, docHeight)
-
-      doc.save('exportedPdf.pdf');
-    });
   }
-
-
-
 }
