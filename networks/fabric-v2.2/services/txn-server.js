@@ -11,18 +11,32 @@ const fs = require('fs');
 const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
-const transaction = require('./transaction')
 
 
+const argsLen = process.argv.length;
 
+function helper() {
+    console.error("Expected usage: ")
+    console.error("\tnode txn-server.js <channelName> <contractName> [open_loop|closed_loop] <port>")
+    console.error("\tThe 'open_loop' indicates the invocation will return once the transaction is submitted to orderers. The 'closed_loop' will block until peers finish validation. Their configuration may impact on invocation transactions, not on queries. ")
 
-const channelName = "mychannel";
-const contractName = "kvstore";
+}
+if ( argsLen <= 5) {
+    console.error(`Too few arguments, expect 6`);
+    helper();
+    process.exit(1);
+}
+const channelName = process.argv[2];
+const contractName = process.argv[3];
 
+if (!(process.argv[4] == "open_loop" || process.argv[4] == "closed_loop")) {
+    console.error(`Invalid invocation mode ${process.argv[4]}. `);
+    helper();
+    process.exit(1);
+}
+const isOpenLoopMode = process.argv[4] == "open_loop";
 
-const isOpenLoopMode = true;
-
-const port = 3000;
+const port = Number(process.argv[5]);
 
 async function getChannel(channelName, contractName) {
     try {
@@ -51,14 +65,14 @@ async function getChannel(channelName, contractName) {
             mode = DefaultEventHandlerStrategies.MSPID_SCOPE_ALLFORTX
         }
         const gateway = new Gateway();
-        await gateway.connect(ccp, 
-            { 
-            wallet, identity: 'appUser', 
-            discovery: { enabled: true, asLocalhost: true}, 
-            eventHandlerOptions: {
-                strategy: mode
-            }  
-        });
+        await gateway.connect(ccp,
+            {
+                wallet, identity: 'appUser',
+                discovery: { enabled: true, asLocalhost: true},
+                eventHandlerOptions: {
+                    strategy: mode
+                }
+            });
 
         // Get the network (channel) our contract is deployed to.
         const network = await gateway.getNetwork(channelName);
@@ -87,6 +101,7 @@ getChannel(channelName, contractName).then((contract)=>{
         var txn;
         const funcName = req.body["function"];
         const args = req.body["args"];
+        console.log(`Receive funcName: ${funcName}, args: ${args}`);
         var start;
         new Promise((resolve, reject)=>{
             txn = contract.createTransaction(funcName);
@@ -95,28 +110,12 @@ getChannel(channelName, contractName).then((contract)=>{
         }).then(()=>{
             var end = new Date() - start
             const txnID = txn.getTransactionId();
-            console.log("txnID: ",txnID, " latency_ms: ", end)
             res.json({"status": "0", "txnID": txnID, "latency_ms": end});
         }).catch((error)=>{
             console.error(`Failed to invoke with error: ${error}`);
-            res.status(400).send({"status": "1", "message": error.message});
+            res.json({"status": "1", "message": error.message});
         });
     });
-
-    //  app.post("/invoke", (req, res) => {
-    //     var txn;
-    //     const funcName = req.body["function"];
-    //     const args = req.body["args"];
-    //     var start = new Date();
-    //     transaction.set(args[0],args[1],contract,funcName)
-    //         var end = new Date() - start;
-    //         console.log( " latency_ms: ", end)
-    //         res.json({"status": "0"});
-    //
-    // });
-
-
-
 
     app.get("/query", (req, res) => {
         const funcName = req.query.function;

@@ -1,6 +1,11 @@
 echo "stop monitor script"
 ps aux | grep -i resource-monitor.py | awk '{print $2}' | xargs kill -9
 
+
+echo "[i] clean fabric network"
+cd networks/fabric-v2.2
+./cleanNetwork.sh
+
 echo "Stop all containers"
 docker stop `docker ps -qa`
 

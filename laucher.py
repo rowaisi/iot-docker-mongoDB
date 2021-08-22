@@ -9,6 +9,16 @@ with open("./configuration/blockchain.yaml", 'r') as stream:
         cmd = './replicaset.sh'
         subprocess.call(cmd ,shell=True)
 
+        # 4. start backend client
+        cmd = "docker-compose up -d"
+        print("[x] start backend client")
+        subprocess.call(cmd.split(), cwd="backend")
+
+        # 6. start frontend
+        cmd = "docker-compose up -d"
+        print("[x] start frontend client")
+        subprocess.call(cmd.split(), cwd="front")
+
         # 2. start network sample and adapter
         if loaded_config['blockchain']:
             # 2.1 case ethereum clique
@@ -55,8 +65,7 @@ with open("./configuration/blockchain.yaml", 'r') as stream:
             elif loaded_config['blockchain']['type'] == "fabric":
                  print("[x] Start fabric network ")
                  cmd = "./start_network_five_peers.sh"
-                 subprocess.call(cmd.split())
-
+                 subprocess.call(cmd.split(),cwd="networks/fabric-v2.2")
 #             else:
 #                 raise IOError("blockchain type must be: ethereum-clique, ethereum-pow,sawtooth-pbft, sawtooth-raft or "
 #                               "sawtooth-poet")
@@ -70,19 +79,13 @@ with open("./configuration/blockchain.yaml", 'r') as stream:
         resource = subprocess.Popen(cmd, cwd="monitor",shell=True).pid
         print("==> PID: ", resource)
 
-        # 4. start backend client
-        cmd = "docker-compose up -d"
-        print("[x] start backend client")
-        subprocess.call(cmd.split(), cwd="backend")
+
         # # 5. start workload
         cmd = "./start.sh"
         print("[x] start workload client")
         resource = subprocess.Popen(cmd, cwd="workload",shell=True)
         resource.communicate()
-        # 6. start frontend
-        cmd = "docker-compose up -d"
-        print("[x] start frontend client")
-        subprocess.call(cmd.split(), cwd="front")
+
 
 
     except yaml.YAMLError as exc:

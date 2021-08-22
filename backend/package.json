@@ -9,11 +9,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "js-yaml": "^4.1.0",
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "ip": "^1.1.5",
+    "js-yaml": "^4.1.0",
     "mongodb": "^3.6.10",
     "mongoose": "^5.13.4",
     "socket.io": "^2.3.0"

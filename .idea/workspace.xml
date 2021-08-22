@@ -4,14 +4,18 @@
     <list default="true" id="c55ccec5-aaed-43c4-bc9e-07ed30f5d480" name="Default Changelist" comment="add dashboard with live stream chart">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/backend/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/config/database.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/config/database.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/services/changeStream.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/services/changeStream.service.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/eth-client-js/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/eth-client-js/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/app/charts/performance/performance.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/app/charts/performance/performance.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/replicaset.sh" beforeDir="false" afterPath="$PROJECT_DIR$/replicaset.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workload/IoT/metrics.csv" beforeDir="false" afterPath="$PROJECT_DIR$/workload/IoT/metrics.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workload/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/workload/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workload/dockers/IoT/Simulator.py" beforeDir="false" afterPath="$PROJECT_DIR$/workload/dockers/IoT/Simulator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/backend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clean.sh" beforeDir="false" afterPath="$PROJECT_DIR$/clean.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/configuration/blockchain.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/configuration/blockchain.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dependencies.sh" beforeDir="false" afterPath="$PROJECT_DIR$/dependencies.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/front/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/laucher.py" beforeDir="false" afterPath="$PROJECT_DIR$/laucher.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/monitor/logs/resource-monitor-output.txt" beforeDir="false" afterPath="$PROJECT_DIR$/monitor/logs/resource-monitor-output.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/networks/fabric-v2.2/addPeer.sh" beforeDir="false" afterPath="$PROJECT_DIR$/networks/fabric-v2.2/addPeer.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/networks/fabric-v2.2/deployCC.sh" beforeDir="false" afterPath="$PROJECT_DIR$/networks/fabric-v2.2/deployCC.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/networks/fabric-v2.2/services/txn-server.js" beforeDir="false" afterPath="$PROJECT_DIR$/networks/fabric-v2.2/services/txn-server.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/networks/fabric-v2.2/start_network_five_peers.sh" beforeDir="false" afterPath="$PROJECT_DIR$/networks/fabric-v2.2/start_network_five_peers.sh" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,7 +28,7 @@
         <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/front" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/workload/dockers/web/main.py" root0="FORCE_HIGHLIGHTING" />
@@ -62,7 +66,7 @@
     <property name="node.js.selected.package.standard" value="" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
-    <property name="ts.external.directory.path" value="$PROJECT_DIR$/front/node_modules/typescript/lib" />
+    <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -232,7 +236,10 @@
       <workItem from="1629296945744" duration="10393000" />
       <workItem from="1629367114540" duration="367000" />
       <workItem from="1629479864031" duration="8731000" />
-      <workItem from="1629498429111" duration="2348000" />
+      <workItem from="1629498429111" duration="3621000" />
+      <workItem from="1629539650012" duration="3756000" />
+      <workItem from="1629547678050" duration="5412000" />
+      <workItem from="1629627725952" duration="2204000" />
     </task>
     <task id="LOCAL-00001" summary="add server that listen to change stream and emit the new data to the client">
       <created>1627598267312</created>
@@ -255,13 +262,21 @@
       <option name="project" value="LOCAL" />
       <updated>1627598443581</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="add dashboard with live stream chart">
+      <created>1629500849965</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1629500849965</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.dockerignore" />
     <option featureType="com.intellij.fileTypeFactory" implementationName="*.conf" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

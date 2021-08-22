@@ -39,12 +39,12 @@ ORG="org${orgN}"
 
 
  echo
- echo "join peer to channel ${CHANNEL_NAME}"
+ echo "[i] join peer to channel ${CHANNEL_NAME}"
  echo
  CORE_PEER_ADDRESS=localhost:${PORT} peer channel join -b channel-artifacts/${CHANNEL_NAME}.block
  CORE_PEER_ADDRESS=localhost:${PORT} peer channel list
 sleep 10
- echo "install chaincode"
+ echo "[i] install chaincode"
  CORE_PEER_ADDRESS=localhost:${PORT} peer lifecycle chaincode install ${CHAINCODE}.tar.gz
 
 #peer chaincode invoke -o localhost:7050 --ordererTLSHostnameOverride orderer.example.com --tls true --cafile $ORDERER_CA -C ${CHANNEL_NAME} -n ${CHAINCODE} --peerAddresses localhost:${PORT} --tlsRootCertFiles ${PWD}/organizations/peerOrganizations/org1.example.com/peers/peer1.org1.example.com/tls/ca.crt --peerAddresses localhost:9051 --tlsRootCertFiles ${PWD}/organizations/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/tls/ca.crt -c '{"Args":["Write","name","Bob"]}'

@@ -27,7 +27,7 @@ PEER="peer${peerN}"
 ORG="org${orgN}"
 
  echo
- echo "adding peer$peerN in organisation $orgN"
+ echo "[i] adding peer$peerN in organisation $orgN"
  echo
 
  export CORE_PEER_TLS_ENABLED=true
