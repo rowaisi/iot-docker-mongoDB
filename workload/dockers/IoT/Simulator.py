@@ -23,7 +23,7 @@ L = logging.getLogger()
 
 gps_paths = []
 wave_data = []
-
+size = 1
 timezone = "Africa/Tunis"
 
 
@@ -86,8 +86,7 @@ def load_schedule_settings(path):
 def get_device_sensor_msg(sensor):
     val = random.choice(["OFF", "ON"])
     valString = str(val)
-    n = 8
-    for i in range(n):
+    for i in range(size):
         valString += valString
 
     msg = {
@@ -107,8 +106,7 @@ def get_device_sensor_msg(sensor):
 def get_temp_sensor_msg(sensor):
     val = str(round(random.normalvariate(sensor["mean"], 10), 1))
     valString = str(val)
-    n = 8
-    for i in range(n):
+    for i in range(size):
         valString += valString
     valString += " C"
     msg = {
@@ -129,8 +127,7 @@ def get_gps_sensor_msg(sensor):
     j = sensor["spot"]
     val = "(%f,%f)" % (gps_paths[j][0], gps_paths[j][1])
     valString = str(val)
-    n = 8
-    for i in range(n):
+    for i in range(size):
         valString += valString
     msg = {
         "dev_id": str(sensor["id"]),
@@ -180,8 +177,7 @@ def get_camera_sensor_msg(sensor):
         sensor["cur_time"] = 0
 
     valString = str(val)
-    n = 8
-    for i in range(n):
+    for i in range(size):
         valString += valString
     msg = {
         "dev_id": str(sensor["id"]),
@@ -197,10 +193,9 @@ def get_camera_sensor_msg(sensor):
 # Generate messages from ASD sensor
 # Sound value
 def get_asd_sensor_msg(sensor):
-    n = 8
     j = sensor["spot"]
     val = str(wave_data[j])
-    for i in range(n):
+    for i in range(size):
         val += str(val)
     msg = {
         "dev_id": str(sensor["id"]),
@@ -327,7 +322,7 @@ def insertToDB(collection, item):
 
 
 
-def get_collection():
+def get_collection_and_configuration():
     connection_string = []
     with open("/configuration/blockchain.yaml", 'r') as stream:
 
@@ -339,6 +334,9 @@ def get_collection():
             global timezone
             if loaded_config['timezone']:
                 timezone = loaded_config['timezone']
+            global size
+            if loaded_config['dataSize']:
+                size = loaded_config['dataSize']
         except yaml.YAMLError as exc:
             L.error(exc)
     try:
@@ -406,7 +404,7 @@ def main(argv):
     if len(argv) != 2:
         L.error("Usage: %s server_url" % argv[0])
         return
-    collection = get_collection()
+    collection = get_collection_and_configuration()
     load_gps_paths()
     load_wave()
     sensors = load_sensors_settings("run/sensors.list")
