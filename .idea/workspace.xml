@@ -3,19 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="c55ccec5-aaed-43c4-bc9e-07ed30f5d480" name="Default Changelist" comment="add dashboard with live stream chart">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/backend/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/backend/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/clean.sh" beforeDir="false" afterPath="$PROJECT_DIR$/clean.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configuration/blockchain.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/configuration/blockchain.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dependencies.sh" beforeDir="false" afterPath="$PROJECT_DIR$/dependencies.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/front/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/laucher.py" beforeDir="false" afterPath="$PROJECT_DIR$/laucher.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/monitor/logs/resource-monitor-output.txt" beforeDir="false" afterPath="$PROJECT_DIR$/monitor/logs/resource-monitor-output.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/networks/fabric-v2.2/addPeer.sh" beforeDir="false" afterPath="$PROJECT_DIR$/networks/fabric-v2.2/addPeer.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/networks/fabric-v2.2/deployCC.sh" beforeDir="false" afterPath="$PROJECT_DIR$/networks/fabric-v2.2/deployCC.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/networks/fabric-v2.2/services/txn-server.js" beforeDir="false" afterPath="$PROJECT_DIR$/networks/fabric-v2.2/services/txn-server.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/networks/fabric-v2.2/start_network_five_peers.sh" beforeDir="false" afterPath="$PROJECT_DIR$/networks/fabric-v2.2/start_network_five_peers.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/app/charts/performance/performance.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/app/charts/performance/performance.component.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,7 +16,7 @@
         <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/front" />
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/workload/dockers/web/main.py" root0="FORCE_HIGHLIGHTING" />
@@ -66,7 +54,7 @@
     <property name="node.js.selected.package.standard" value="" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
-    <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
+    <property name="ts.external.directory.path" value="$PROJECT_DIR$/front/node_modules/typescript/lib" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -239,7 +227,7 @@
       <workItem from="1629498429111" duration="3621000" />
       <workItem from="1629539650012" duration="3756000" />
       <workItem from="1629547678050" duration="5412000" />
-      <workItem from="1629627725952" duration="2204000" />
+      <workItem from="1629627725952" duration="4254000" />
     </task>
     <task id="LOCAL-00001" summary="add server that listen to change stream and emit the new data to the client">
       <created>1627598267312</created>
