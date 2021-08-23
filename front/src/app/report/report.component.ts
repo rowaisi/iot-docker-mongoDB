@@ -3,8 +3,8 @@ import {API_URL, PERFORMANCE, RESOURCE} from '../globals/global_variables';
 import {DatePipe} from '@angular/common';
 import {CrudService} from '../services/crud.service';
 
-import html2canvas from "html2canvas";
-import jsPDF from 'jspdf';
+import { jsPDF } from "jspdf";
+import html2canvas from 'html2canvas';
 import * as math from "mathjs";
 @Component({
   selector: 'app-report',
@@ -408,7 +408,52 @@ export class ReportComponent implements OnInit {
 
   }
 
-  public downloadAsPDF() {
+  public downloadAsPDF2() {
+    var data = document.getElementById('print');
+    let pdf = new jsPDF('p', 'mm', 'a4');
+    html2canvas(data).then(canvas => {
+      var imgWidth = 208;
+      var imgHeight = canvas.height * imgWidth / canvas.width;
+      const contentDataURL = canvas.toDataURL('image/png')
+
+      var position = 0;
+      pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight)
+
+    });
+
 
   }
+
+  public downloadAsPDF(){
+    var data = document.getElementById('print');
+    html2canvas(data).then(canvas => {
+      var imgData = canvas.toDataURL('image/png');
+
+      /*
+      Here are the numbers (paper width and height) that I found to work.
+      It still creates a little overlap part between the pages, but good enough for me.
+      if you can find an official number from jsPDF, use them.
+      */
+      var imgWidth = 210;
+      var pageHeight = 295;
+      var imgHeight = canvas.height * imgWidth / canvas.width;
+      var heightLeft = imgHeight;
+
+      var doc = new jsPDF('p', 'mm');
+      var position = 0;
+
+      doc.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+      heightLeft -= pageHeight;
+
+      while (heightLeft >= 0) {
+        position = heightLeft - imgHeight;
+        doc.addPage();
+        doc.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+        heightLeft -= pageHeight;
+      }
+      doc.save("test" + '.pdf');
+
+    });
+  }
+
 }

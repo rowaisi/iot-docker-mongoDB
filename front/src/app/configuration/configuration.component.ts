@@ -9,13 +9,11 @@ import {API_URL, CONFIGURATION, RESOURCE} from "../globals/global_variables";
 })
 export class ConfigurationComponent implements OnInit {
   public receivers = ""
-  public configuration = {
-                        blockchain: "",
-                        consensus: "",
-                        receivers: [],
-                        nodes: 0,
-                        size: 1
-                      }
+  public blockchain = ""
+  public consensus = ""
+  public nodes = 0
+  public size = 1
+
 
   constructor(private crudService: CrudService) { }
 
@@ -27,11 +25,13 @@ export class ConfigurationComponent implements OnInit {
     this.crudService.getAll(API_URL + CONFIGURATION).subscribe(
       (response) => {
        console.log(response.data)
-        this.configuration = response.data
-        this.receivers =response.data.receivers.join('\r\n')
+        this.blockchain = response.data.blockchain
+        this.consensus = response.data.consensus
+        this.nodes = response.data.nodes
+        this.size = response.data.size
+        // this.receivers =response.data.receivers.join('\r\n')
+        this.receivers =response.data.receivers.join(' ; ')
 
-
-       console.log(this.receivers)
 
       });
   }
