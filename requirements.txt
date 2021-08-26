@@ -1,2 +1,4 @@
 pyyaml
+pymongo
 pyaml-env
+pytz

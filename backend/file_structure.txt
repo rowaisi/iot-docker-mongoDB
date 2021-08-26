@@ -1,0 +1,20 @@
+.
+├── config
+│   └── database.config.js
+├── dao
+│   └── performance.dao.js
+├── docker-compose.yml
+├── Dockerfile
+├── file_structure.txt
+├── helpers
+│   └── swarm.db.js
+├── package.json
+├── package-lock.json
+├── server.js
+├── services
+│   ├── changeStream.service.js
+│   ├── load.js
+│   └── performance.service.js
+└── start.sh
+
+4 directories, 13 files

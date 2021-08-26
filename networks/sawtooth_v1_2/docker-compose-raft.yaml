@@ -257,7 +257,7 @@ services:
 
 # -------------=== validators ===-------------
   validator-0:
-    image: sawtooth-validator:latest
+    image: hyperledger/sawtooth-validator:chime
     container_name: sawtooth-validator-0
     expose:
       - 4004
@@ -306,7 +306,7 @@ services:
     stop_signal: SIGKILL
 
   validator-1:
-    image: sawtooth-validator:latest
+    image: hyperledger/sawtooth-validator:chime
     container_name: sawtooth-validator-1
     volumes:
       - keys:/shared_keys
@@ -336,7 +336,7 @@ services:
 
 
   validator-2:
-    image: sawtooth-validator:latest
+    image: hyperledger/sawtooth-validator:chime
     container_name: sawtooth-validator-2
     expose:
       - 4004
@@ -366,7 +366,7 @@ services:
     stop_signal: SIGKILL
 
   validator-3:
-    image: sawtooth-validator:latest
+    image: hyperledger/sawtooth-validator:chime
     container_name: sawtooth-validator-3
     expose:
       - 4004
@@ -396,7 +396,7 @@ services:
     stop_signal: SIGKILL
 
   validator-4:
-    image: sawtooth-validator:latest
+    image: hyperledger/sawtooth-validator:chime
     container_name: sawtooth-validator-4
     expose:
       - 4004

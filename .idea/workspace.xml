@@ -2,8 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c55ccec5-aaed-43c4-bc9e-07ed30f5d480" name="Default Changelist" comment="add dashboard with live stream chart">
+      <change afterPath="$PROJECT_DIR$/user-manuel.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/configuration/blockchain.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/configuration/blockchain.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/monitor/logs/resource-monitor-output.txt" beforeDir="false" afterPath="$PROJECT_DIR$/monitor/logs/resource-monitor-output.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/networks/fabric-v2.2/start_network_five_peers.sh" beforeDir="false" afterPath="$PROJECT_DIR$/networks/fabric-v2.2/start_network_five_peers.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/networks/sawtooth_v1_2/docker-compose-raft.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/networks/sawtooth_v1_2/docker-compose-raft.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/replicaset.sh" beforeDir="false" afterPath="$PROJECT_DIR$/replicaset.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workload/IoT/metrics.csv" beforeDir="false" afterPath="$PROJECT_DIR$/workload/IoT/metrics.csv" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,7 +62,7 @@
     <property name="node.js.selected.package.standard" value="" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
-    <property name="ts.external.directory.path" value="$PROJECT_DIR$/front/node_modules/typescript/lib" />
+    <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -232,7 +239,15 @@
       <workItem from="1629646764242" duration="613000" />
       <workItem from="1629647405898" duration="2941000" />
       <workItem from="1629650383762" duration="412000" />
-      <workItem from="1629708840741" duration="6938000" />
+      <workItem from="1629708840741" duration="8863000" />
+      <workItem from="1629748142993" duration="1419000" />
+      <workItem from="1629795028941" duration="1194000" />
+      <workItem from="1629823330785" duration="2737000" />
+      <workItem from="1629901157629" duration="839000" />
+      <workItem from="1629923042906" duration="5096000" />
+      <workItem from="1629970835208" duration="9682000" />
+      <workItem from="1629992421637" duration="154000" />
+      <workItem from="1630007812606" duration="2571000" />
     </task>
     <task id="LOCAL-00001" summary="add server that listen to change stream and emit the new data to the client">
       <created>1627598267312</created>

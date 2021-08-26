@@ -1,5 +1,5 @@
 #!/bin/bash
-#
+#nvm i v10.22.0
 sleep 1
 
 echo "[i] run npm install"
