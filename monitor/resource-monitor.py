@@ -55,12 +55,13 @@ def check_utilization(target, collection):
     patternDev = re.compile(r".*%s.*" % "dev")
     order = re.compile(r".*%s.*" % "order")
     orderCa = re.compile(r".*%s.*" % "ca")
+    registry_tp = re.compile(r".*%s.*" % "registry-tp")
 
     with os.popen("docker stats --no-stream") as f:
         for s in f.readlines():
             ss = s.split()
             if len(ss) >= 3 and (pattern.match(ss[1]) or order.match(ss[1])) \
-                    and (not patternDev.match(ss[1]) and not orderCa.match(ss[1])):
+                    and (not patternDev.match(ss[1]) and not orderCa.match(ss[1]) and not registry_tp.match(ss[1])):
                 name = ss[1].replace("example.com", "")
                 names.append(name)
                 cu = float(ss[2].replace("%", ""))

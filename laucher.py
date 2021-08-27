@@ -51,7 +51,7 @@ with open("./configuration/blockchain.yaml", 'r') as stream:
 
             # 2.4 case hyperledger sawtooth RAFT
             elif loaded_config['blockchain']['type'] == "sawtooth-raft":
-                # 2.4.1 start sawtooth PBFT network + client adapter
+                # 2.4.1 start sawtooth RAFT network + client adapter
                 cmd = "docker-compose -f ./networks/sawtooth_v1_2/docker-compose-raft.yaml up -d"
                 subprocess.call(cmd.split())
 
