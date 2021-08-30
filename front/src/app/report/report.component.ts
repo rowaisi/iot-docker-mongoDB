@@ -1,5 +1,5 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {API_URL, PERFORMANCE, RESOURCE} from '../globals/global_variables';
+import {API_URL, CONFIGURATION, PERFORMANCE, RESOURCE} from '../globals/global_variables';
 import {DatePipe} from '@angular/common';
 import {CrudService} from '../services/crud.service';
 
@@ -14,17 +14,17 @@ import * as math from "mathjs";
 })
 export class ReportComponent implements OnInit {
 
-  public allRequestsSum = [0, 0, 0];
-  public latencySum = [0, 0, 0];
-  public errorRateSum = [0, 0, 0];
-  public sensorsSum = [0, 0, 0];
-  public succRequestsSum = [0, 0, 0]
+  public date = new Date();
+  public allRequestsSum = [0, 0, 0, 0, 0];
+  public latencySum = [0, 0, 0,0, 0];
+  public errorRateSum = [0, 0, 0,0, 0];
+  public sensorsSum = [0, 0, 0,0,0];
+  public succRequestsSum = [0, 0, 0, 0, 0];
+  public cpuSum = [0, 0, 0, 0, 0];
+  public memSum = [0, 0, 0, 0, 0];
+  public netOSum = [0, 0, 0, 0, 0];
+  public netISum = [0, 0, 0, 0, 0];
 
-
-  public cpuSum = [0, 0, 0];
-  public memSum = [0, 0, 0];
-  public netOSum = [0, 0, 0];
-  public netISum = [0, 0, 0];
 
   private cpus = [];
   private mems = [];
@@ -205,6 +205,14 @@ export class ReportComponent implements OnInit {
     }
   ];
 
+  public receivers = ""
+  public receiversTable = []
+  public blockchain = ""
+  public consensus = ""
+  public nodes = 0
+  public size = 1
+
+
   constructor(private crudService: CrudService,
               private datePipe: DatePipe) {
   }
@@ -212,7 +220,23 @@ export class ReportComponent implements OnInit {
   ngOnInit(): void {
     this.getResourceMetrics()
     this.getPerformanceMetrics()
+    this.getConfiguration()
+  }
 
+  getConfiguration() {
+    this.crudService.getAll(API_URL + CONFIGURATION).subscribe(
+      (response) => {
+        console.log(response.data)
+        this.blockchain = response.data.blockchain
+        this.consensus = response.data.consensus
+        this.nodes = response.data.nodes
+        this.size = response.data.size
+        this.receiversTable = response.data.receivers
+        // this.receivers =response.data.receivers.join('\r\n')
+        this.receivers =response.data.receivers.join(' ,   ')
+
+
+      });
   }
 
   getResourceMetrics() {
@@ -275,22 +299,32 @@ export class ReportComponent implements OnInit {
     this.allRequestsSum[0] = math.mean(this.allRequests)
     this.allRequestsSum[1] = math.variance(this.allRequests)
     this.allRequestsSum[2] = math.std(this.allRequests)
+    this.allRequestsSum[3] = math.min(this.allRequests)
+    this.allRequestsSum[4] = math.max(this.allRequests)
 
     this.latencySum[0] = math.mean(this.avgLatency)
     this.latencySum[1] = math.variance(this.avgLatency)
-    this.latencySum[2] = math.std(this.avgLatency)
+    this.latencySum[2] = math.std(this.latencySum)
+    this.latencySum[3] = math.min(this.latencySum)
+    this.latencySum[4] = math.max(this.latencySum)
 
     this.errorRateSum[0] = math.mean(this.errorRate)
     this.errorRateSum[1] = math.variance(this.errorRate)
     this.errorRateSum[2] = math.std(this.errorRate)
+    this.errorRateSum[3] = math.min(this.errorRate)
+    this.errorRateSum[4] = math.max(this.errorRate)
 
     this.succRequestsSum[0] = math.mean(this.succRequests)
     this.succRequestsSum[1] = math.variance(this.succRequests)
     this.succRequestsSum[2] = math.std(this.succRequests)
+    this.succRequestsSum[3] = math.min(this.succRequests)
+    this.succRequestsSum[4] = math.max(this.succRequests)
 
     this.sensorsSum[0] = math.mean(this.sensors)
     this.sensorsSum[1] = math.variance(this.sensors)
     this.sensorsSum[2] = math.std(this.sensors)
+    this.sensorsSum[3] = math.min(this.sensors)
+    this.sensorsSum[4] = math.max(this.sensors)
 
   }
 
@@ -373,18 +407,26 @@ export class ReportComponent implements OnInit {
     this.cpuSum[0] = math.mean(this.cpus)
     this.cpuSum[1] = math.variance(this.cpus)
     this.cpuSum[2] = math.std(this.cpus)
+    this.cpuSum[3] = math.min(this.cpus)
+    this.cpuSum[4] = math.max(this.cpus)
 
     this.memSum[0] = math.mean(this.mems)
     this.memSum[1] = math.variance(this.mems)
     this.memSum[2] = math.std(this.mems)
+    this.memSum[3] = math.min(this.mems)
+    this.memSum[4] = math.max(this.mems)
 
     this.netISum[0] = math.mean(this.netI)
     this.netISum[1] = math.variance(this.netI)
     this.netISum[2] = math.std(this.netI)
+    this.netISum[3] = math.min(this.netI)
+    this.netISum[4] = math.max(this.netI)
 
     this.netOSum[0] = math.mean(this.netO)
     this.netOSum[1] = math.variance(this.netO)
     this.netOSum[2] = math.std(this.netO)
+    this.netOSum[3] = math.min(this.netO)
+    this.netOSum[4] = math.max(this.netO)
 
   }
 

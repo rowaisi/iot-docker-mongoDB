@@ -27,7 +27,7 @@ import {ChartsDemoModule} from "./charts/charts.module";
         DashboardComponent,
         SpinnerComponent,
         ContentAnimateDirective,
-        ReportComponent
+        ReportComponent,
     ],
     imports: [
         BrowserModule,

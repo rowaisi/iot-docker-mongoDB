@@ -34,11 +34,11 @@ with open("./configuration/blockchain.yaml", 'r') as stream:
 
             if loaded_config['blockchain']['type'] == "ethereum-pow":
                 # 2.1.1 start ethereum clique network
-                print("[x] Start ethereum pow network ")
-                cmd = "docker-compose -f ./networks/ethereum-docker-pow/docker-compose.yml up -d"
-                subprocess.call(cmd.split())
+                print("[x] ethereum pow network must be already started and the DAG generated ")
+                # cmd = "docker-compose -f ./networks/ethereum-docker-pow/docker-compose.yml up -d"
+                # subprocess.call(cmd.split())
                 # 2.1.2 start ethereum adapter
-                print("[x] Start ethereum clique adapter ")
+                print("[x] Start ethereum pow adapter ")
                 cmd = "docker-compose -f ./eth-client-js/docker-compose.yml up -d"
                 subprocess.call(cmd.split())
 
@@ -63,6 +63,7 @@ with open("./configuration/blockchain.yaml", 'r') as stream:
 
             # 2.6 case hyperledger Fabric
             elif loaded_config['blockchain']['type'] == "fabric":
+                 subprocess.call(cmd.split())
                  print("[x] Start fabric network ")
                  cmd = "./start_network_five_peers.sh"
                  subprocess.call(cmd.split(),cwd="networks/fabric-v2.2")

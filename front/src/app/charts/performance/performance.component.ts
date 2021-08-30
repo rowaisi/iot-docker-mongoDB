@@ -21,11 +21,11 @@ export class PerformanceComponent implements OnInit {
   private errorRate = [];
   private sensors = [];
   private succRequests = [];
-  public allRequestsSum = [0,0,0];
-  public latencySum = [0,0,0];
-  public errorRateSum = [0,0,0];
-  public sensorsSum = [0,0,0];
-  public succRequestsSum = [0,0,0]
+  public allRequestsSum =  [0, 0, 0, 0, 0];
+  public latencySum =  [0, 0, 0, 0, 0];
+  public errorRateSum =  [0, 0, 0, 0, 0];
+  public sensorsSum =  [0, 0, 0, 0, 0];
+  public succRequestsSum =  [0, 0, 0, 0, 0];
   private labels = [];
   public metrics: any;
   public backgroundColor = [
@@ -144,22 +144,32 @@ export class PerformanceComponent implements OnInit {
     this.allRequestsSum[0] = math.mean(this.allRequests)
     this.allRequestsSum[1] = math.variance(this.allRequests)
     this.allRequestsSum[2] = math.std(this.allRequests)
+    this.allRequestsSum[3] = math.min(this.allRequests)
+    this.allRequestsSum[4] = math.max(this.allRequests)
 
     this.latencySum[0] = math.mean(this.avgLatency)
     this.latencySum[1] = math.variance(this.avgLatency)
-    this.latencySum[2] = math.std(this.avgLatency)
+    this.latencySum[2] = math.std(this.latencySum)
+    this.latencySum[3] = math.min(this.latencySum)
+    this.latencySum[4] = math.max(this.latencySum)
 
     this.errorRateSum[0] = math.mean(this.errorRate)
     this.errorRateSum[1] = math.variance(this.errorRate)
     this.errorRateSum[2] = math.std(this.errorRate)
+    this.errorRateSum[3] = math.min(this.errorRate)
+    this.errorRateSum[4] = math.max(this.errorRate)
 
     this.succRequestsSum[0] = math.mean(this.succRequests)
     this.succRequestsSum[1] = math.variance(this.succRequests)
     this.succRequestsSum[2] = math.std(this.succRequests)
+    this.succRequestsSum[3] = math.min(this.succRequests)
+    this.succRequestsSum[4] = math.max(this.succRequests)
 
     this.sensorsSum[0] = math.mean(this.sensors)
     this.sensorsSum[1] = math.variance(this.sensors)
     this.sensorsSum[2] = math.std(this.sensors)
+    this.sensorsSum[3] = math.min(this.sensors)
+    this.sensorsSum[4] = math.max(this.sensors)
 
   }
 

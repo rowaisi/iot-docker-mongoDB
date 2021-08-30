@@ -1,57 +1,72 @@
-['192.168.1.16:27011', '192.168.1.16:27012', '192.168.1.16:27013']
-sawtooth-poet
+['192.168.1.17:27011', '192.168.1.17:27012', '192.168.1.17:27013']
+ethereum-clique
 INFO:	Start checking ...
-INFO: container sawtooth-validator-default-4: cpu 24.72%, mem 0.52%, net_i 189000 B, net_o 237000 B
-INFO: container sawtooth-validator-default-0: cpu 22.95%, mem 0.54%, net_i 165000 B, net_o 352000 B
-INFO: container sawtooth-validator-default-3: cpu 24.73%, mem 0.51%, net_i 142000 B, net_o 233000 B
-INFO: container sawtooth-validator-default-1: cpu 24.05%, mem 0.51%, net_i 149000 B, net_o 249000 B
-INFO: container sawtooth-validator-default-2: cpu 27.28%, mem 0.53%, net_i 203000 B, net_o 236000 B
-INFO:	Finish checking. Sleeping 7.00 seconds ...
+INFO: container miner2: cpu 0.98%, mem 3.41%, net_i 52600 B, net_o 37100 B
+INFO: container miner1: cpu 1.48%, mem 3.51%, net_i 51600 B, net_o 44100 B
+INFO: container miner5: cpu 1.34%, mem 3.16%, net_i 55000 B, net_o 40400 B
+INFO: container miner4: cpu 0.93%, mem 3.15%, net_i 50300 B, net_o 39600 B
+INFO: container miner3: cpu 1.14%, mem 3.26%, net_i 53100 B, net_o 41400 B
+INFO:	Finish checking. Sleeping 6.65 seconds ...
 
 INFO:	Start checking ...
-INFO: container sawtooth-validator-default-4: cpu 0.89%, mem 0.52%, net_i 195000 B, net_o 274000 B
-INFO: container sawtooth-validator-default-0: cpu 4.85%, mem 0.54%, net_i 195000 B, net_o 614000 B
-INFO: container sawtooth-validator-default-3: cpu 0.81%, mem 0.51%, net_i 149000 B, net_o 270000 B
-INFO: container sawtooth-validator-default-1: cpu 4.08%, mem 0.51%, net_i 179000 B, net_o 504000 B
-INFO: container sawtooth-validator-default-2: cpu 4.19%, mem 0.53%, net_i 233000 B, net_o 490000 B
-INFO:	Finish checking. Sleeping 6.58 seconds ...
+INFO: container miner2: cpu 1.30%, mem 2.70%, net_i 85600 B, net_o 66800 B
+INFO: container miner1: cpu 1.26%, mem 3.02%, net_i 83000 B, net_o 73900 B
+INFO: container miner5: cpu 1.12%, mem 1.59%, net_i 86900 B, net_o 68400 B
+INFO: container miner4: cpu 0.94%, mem 1.64%, net_i 86300 B, net_o 76800 B
+INFO: container miner3: cpu 1.42%, mem 3.00%, net_i 87300 B, net_o 70300 B
+INFO:	Finish checking. Sleeping 6.83 seconds ...
 
 INFO:	Start checking ...
-INFO: container sawtooth-validator-default-4: cpu 44.10%, mem 0.53%, net_i 289000 B, net_o 657000 B
-INFO: container sawtooth-validator-default-0: cpu 40.17%, mem 0.55%, net_i 291000 B, net_o 1120000 B
-INFO: container sawtooth-validator-default-3: cpu 42.07%, mem 0.53%, net_i 239000 B, net_o 649000 B
-INFO: container sawtooth-validator-default-1: cpu 41.29%, mem 0.52%, net_i 272000 B, net_o 997000 B
-INFO: container sawtooth-validator-default-2: cpu 43.41%, mem 0.54%, net_i 323000 B, net_o 981000 B
-INFO:	Finish checking. Sleeping 7.04 seconds ...
+INFO: container miner2: cpu 1.41%, mem 2.73%, net_i 118000 B, net_o 93700 B
+INFO: container miner1: cpu 1.35%, mem 3.05%, net_i 116000 B, net_o 101000 B
+INFO: container miner5: cpu 1.05%, mem 1.59%, net_i 115000 B, net_o 95600 B
+INFO: container miner4: cpu 1.10%, mem 1.68%, net_i 117000 B, net_o 107000 B
+INFO: container miner3: cpu 1.65%, mem 3.05%, net_i 119000 B, net_o 103000 B
+INFO:	Finish checking. Sleeping 7.34 seconds ...
 
 INFO:	Start checking ...
-INFO: container sawtooth-validator-default-4: cpu 8.33%, mem 0.55%, net_i 674000 B, net_o 1520000 B
-INFO: container sawtooth-validator-default-0: cpu 8.73%, mem 0.57%, net_i 659000 B, net_o 2049999 B
-INFO: container sawtooth-validator-default-3: cpu 6.76%, mem 0.55%, net_i 578000 B, net_o 1560000 B
-INFO: container sawtooth-validator-default-1: cpu 6.35%, mem 0.55%, net_i 608000 B, net_o 1860000 B
-INFO: container sawtooth-validator-default-2: cpu 10.77%, mem 0.56%, net_i 685000 B, net_o 1890000 B
+INFO: container miner2: cpu 1.35%, mem 2.75%, net_i 153000 B, net_o 129000 B
+INFO: container miner1: cpu 1.17%, mem 3.07%, net_i 148000 B, net_o 136000 B
+INFO: container miner5: cpu 1.04%, mem 1.59%, net_i 156000 B, net_o 129000 B
+INFO: container miner4: cpu 1.44%, mem 1.71%, net_i 153000 B, net_o 144000 B
+INFO: container miner3: cpu 1.25%, mem 3.06%, net_i 157000 B, net_o 135000 B
+INFO:	Finish checking. Sleeping 7.37 seconds ...
+
+INFO:	Start checking ...
+INFO: container miner2: cpu 1.04%, mem 2.35%, net_i 186000 B, net_o 164000 B
+INFO: container miner1: cpu 1.16%, mem 2.67%, net_i 185000 B, net_o 174000 B
+INFO: container miner5: cpu 1.03%, mem 0.98%, net_i 193000 B, net_o 161000 B
+INFO: container miner4: cpu 1.15%, mem 1.31%, net_i 192000 B, net_o 181000 B
+INFO: container miner3: cpu 0.88%, mem 2.74%, net_i 193000 B, net_o 163000 B
+INFO:	Finish checking. Sleeping 7.15 seconds ...
+
+INFO:	Start checking ...
+INFO: container miner2: cpu 0.89%, mem 2.21%, net_i 222000 B, net_o 198000 B
+INFO: container miner1: cpu 0.88%, mem 2.52%, net_i 217000 B, net_o 208000 B
+INFO: container miner5: cpu 0.69%, mem 0.82%, net_i 227000 B, net_o 190000 B
+INFO: container miner4: cpu 0.72%, mem 1.16%, net_i 224000 B, net_o 214000 B
+INFO: container miner3: cpu 1.08%, mem 2.54%, net_i 229000 B, net_o 195000 B
+INFO:	Finish checking. Sleeping 7.37 seconds ...
+
+INFO:	Start checking ...
+INFO: container miner2: cpu 0.92%, mem 1.79%, net_i 255000 B, net_o 232000 B
+INFO: container miner1: cpu 0.73%, mem 2.10%, net_i 248000 B, net_o 240000 B
+INFO: container miner5: cpu 1.03%, mem 0.54%, net_i 264000 B, net_o 223000 B
+INFO: container miner4: cpu 0.72%, mem 0.66%, net_i 261000 B, net_o 252000 B
+INFO: container miner3: cpu 1.21%, mem 1.73%, net_i 268000 B, net_o 226000 B
+INFO:	Finish checking. Sleeping 6.98 seconds ...
+
+INFO:	Start checking ...
+INFO: container miner2: cpu 2.25%, mem 1.62%, net_i 290000 B, net_o 269000 B
+INFO: container miner1: cpu 1.89%, mem 1.90%, net_i 285000 B, net_o 280000 B
+INFO: container miner5: cpu 2.29%, mem 0.51%, net_i 301000 B, net_o 253000 B
+INFO: container miner4: cpu 2.05%, mem 0.62%, net_i 297000 B, net_o 287000 B
+INFO: container miner3: cpu 1.90%, mem 1.55%, net_i 305000 B, net_o 255000 B
 INFO:	Finish checking. Sleeping 7.08 seconds ...
 
 INFO:	Start checking ...
-INFO: container sawtooth-validator-default-4: cpu 39.37%, mem 0.56%, net_i 1080000 B, net_o 2600000 B
-INFO: container sawtooth-validator-default-0: cpu 34.96%, mem 0.58%, net_i 1040000 B, net_o 3200000 B
-INFO: container sawtooth-validator-default-3: cpu 38.28%, mem 0.57%, net_i 983000 B, net_o 2670000 B
-INFO: container sawtooth-validator-default-1: cpu 39.09%, mem 0.56%, net_i 997000 B, net_o 2960000 B
-INFO: container sawtooth-validator-default-2: cpu 42.74%, mem 0.58%, net_i 1080000 B, net_o 2990000 B
-INFO:	Finish checking. Sleeping 6.94 seconds ...
-
-INFO:	Start checking ...
-INFO: container sawtooth-validator-default-4: cpu 37.40%, mem 0.56%, net_i 1510000 B, net_o 3670000 B
-INFO: container sawtooth-validator-default-0: cpu 37.77%, mem 0.59%, net_i 1450000 B, net_o 4290000 B
-INFO: container sawtooth-validator-default-3: cpu 38.59%, mem 0.57%, net_i 1380000 B, net_o 3750000 B
-INFO: container sawtooth-validator-default-1: cpu 35.83%, mem 0.56%, net_i 1370000 B, net_o 4050000 B
-INFO: container sawtooth-validator-default-2: cpu 38.01%, mem 0.59%, net_i 1470000 B, net_o 4019999 B
-INFO:	Finish checking. Sleeping 7.19 seconds ...
-
-INFO:	Start checking ...
-INFO: container sawtooth-validator-default-4: cpu 34.15%, mem 0.58%, net_i 1840000 B, net_o 4390000 B
-INFO: container sawtooth-validator-default-0: cpu 33.40%, mem 0.61%, net_i 1760000 B, net_o 5080000 B
-INFO: container sawtooth-validator-default-3: cpu 34.92%, mem 0.59%, net_i 1700000 B, net_o 4480000 B
-INFO: container sawtooth-validator-default-1: cpu 33.73%, mem 0.59%, net_i 1700000 B, net_o 4780000 B
-INFO: container sawtooth-validator-default-2: cpu 32.35%, mem 0.61%, net_i 1790000 B, net_o 4740000 B
-INFO:	Finish ch
+INFO: container miner2: cpu 3.71%, mem 1.51%, net_i 327000 B, net_o 304000 B
+INFO: container miner1: cpu 4.59%, mem 1.74%, net_i 321000 B, net_o 317000 B
+INFO: container miner5: cpu 4.39%, mem 0.49%, net_i 339000 B, net_o 285000 B
+INFO: container miner4: cpu 3.21%, mem 0.57%, net_i 333000 B, net_o 323000 B
+INFO: container miner3
