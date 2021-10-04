@@ -157,7 +157,7 @@ class IntkeyClient:
         return result.text
 
     def _send_transaction(self, verb, name, value, wait=None):
-        LOGGER.warning("in send transaction")
+
         payload = cbor.dumps({
             'Verb': verb,
             'Name': name,

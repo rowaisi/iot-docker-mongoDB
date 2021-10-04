@@ -47,7 +47,7 @@ export class PerformanceComponent implements OnInit {
 
 
   requestsData = [{
-    label: '# Transmission rate',
+    label: '# Emit rate',
     data: this.allRequests,
     borderWidth: 1,
     fill: false,
@@ -76,7 +76,7 @@ export class PerformanceComponent implements OnInit {
     fill: false
   }];
   sensorsData = [{
-    label: '# Number of sensors',
+    label: '# Number of users',
     data: this.sensors,
     borderWidth: 1,
     fill: false

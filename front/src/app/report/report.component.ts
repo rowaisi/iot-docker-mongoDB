@@ -99,14 +99,14 @@ export class ReportComponent implements OnInit {
   }];
 
   requestsData = [{
-    label: '# Total Requests',
+    label: '# Emit rate',
     data: this.allRequests,
     borderWidth: 1,
     fill: false,
     borderColor: this.borderColor[0],
     backgroundColor: this.backgroundColor[0],
   }, {
-    label: '# Successful Requests',
+    label: '# Throughput',
     data: this.succRequests,
     borderWidth: 1,
     fill: false,
@@ -128,7 +128,7 @@ export class ReportComponent implements OnInit {
     fill: false
   }];
   sensorsData = [{
-    label: '# Number of sensors',
+    label: '# Number of users',
     data: this.sensors,
     borderWidth: 1,
     fill: false
@@ -493,7 +493,7 @@ export class ReportComponent implements OnInit {
         doc.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
         heightLeft -= pageHeight;
       }
-      doc.save("test" + '.pdf');
+      doc.save("blockCompass-report" + '.pdf');
 
     });
   }

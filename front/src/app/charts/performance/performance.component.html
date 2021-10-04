@@ -23,16 +23,16 @@
               #
             </th>
             <th>
-              Sensors
+              Users #
             </th>
             <th>
-              Emit rate
+              Emit rate  (transaction/sec)
             </th>
             <th>
-              Throughput
+              Throughput (transaction/sec)
             </th>
             <th>
-              Latency
+              Latency  (ms)
             </th>
             <th>
               Error Rate
@@ -156,7 +156,7 @@
         <div class="col-lg-6 grid-margin stretch-card">
           <div class="card">
             <div class="card-body">
-              <h4 class="card-title">Number of Sensors</h4>
+              <h4 class="card-title">Number of Users</h4>
               <canvas baseChart [chartType]="'line'" [datasets]="sensorsData" [labels]="lineChartLabels" [options]="lineChartOptions" ></canvas>
             </div>
           </div>

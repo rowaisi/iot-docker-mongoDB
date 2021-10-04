@@ -3,6 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="c55ccec5-aaed-43c4-bc9e-07ed30f5d480" name="Default Changelist" comment="add dashboard with live stream chart">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/configuration/blockchain.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/configuration/blockchain.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/monitor/logs/resource-monitor-output.txt" beforeDir="false" afterPath="$PROJECT_DIR$/monitor/logs/resource-monitor-output.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/networks/sawtooth_v1_2/docker-compose-raft.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/networks/sawtooth_v1_2/docker-compose-raft.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/networks/sawtooth_v1_2/rest_api/intkey_client.py" beforeDir="false" afterPath="$PROJECT_DIR$/networks/sawtooth_v1_2/rest_api/intkey_client.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/replicaset.sh" beforeDir="false" afterPath="$PROJECT_DIR$/replicaset.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workload/IoT/schedule.list" beforeDir="false" afterPath="$PROJECT_DIR$/workload/IoT/schedule.list" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -246,7 +252,20 @@
       <workItem from="1630244284207" duration="1172000" />
       <workItem from="1630271094239" duration="498000" />
       <workItem from="1630272043877" duration="2441000" />
-      <workItem from="1630311442955" duration="18030000" />
+      <workItem from="1630311442955" duration="18358000" />
+      <workItem from="1630779584226" duration="11713000" />
+      <workItem from="1630927185739" duration="1169000" />
+      <workItem from="1630951243431" duration="1223000" />
+      <workItem from="1631054654193" duration="16000" />
+      <workItem from="1631056562920" duration="174000" />
+      <workItem from="1631056999654" duration="569000" />
+      <workItem from="1631121501948" duration="15376000" />
+      <workItem from="1631174352078" duration="11386000" />
+      <workItem from="1631262762650" duration="547000" />
+      <workItem from="1631483432479" duration="633000" />
+      <workItem from="1632173756408" duration="3408000" />
+      <workItem from="1633079522829" duration="1601000" />
+      <workItem from="1633281723289" duration="633000" />
     </task>
     <task id="LOCAL-00001" summary="add server that listen to change stream and emit the new data to the client">
       <created>1627598267312</created>

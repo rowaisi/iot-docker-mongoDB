@@ -148,7 +148,7 @@
                       </tr>
                       <tr>
                         <td>
-                          Sensors
+                          Users #
                         </td>
                         <td>
                           {{sensorsSum[3]  | number }}
@@ -168,7 +168,7 @@
                       </tr>
                       <tr>
                         <td>
-                          Emit rate
+                          Emit rate (transaction/sec)
                         </td>
                         <td>
                           {{allRequestsSum[3]  | number  }}
@@ -188,7 +188,7 @@
                       </tr>
                       <tr>
                         <td>
-                          Throughput
+                          Throughput (transaction/sec)
                         </td>
                         <td>
                           {{succRequestsSum[3]  | number  }}
@@ -264,7 +264,7 @@
                   <div id="comments mt-4">
                     <div class="form-group">
 
-                        <textarea style="white-space: pre;" class="form-control" id="Blockchain" name=Blockchain rows="80">
+                        <textarea style="white-space: pre;" class="form-control" id="Blockchain" name=Blockchain rows="140">
 
                  </textarea>
                     </div>
@@ -379,7 +379,7 @@
   </div>
 
 
-  <div style="margin-top: 15em" class="col-12 stretch-card">
+  <div style="margin-top: 25em" class="col-12 stretch-card">
     <div class="card">
       <div class="card-body">
         <h4 style="font-size:x-large; " class="card-title">4. Performance Metrics</h4>
@@ -390,7 +390,7 @@
         <div class="col-lg-6 stretch-card">
           <div class="card">
             <div class="card-body">
-              <h4 class="card-title">Number of Sensors</h4>
+              <h4 class="card-title">Number of Users</h4>
               <canvas width="1200" height="600" baseChart [chartType]="'line'" [datasets]="sensorsData" [labels]="lineChartLabelsPerformance" [options]="lineChartOptionsPerformance" ></canvas>
             </div>
           </div>
