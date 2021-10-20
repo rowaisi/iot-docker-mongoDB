@@ -1,57 +1,236 @@
-1. Build
 
-docker-compose build
-<br>
-2. Set the configuration of sensors
-<br>
-* Edit IoT/schedule.list
--- For example<br>
-5 10<br>
-10 10<br>
-<br>-- means simulating 5 sensors in 10 senconds and then 10 sensors in 10 seconds
-<br>-- You can also simulate 0 sensors to simulate sleeping.
 
-<br>* Edit IoT/sensors.list
-<br>-- For example
-<br>temp 1
-<br>device 5 1
-<br>gps 2
-<br>asd 24
-<br>camera 15 50000
-<br>-- means: the first sensor will be a temperature sensor which reports the temperature every 1 seconds
-<br>-- the second sensor will be a device sensor which reports ON or OFF in every 5 seconds (Gaussian distribution with the <br>mean value 5 and the standard deviation value 1
-<br>-- the third sensor will be a gps sensor which reports a position every 2 seconds
-<br>-- the forth sensor will be a sound sensor which reports sound data and samples per second is set to 24
-<br>-- the fifth sensor will be a camera sensor whill reports video data and FPS(frames per second) is set to 15 and bits per second is set to 50000.
-<br>-- the sixth sensor will be a temperature sensor
-<br>-- and so on
+<a name="top"></a>
 
-<br>3. Run
+# Manual for using Blockcompass 
 
-<br>* Start simulation
-<br>docker-compose up -d
-<br>-- then the iot container will start the simulation after 10 seconds
+## Overview
 
-<br>* Start auto scale
-<br>python3 auto-scale.py
-<br>-- Run "python3 auto-scale --help" to see the help information
-<br>-- Set mimimun containers with -m
-<br>-- Set maximum containers with -M
-<br>-- Set down-scale cpu threshold with -d
-<br>-- Set up-scale cpu threshold with -u
-<br>-- Set checking interval with -i
+BlockCompass is a benchmarking performance tool for blockchain platforms. Currently Hyperledger Fabric, Hyperledger Sawtooth and Ethereum are supported.  BlockCompass supports multiple performance indicators including resource consumption (CPU, Memory, Network Input and Network Output), latency, transmission rate, throughput and error rate. It also provides a real time chart and the possibility to export a detailed report. 
 
-<br>4. View the database
-<br>Access http://127.0.0.1:8081 and the database name is 'iot', the collection name is 'sensors'.
 
-<br>5. How
-<br>It starts a 'db' containter for database, 
-<br>one/many 'web' containers for receiving iot data and storing in the database, 
-<br>a 'haproxy' container for balancing requests to 'web' containers,
-<br>and an 'iot' container for generating iot data.
-<br>Besides, it starts a 'dbmanager' for providing http://127.0.0.1:8081 for managing the database, 
-<br>a 'cadvisor' for monitoring all containers.
+## Minimum Requirement
 
+OS  => Ubuntu 18.04
+
+CPU  => 2 vCPUs
+
+Memory  => 8GB RAM
+
+Disk Space  => 25 GB (Might need more for Ethereum Proof Of Work)
+
+
+
+## Prerequisites
+
+<details><summary>docker / docker compose</summary>
+
+
+1. install docker either from the officiel documentation https://docs.docker.com/engine/install/ubuntu/, or following the next steps
+  
+  1.1 Manual installation 
+```
+sudo apt update 
+sudo apt install apt-transport-https ca-certificates 
+curl software-properties-common
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"
+sudo apt update
+sudo apt install docker-ce  
+```
+1.2 Run docker without sudo  
+
+  
+
+```
+sudo usermod -aG docker ${USER}
+su - ${USER}
+
+```
+2.  install docker compose either from the officiel documentation https://docs.docker.com/compose/install/, or following the next steps
+
+```
+sudo curl -L https://github.com/docker/compose/releases/download/1.21.2/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
+```
+
+
+</details>
+
+
+
+
+<details><summary>nodeJS version 10.22.0</summary>
+
+
+1. Install nodeJS version 10.22.0
+  
+  1.1 Manual installation 
+```
+ cd ~
+curl -sL https://deb.nodesource.com/setup_10.x -o nodesource_setup.sh
+sudo bash nodesource_setup.sh
+sudo apt install nodejs
+sudo apt install build-essential
+```
+
+
+
+</details>
+
+<details><summary>Python / mongoDB Client</summary>
+
+
+1. Python is by default installed in ubuntu 18.04 distribution, to update python run the following commands:
+  
+
+```
+sudo apt update
+sudo apt -y upgrade
+```
+
+  2.  Install Additional Tools
+  
+```
+sudo apt install -y python3-pip
+sudo apt install libssl-dev libffi-dev python3-dev 
+sudo apt install -y python3-venv
+```
+
+  3.  Install mongoDB Client
+```
+sudo apt install mongodb-clients
+
+```
+  
+</details>
+
+
+<details><summary> Virtual environment </summary>
+
+
+1. Clone repository
+  
+
+```
+git clone https://github.com/polytechnique-ease/blockcompass
+```
+
+  2.  Set virtual environment and install requirement
+  
+```
+cd blockcompass
+python3 -m venv env
+source env/bin/activate
+pip install -r requirements.txt
+```
+
+  3.  Install mongoDB Client
+```
+sudo apt install mongodb-clients
+
+```
+  
+</details>
+
+
+
+</details>
+
+<details><summary>Hyperledger Fabric</summary>
+
+
+1.  Download binaries and pull docker images for Fabric v2.2
+
+
+```
+
+   curl -sSL https://bit.ly/2ysbOFE | bash -s -- 2.2.2 1.4.9
+
+```
+
+  2.   Using bash_profile to add Hyperledger Fabric bin permanently to the PATH environment variable
+
+  
+```
+sudo nano ~/.profile
+  
+## At the end of the file, add this line:
+export PATH=<path to fabric-sample location>/bin:$PATH
+  
+source ~/.profile
+
+```
+
+  3.  Install Golang 1.17
+```
+cd ~
+curl -O https://dl.google.com/go/go1.17.linux-amd64.tar.gz
+tar xvf go1.17.linux-amd64.tar.gz
+sudo chown -R root:root ./go
+sudo mv go /usr/local
+sudo nano ~/.profile
+  
+## At the end of the file, add this line:
+export PATH=$PATH:/usr/local/go/bin
+  
+source ~/.profile
+
+
+```
+
+ 4. Set ABRIC_CFG_PATH variable: 
+```
+sudo nano ~/.profile
+  
+## At the end of the file, add this line:
+export FABRIC_CFG_PATH=<Absolute PATH to iot-docker-mongoDB folder>/networks/fabric-v2.2/config
+
+source ~/.profile
+
+
+```
+  
+</details>
+  
+  
+ ## Get Started
+  
+  
+  <details><summary>Step1 : Configuration</summary>
+
+
+1.  ReplicaSet
+  
+  1.1  In the configuration/blockchain.yaml file, change the IP address in replicaSet field by your local IP address. 
+
+    replicaSet:
+ -  'IP:27011'
+ -  'IP:27012'
+ -  'IP:27013'
+    
+```
+chmod +x replicaset.sh
+```
+
+1.2 In the replicaset.sh file, change the IP address by your IP address. 
+
+
+2. Network Configuration:
+
+2.1  In the configuration/blockchain.yaml file set the target Blockchain in Blockchain.type field, allowed values are: ethereum-clique, ethereum-pow, sawtooth-pbft, sawtooth-raft, sawtooth-poet and fabric.
+    
+    
+
+<details><summary> 2.2 Ethereum Configuration </summary>
+
+
+  
+</details>
+
+</details>
+
+  
 
 <br> *You can cite the following papers for this project:*
 <br>Rasolroveicy, M., & Fokaefs, M. (2020, November). Dynamic reconfiguration of consensus protocol for IoT data registry on blockchain. In Proceedings of the 30th Annual International Conference on Computer Science and Software Engineering (pp. 227-236).
