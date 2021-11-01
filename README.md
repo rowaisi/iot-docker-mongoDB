@@ -28,7 +28,7 @@ Disk Space  => 25 GB (Might need more for Ethereum Proof Of Work)
 
 1. install docker either from the officiel documentation https://docs.docker.com/engine/install/ubuntu/, or following the next steps
   
-  1.1 Manual installation 
+ #### 1.1 Manual installation 
 ```
 sudo apt update 
 sudo apt install apt-transport-https ca-certificates 
@@ -38,7 +38,7 @@ sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubun
 sudo apt update
 sudo apt install docker-ce  
 ```
-1.2 Run docker without sudo  
+#### 1.2 Run docker without sudo  
 
   
 
@@ -65,7 +65,7 @@ sudo chmod +x /usr/local/bin/docker-compose
 
 1. Install nodeJS version 10.22.0
   
-  1.1 Manual installation 
+####  1.1 Manual installation 
 ```
  cd ~
 curl -sL https://deb.nodesource.com/setup_10.x -o nodesource_setup.sh
@@ -109,14 +109,14 @@ sudo apt install mongodb-clients
 <details><summary> Virtual environment </summary>
 
 
-1. Clone repository
+#### 1. Clone repository
   
 
 ```
 git clone https://github.com/polytechnique-ease/blockcompass
 ```
 
-  2.  Set virtual environment and install requirement
+####  2.  Set virtual environment and install requirement
   
 ```
 cd blockcompass
@@ -125,7 +125,7 @@ source env/bin/activate
 pip install -r requirements.txt
 ```
 
-  3.  Install mongoDB Client
+ #### 3.  Install mongoDB Client
 ```
 sudo apt install mongodb-clients
 
@@ -140,7 +140,7 @@ sudo apt install mongodb-clients
 <details><summary>Hyperledger Fabric</summary>
 
 
-1.  Download binaries and pull docker images for Fabric v2.2
+#### 1.  Download binaries and pull docker images for Fabric v2.2
 
 
 ```
@@ -149,7 +149,7 @@ sudo apt install mongodb-clients
 
 ```
 
-  2.   Using bash_profile to add Hyperledger Fabric bin permanently to the PATH environment variable
+####  2.   Using bash_profile to add Hyperledger Fabric bin permanently to the PATH environment variable
 
   
 ```
@@ -162,7 +162,7 @@ source ~/.profile
 
 ```
 
-  3.  Install Golang 1.17
+ #### 3.  Install Golang 1.17
 ```
 cd ~
 curl -O https://dl.google.com/go/go1.17.linux-amd64.tar.gz
@@ -179,7 +179,7 @@ source ~/.profile
 
 ```
 
- 4. Set ABRIC_CFG_PATH variable: 
+#### 4. Set ABRIC_CFG_PATH variable: 
 ```
 sudo nano ~/.profile
   
@@ -200,7 +200,7 @@ source ~/.profile
   <details><summary>Step1 : Configuration</summary>
 
 
-1.  ReplicaSet
+#### 1.  ReplicaSet
   
   1.1  In the configuration/blockchain.yaml file, change the IP address in replicaSet field by your local IP address. 
 
@@ -216,24 +216,85 @@ chmod +x replicaset.sh
 1.2 In the replicaset.sh file, change the IP address by your IP address. 
 
 
-2. Network Configuration:
+#### 2. Network Configuration:
 
-2.1  In the configuration/blockchain.yaml file set the target Blockchain in Blockchain.type field, allowed values are: ethereum-clique, ethereum-pow, sawtooth-pbft, sawtooth-raft, sawtooth-poet and fabric.
+  In the configuration/blockchain.yaml file set the target Blockchain in Blockchain.type field, allowed values are: ethereum-clique, ethereum-pow, sawtooth-pbft, sawtooth-raft, sawtooth-poet and fabric.
     
     
 
-<details><summary> 2.2 Ethereum Configuration </summary>
+#####  2.1 Ethereum Configuration 
+
+  Check the user manual page 7 for more details. You can keep the default setting and change the IP address with yours.
+
+  
+##### 2.2  Ethereum Proof Of work 
+    
+   Only for Ethereum Proof Of work, you need to start the Network before launching the platform
+
+ ```
+  cd blockcompass/networks/ethereum-docker-pow
+  docker-compose up 
+```
+    
+Then you need to wait for the DAG to generate, depending on the resource it might take up to 45min.
+    
+##### 2.3  Frontend Client Configuration
+    
+If you are going to access the frontend from the same machine that you runned the application on, you can skip this part. Otherwise you need to have a public IP address to access the frontend from another machine and you need to open port 4200.
+
+    
+ ```
+  cd blockcompass/front/src/enviroments
+ ```
+   
+  In environments.ts and environment.prod.ts files, change localhost by your public IP address in apiUrl and SOCKET_ENDPOINT fields.
+
+#### 2.4 Workload configuration
+    
+#####  2.4.1  Schedule configuration
+   
+      
+workload/IOT/schedule.list file holds the information about the distributions of users in time.  The file is in the form of a list with two columns: the first column indicates the number of users, and the second column represents the time in seconds that those individuals will be simulated.
+ 
+   
+ #####  2.4.2 Users configuration
+      
+workload/IOT/sensors.list file holds information about the type of user and emission rate per type. The file is in the form of a list with two columns: the first column indicates the user type and the second column represents the emission rate.
+
+   
+    
+</details>
 
 
+</details>
+
+<details><summary>Step2 :  Activate virtual environment</summary>
+  
+  
+  ```
+  cd blockcompass
+  source env/bin/activate    
+ ```
+  
+</details>
   
 </details>
 
+<details><summary>Step3 :  Launch the platform</summary>
+  
+  
+  ```
+  cd blockcompass
+  python laucher.py   
+ ```
+  
 </details>
 
-  
+ ## Clean Up
+ 
+ ```
+./clean.sh  
+ ```
 
 <br> *You can cite the following papers for this project:*
-<br>Rasolroveicy, M., & Fokaefs, M. (2020, November). Dynamic reconfiguration of consensus protocol for IoT data registry on blockchain. In Proceedings of the 30th Annual International Conference on Computer Science and Software Engineering (pp. 227-236).
 
-<br>*References:*
-<br>Ramprasad, B., Fokaefs, M., Mukherjee, J., & Litoiu, M. (2019, June). EMU-IoT-A Virtual Internet of Things Lab. In 2019 IEEE International Conference on Autonomic Computing (ICAC) (pp. 73-83). IEEE.
