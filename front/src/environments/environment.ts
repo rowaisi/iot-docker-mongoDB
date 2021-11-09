@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:3001',
-  SOCKET_ENDPOINT: 'http://localhost:3001/api'
+  apiUrl: 'http://3.144.225.248:3001',
+  SOCKET_ENDPOINT: 'http://3.144.225.248:3001/api'
 };
 
 /*
@@ -16,3 +16,4 @@ export const environment = {
  * on performance if an error is thrown.
  */
 // import 'zone.js/dist/zone-error';  // Included with Angular CLI.
+
