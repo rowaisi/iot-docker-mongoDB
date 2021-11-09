@@ -14,6 +14,11 @@ with open("./configuration/blockchain.yaml", 'r') as stream:
         print("[x] start backend client")
         subprocess.call(cmd.split(), cwd="backend")
 
+        # 6. build frontend
+        cmd = "docker-compose build --no-cache"
+        print("[x] build frontend client")
+        subprocess.call(cmd.split(), cwd="front")
+
         # 6. start frontend
         cmd = "docker-compose up -d"
         print("[x] start frontend client")
