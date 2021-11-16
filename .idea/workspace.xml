@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c55ccec5-aaed-43c4-bc9e-07ed30f5d480" name="Default Changelist" comment="add dashboard with live stream chart">
+    <list default="true" id="c55ccec5-aaed-43c4-bc9e-07ed30f5d480" name="Default Changelist" comment="add write to file">
       <change afterPath="$PROJECT_DIR$/workload/IoT/paper-schedule.list" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configuration/blockchain.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/configuration/blockchain.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/launcher.py" beforeDir="false" afterPath="$PROJECT_DIR$/launcher.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/monitor/resource-monitor.py" beforeDir="false" afterPath="$PROJECT_DIR$/monitor/resource-monitor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/workload/IoT/schedule.list" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/networks/sawtooth_v1_2/block_server_api/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/networks/sawtooth_v1_2/block_server_api/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/networks/sawtooth_v1_2/block_server_subscriber/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/networks/sawtooth_v1_2/block_server_subscriber/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/networks/sawtooth_v1_2/rest_api/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/networks/sawtooth_v1_2/rest_api/Dockerfile" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -295,6 +292,7 @@
       <workItem from="1637013508951" duration="272000" />
       <workItem from="1637057393337" duration="1288000" />
       <workItem from="1637091091789" duration="1132000" />
+      <workItem from="1637092235465" duration="301000" />
     </task>
     <task id="LOCAL-00001" summary="add server that listen to change stream and emit the new data to the client">
       <created>1627598267312</created>
@@ -324,7 +322,21 @@
       <option name="project" value="LOCAL" />
       <updated>1629500849965</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="add build frontend in launcher">
+      <created>1637092322385</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1637092322385</updated>
+    </task>
+    <task id="LOCAL-00006" summary="add write to file">
+      <created>1637092340186</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1637092340186</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -349,6 +361,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="add server that listen to change stream and emit the new data to the client" />
     <MESSAGE value="add dashboard with live stream chart" />
-    <option name="LAST_COMMIT_MESSAGE" value="add dashboard with live stream chart" />
+    <MESSAGE value="add build frontend in launcher" />
+    <MESSAGE value="add write to file" />
+    <option name="LAST_COMMIT_MESSAGE" value="add write to file" />
   </component>
 </project>

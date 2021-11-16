@@ -53,7 +53,7 @@ RUN pip3 install \
     cbor \
     colorlog \
     sawtooth-sdk \
-    aiohttp \
+    aiohttp==3.7.4 \
     aiopg \
     pyyaml
 

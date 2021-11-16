@@ -52,7 +52,7 @@ RUN pip3 install \
     psycopg2-binary \
     colorlog \
     sawtooth-sdk \
-    aiohttp \
+    aiohttp==3.7.4 \
     pymongo \
     aiopg
 
