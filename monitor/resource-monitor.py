@@ -22,12 +22,13 @@ def getName(target):
     patternDev = re.compile(r".*%s.*" % "dev")
     order = re.compile(r".*%s.*" % "order")
     orderCa = re.compile(r".*%s.*" % "ca")
+    registry_tp = re.compile(r".*%s.*" % "registry-tp")
     names = []
     with os.popen("sudo docker stats --no-stream") as f:
         for s in f.readlines():
             ss = s.split()
             if (pattern.match(ss[1]) or order.match(ss[1])) and (
-                    not patternDev.match(ss[1]) and not orderCa.match(ss[1])):
+                    not patternDev.match(ss[1]) and not orderCa.match(ss[1]) and not registry_tp.match(ss[1]) ):
                 names.append(ss[1].replace("example.com", ""))
     return names
 
@@ -124,6 +125,7 @@ def check_utilization(target, collection):
         })
 
     insertToDB(collection, data)
+
     writeToFile(num, avg_cpu, avg_mem, avg_net_i, avg_net_o, cpus, mems, net_is, net_os)
 
 
