@@ -2,8 +2,8 @@
 
   <div class="card">
     <div class="card-body">
-      <div class="row">
-        <div class=" col-md-2">
+      <div  class="row">
+        <div style="margin-top: 6em" class=" col-md-2">
 
           <h4 class="card-title border-bottom">BlockCompass Report</h4>
           <p class="card-description">
@@ -33,7 +33,7 @@
           </div>
 
         </div>
-        <div class="col-md-10">
+        <div style="margin-top: 12em" class="col-md-10">
           <div>
             <div class="col-lg-12 stretch-card">
               <div class="card">
@@ -257,21 +257,21 @@
             </div>
 
 
-            <div class="col-12 stretch-card">
-              <div class="card">
-                <div class="card-body">
-                  <h4 style="font-size:x-large" class="card-title">2. Comments</h4>
-                  <div id="comments mt-4">
-                    <div class="form-group">
+<!--            <div class="col-12 stretch-card">-->
+<!--              <div class="card">-->
+<!--                <div class="card-body">-->
+<!--                  <h4 style="font-size:x-large" class="card-title">2. Comments</h4>-->
+<!--                  <div id="comments mt-4">-->
+<!--                    <div class="form-group">-->
 
-                        <textarea style="white-space: pre;" class="form-control" id="Blockchain" name=Blockchain rows="80">
+<!--                        <textarea style="white-space: pre;" class="form-control" id="Blockchain" name=Blockchain rows="80">-->
 
-                 </textarea>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+<!--                 </textarea>-->
+<!--                    </div>-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--              </div>-->
+<!--            </div>-->
 
 
 
@@ -285,8 +285,52 @@
 
     </div>
   </div>
+  <div style="margin-top: 11em" class="col-12 stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <h4 style="font-size:x-large; " class="card-title">2. Performance Metrics</h4>
+      </div>
 
-  <div  class="col-12 stretch-card">
+
+      <div class="row">
+        <div class="col-lg-6 stretch-card">
+          <div class="card">
+            <div class="card-body">
+              <h4 class="card-title"> Fig2.1. Number of Users</h4>
+              <canvas width="1200" height="600" baseChart [chartType]="'line'" [datasets]="sensorsData" [labels]="lineChartLabelsPerformance" [options]="lineChartOptionsPerformance" ></canvas>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6 stretch-card">
+          <div class="card">
+            <div class="card-body">
+              <h4 class="card-title"> Fig2.2. Number of Requests</h4>
+              <canvas width="1200" height="600" baseChart [chartType]="'line'" [datasets]="requestsData" [labels]="lineChartLabelsPerformance" [options]="lineChartOptionsPerformance" ></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-6 stretch-card">
+          <div class="card">
+            <div class="card-body">
+              <h4 class="card-title"> Fig2.3. Latency</h4>
+              <canvas width="1200" height="600" baseChart [chartType]="'line'" [datasets]="latencyData" [labels]="lineChartLabelsPerformance" [options]="lineChartOptionsPerformance" ></canvas>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6 stretch-card">
+          <div class="card">
+            <div class="card-body">
+              <h4 class="card-title"> Fig2.4. Error rate</h4>
+              <canvas width="1200" height="600" baseChart [chartType]="'line'" [datasets]="errorRateData" [labels]="lineChartLabelsPerformance" [options]="lineChartOptionsPerformance" ></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div  style="margin-top: 24em" class="col-12 stretch-card">
     <div class="card">
       <div class="card-body">
         <h4 style="font-size:x-large; " class="card-title">3. Resource Utilization</h4>
@@ -295,7 +339,7 @@
           <div class="col-lg-6 stretch-card">
             <div class="card">
               <div class="card-body">
-                <h4 class="card-title">CPU utilization (%)</h4>
+                <h4 class="card-title"> Fig3.1. CPU utilization (%)</h4>
                 <canvas width="1200" height="600" baseChart [chartType]="'line'" [datasets]="cpuData" [labels]="lineChartLabels" [options]="lineChartOptions" [colors]="lineChartColors"></canvas>
               </div>
             </div>
@@ -304,7 +348,7 @@
           <div class="col-lg-6 stretch-card">
             <div class="card">
               <div class="card-body">
-                <h4 class="card-title">CPU utilization (%) per node</h4>
+                <h4 class="card-title"> Fig3.2. CPU utilization (%) per node</h4>
                 <canvas width="1200" height="600" baseChart [chartType]="'line'" [datasets]="cpuPerNodeData" [labels]="lineChartLabels" [options]="lineChartOptions" ></canvas>
               </div>
             </div>
@@ -313,7 +357,7 @@
           <div class="col-lg-6 stretch-card">
             <div class="card">
               <div class="card-body">
-                <h4 class="card-title">Memory utilization (%)</h4>
+                <h4 class="card-title"> Fig3.3. Memory utilization (%)</h4>
                 <canvas width="1200" height="600" baseChart [chartType]="'line'" [datasets]="memData" [labels]="lineChartLabels" [options]="lineChartOptions" [colors]="lineChartColors"></canvas>
               </div>
             </div>
@@ -322,7 +366,7 @@
           <div class="col-lg-6 stretch-card">
             <div class="card">
               <div class="card-body">
-                <h4 class="card-title">Memory utilization (%) per node</h4>
+                <h4 class="card-title"> Fig3.4. Memory utilization (%) per node</h4>
                 <canvas width="1200" height="600" baseChart [chartType]="'line'" [datasets]="memPerNodeData" [labels]="lineChartLabels" [options]="lineChartOptions" ></canvas>
               </div>
             </div>
@@ -334,7 +378,7 @@
           <div class="col-lg-6 stretch-card">
             <div class="card">
               <div class="card-body">
-                <h4 class="card-title">Average network input (Bytes)</h4>
+                <h4 class="card-title"> Fig3.5. Average network input (Bytes)</h4>
                 <canvas width="1200" height="600" baseChart [chartType]="'line'" [datasets]="netInData" [labels]="lineChartLabels" [options]="lineChartOptions" ></canvas>
               </div>
             </div>
@@ -343,7 +387,7 @@
           <div class="col-lg-6 stretch-card">
             <div class="card">
               <div class="card-body">
-                <h4 class="card-title"> Network input (Bytes) Per Node</h4>
+                <h4 class="card-title"> Fig3.6. Network input (Bytes) Per Node</h4>
                 <canvas width="1200" height="600" baseChart [chartType]="'line'" [datasets]="netInPerNodeData" [labels]="lineChartLabels" [options]="lineChartOptions" ></canvas>
               </div>
             </div>
@@ -359,7 +403,7 @@
           <div class="col-lg-6 grid-margin stretch-card">
             <div class="card">
               <div class="card-body">
-                <h4 class="card-title">Average network input output (Bytes)</h4>
+                <h4 class="card-title"> Fig3.7. Average network input output (Bytes)</h4>
                 <canvas width="1200" height="600" baseChart [chartType]="'line'" [datasets]="netOuData" [labels]="lineChartLabels" [options]="lineChartOptions" ></canvas>
               </div>
             </div>
@@ -368,7 +412,7 @@
           <div class="col-lg-6 stretch-card">
             <div class="card">
               <div class="card-body">
-                <h4 class="card-title"> Network input output (Bytes) Per Node</h4>
+                <h4 class="card-title"> Fig3.8. Network input output (Bytes) Per Node</h4>
                 <canvas width="1200" height="600" baseChart [chartType]="'line'" [datasets]="netOuPerNodeData" [labels]="lineChartLabels" [options]="lineChartOptions" ></canvas>
               </div>
             </div>
@@ -379,53 +423,41 @@
   </div>
 
 
-  <div style="margin-top: 25em" class="col-12 stretch-card">
+
+
+  <div class="col-12 stretch-card">
     <div class="card">
       <div class="card-body">
-        <h4 style="font-size:x-large; " class="card-title">4. Performance Metrics</h4>
-      </div>
+        <h4 style="font-size:x-large" class="card-title">4. Comments</h4>
+        <div id="comments mt-4">
+          <div class="form-group">
 
-
-      <div class="row">
-        <div class="col-lg-6 stretch-card">
-          <div class="card">
-            <div class="card-body">
-              <h4 class="card-title">Number of Users</h4>
-              <canvas width="1200" height="600" baseChart [chartType]="'line'" [datasets]="sensorsData" [labels]="lineChartLabelsPerformance" [options]="lineChartOptionsPerformance" ></canvas>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-6 stretch-card">
-          <div class="card">
-            <div class="card-body">
-              <h4 class="card-title">Number of Requests</h4>
-              <canvas width="1200" height="600" baseChart [chartType]="'line'" [datasets]="requestsData" [labels]="lineChartLabelsPerformance" [options]="lineChartOptionsPerformance" ></canvas>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-lg-6 stretch-card">
-          <div class="card">
-            <div class="card-body">
-              <h4 class="card-title"> Latency</h4>
-              <canvas width="1200" height="600" baseChart [chartType]="'line'" [datasets]="latencyData" [labels]="lineChartLabelsPerformance" [options]="lineChartOptionsPerformance" ></canvas>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-6 stretch-card">
-          <div class="card">
-            <div class="card-body">
-              <h4 class="card-title">Error rate</h4>
-              <canvas width="1200" height="600" baseChart [chartType]="'line'" [datasets]="errorRateData" [labels]="lineChartLabelsPerformance" [options]="lineChartOptionsPerformance" ></canvas>
-            </div>
+            <div [innerHTML]="htmlContent"></div>
           </div>
         </div>
       </div>
     </div>
   </div>
 
+
 </div>
+
+
+<div class="col-12 stretch-card">
+  <div class="card">
+    <div class="card-body">
+      <div id="comments2 mt-4">
+        <div class="form-group">
+          <angular-editor [placeholder]="'Enter comments here...'" [(ngModel)]="htmlContent"></angular-editor>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
 <button class="btn btn-primary" (click)="downloadAsPDF()">Export To PDF</button>
 
 

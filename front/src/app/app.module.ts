@@ -17,6 +17,7 @@ import { ContentAnimateDirective } from './shared/directives/content-animate.dir
 import { ReportComponent } from './report/report.component';
 import {HttpClientModule} from '@angular/common/http';
 import {ChartsDemoModule} from "./charts/charts.module";
+import {AngularEditorModule} from "@kolkov/angular-editor";
 
 @NgModule({
     declarations: [
@@ -38,7 +39,8 @@ import {ChartsDemoModule} from "./charts/charts.module";
         ReactiveFormsModule,
         ChartsModule,
         HttpClientModule,
-        ChartsDemoModule
+        ChartsDemoModule,
+        AngularEditorModule
     ],
     providers: [ThemeService],
 

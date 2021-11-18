@@ -1,7 +1,12 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, NgModule, OnInit, ViewChild} from '@angular/core';
 import {API_URL, CONFIGURATION, PERFORMANCE, RESOURCE} from '../globals/global_variables';
 import {DatePipe} from '@angular/common';
 import {CrudService} from '../services/crud.service';
+
+import { HttpClientModule} from '@angular/common/http';
+import {AngularEditorConfig, AngularEditorModule} from '@kolkov/angular-editor';
+
+
 
 import { jsPDF } from "jspdf";
 import html2canvas from 'html2canvas';
@@ -12,7 +17,11 @@ import * as math from "mathjs";
   styleUrls: ['./report.component.scss'],
   providers: [DatePipe]
 })
+@NgModule({
+  imports: [ HttpClientModule, AngularEditorModule ]
+})
 export class ReportComponent implements OnInit {
+  
 
   public date = new Date();
   public allRequestsSum = [0, 0, 0, 0, 0];
@@ -211,6 +220,7 @@ export class ReportComponent implements OnInit {
   public consensus = ""
   public nodes = 0
   public size = 1
+  htmlContent: any;
 
 
   constructor(private crudService: CrudService,
