@@ -21,7 +21,7 @@ import * as math from "mathjs";
   imports: [ HttpClientModule, AngularEditorModule ]
 })
 export class ReportComponent implements OnInit {
-  
+
 
   public date = new Date();
   public allRequestsSum = [0, 0, 0, 0, 0];
@@ -369,6 +369,14 @@ export class ReportComponent implements OnInit {
       })
       i++;
     }
+      this.cpuPerNodeData.push({
+       data: this.cpus,
+        label: 'Average ',
+        borderWidth: 1,
+        borderColor: 'black',
+        backgroundColor: 'black',
+        fill: false
+      })
 
   }
 
@@ -389,7 +397,14 @@ export class ReportComponent implements OnInit {
       })
       i++;
     }
-
+   this.memPerNodeData.push({
+          data: this.mems,
+          label: 'Average',
+          borderWidth: 1,
+          borderColor: 'black',
+          backgroundColor: 'black',
+          fill: false
+        })
   }
 
   setNetInPerNodeData() {
@@ -409,8 +424,44 @@ export class ReportComponent implements OnInit {
       })
       i++;
     }
+    this.netInPerNodeData.push({
+             label: 'Average',
+             data: this.netI,
+            borderWidth: 1,
+            borderColor: 'black',
+            backgroundColor: 'black',
+            fill: false
+          })
 
   }
+
+   setNetOuPerNodeData() {
+    var i = 0;
+    if (this.firstLoad) {
+      this.netOuPerNodeData.pop()
+    }
+    for (let name in this.netOperContainer) {
+
+      this.netOuPerNodeData.push({
+        data: this.netOperContainer[name],
+        label: name,
+        borderWidth: 1,
+        borderColor: this.borderColor[i],
+        backgroundColor: this.backgroundColor[i],
+        fill: false
+      })
+      i++;
+    }
+    this.netOuPerNodeData.push({
+           label: 'Average',
+           data: this.netO,
+          borderWidth: 1,
+          borderColor: 'black',
+          backgroundColor: 'black',
+          fill: false
+        })
+  }
+
 
 
   calculateSummaryResource() {
@@ -440,25 +491,6 @@ export class ReportComponent implements OnInit {
 
   }
 
-  setNetOuPerNodeData() {
-    var i = 0;
-    if (this.firstLoad) {
-      this.netOuPerNodeData.pop()
-    }
-    for (let name in this.netOperContainer) {
-
-      this.netOuPerNodeData.push({
-        data: this.netOperContainer[name],
-        label: name,
-        borderWidth: 1,
-        borderColor: this.borderColor[i],
-        backgroundColor: this.backgroundColor[i],
-        fill: false
-      })
-      i++;
-    }
-
-  }
 
   public downloadAsPDF2() {
     var data = document.getElementById('print');

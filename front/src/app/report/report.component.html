@@ -336,37 +336,38 @@
         <h4 style="font-size:x-large; " class="card-title">3. Resource Utilization</h4>
 
         <div class="row ">
-          <div class="col-lg-6 stretch-card">
-            <div class="card">
-              <div class="card-body">
-                <h4 class="card-title"> Fig3.1. CPU utilization (%)</h4>
-                <canvas width="1200" height="600" baseChart [chartType]="'line'" [datasets]="cpuData" [labels]="lineChartLabels" [options]="lineChartOptions" [colors]="lineChartColors"></canvas>
-              </div>
-            </div>
-          </div>
+
+<!--          <div class="col-lg-6 stretch-card">-->
+<!--            <div class="card">-->
+<!--              <div class="card-body">-->
+<!--                <h4 class="card-title"> Fig3.1. CPU utilization (%)</h4>-->
+<!--                <canvas width="1200" height="600" baseChart [chartType]="'line'" [datasets]="cpuData" [labels]="lineChartLabels" [options]="lineChartOptions" [colors]="lineChartColors"></canvas>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
 
           <div class="col-lg-6 stretch-card">
             <div class="card">
               <div class="card-body">
-                <h4 class="card-title"> Fig3.2. CPU utilization (%) per node</h4>
+                <h4 class="card-title"> Fig3.1. CPU utilization (%)</h4>
                 <canvas width="1200" height="600" baseChart [chartType]="'line'" [datasets]="cpuPerNodeData" [labels]="lineChartLabels" [options]="lineChartOptions" ></canvas>
               </div>
             </div>
           </div>
 
-          <div class="col-lg-6 stretch-card">
-            <div class="card">
-              <div class="card-body">
-                <h4 class="card-title"> Fig3.3. Memory utilization (%)</h4>
-                <canvas width="1200" height="600" baseChart [chartType]="'line'" [datasets]="memData" [labels]="lineChartLabels" [options]="lineChartOptions" [colors]="lineChartColors"></canvas>
-              </div>
-            </div>
-          </div>
+<!--          <div class="col-lg-6 stretch-card">-->
+<!--            <div class="card">-->
+<!--              <div class="card-body">-->
+<!--                <h4 class="card-title"> Fig3.3. Memory utilization (%)</h4>-->
+<!--                <canvas width="1200" height="600" baseChart [chartType]="'line'" [datasets]="memData" [labels]="lineChartLabels" [options]="lineChartOptions" [colors]="lineChartColors"></canvas>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
 
           <div class="col-lg-6 stretch-card">
             <div class="card">
               <div class="card-body">
-                <h4 class="card-title"> Fig3.4. Memory utilization (%) per node</h4>
+                <h4 class="card-title"> Fig3.2. Memory utilization (%) </h4>
                 <canvas width="1200" height="600" baseChart [chartType]="'line'" [datasets]="memPerNodeData" [labels]="lineChartLabels" [options]="lineChartOptions" ></canvas>
               </div>
             </div>
@@ -375,49 +376,38 @@
 
         </div>
         <div class="row  mt-5">
-          <div class="col-lg-6 stretch-card">
-            <div class="card">
-              <div class="card-body">
-                <h4 class="card-title"> Fig3.5. Average network input (Bytes)</h4>
-                <canvas width="1200" height="600" baseChart [chartType]="'line'" [datasets]="netInData" [labels]="lineChartLabels" [options]="lineChartOptions" ></canvas>
-              </div>
-            </div>
-          </div>
+
+<!--          <div class="col-lg-6 stretch-card">-->
+<!--            <div class="card">-->
+<!--              <div class="card-body">-->
+<!--                <h4 class="card-title"> Fig3.5. Average network input (Bytes)</h4>-->
+<!--                <canvas width="1200" height="600" baseChart [chartType]="'line'" [datasets]="netInData" [labels]="lineChartLabels" [options]="lineChartOptions" ></canvas>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
 
           <div class="col-lg-6 stretch-card">
             <div class="card">
               <div class="card-body">
-                <h4 class="card-title"> Fig3.6. Network input (Bytes) Per Node</h4>
+                <h4 class="card-title"> Fig3.3. Network input (Bytes) </h4>
                 <canvas width="1200" height="600" baseChart [chartType]="'line'" [datasets]="netInPerNodeData" [labels]="lineChartLabels" [options]="lineChartOptions" ></canvas>
               </div>
             </div>
           </div>
-
-
-
-
-        </div>
-
-        <div class="row">
-
-          <div class="col-lg-6 grid-margin stretch-card">
+ <div class="col-lg-6 stretch-card">
             <div class="card">
               <div class="card-body">
-                <h4 class="card-title"> Fig3.7. Average network input output (Bytes)</h4>
-                <canvas width="1200" height="600" baseChart [chartType]="'line'" [datasets]="netOuData" [labels]="lineChartLabels" [options]="lineChartOptions" ></canvas>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-6 stretch-card">
-            <div class="card">
-              <div class="card-body">
-                <h4 class="card-title"> Fig3.8. Network input output (Bytes) Per Node</h4>
+                <h4 class="card-title"> Fig3.4. Network input output (Bytes) </h4>
                 <canvas width="1200" height="600" baseChart [chartType]="'line'" [datasets]="netOuPerNodeData" [labels]="lineChartLabels" [options]="lineChartOptions" ></canvas>
               </div>
             </div>
           </div>
+
+
+
         </div>
+
+
       </div>
     </div>
   </div>
@@ -454,8 +444,6 @@
     </div>
   </div>
 </div>
-
-
 
 
 <button class="btn btn-primary" (click)="downloadAsPDF()">Export To PDF</button>

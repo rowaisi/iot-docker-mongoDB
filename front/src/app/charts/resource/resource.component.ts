@@ -322,6 +322,16 @@ export class ResourceComponent implements OnInit {
       })
       i++;
     }
+    this.cpuPerNodeData.push({
+       data: this.cpus,
+        label: 'Average ',
+        borderWidth: 1,
+        borderColor: 'black',
+        backgroundColor: 'black',
+        fill: false
+      })
+
+
 
   }
 
@@ -343,6 +353,16 @@ export class ResourceComponent implements OnInit {
       i++;
     }
 
+
+     this.memPerNodeData.push({
+        data: this.mems,
+        label: 'Average',
+        borderWidth: 1,
+        borderColor: 'black',
+        backgroundColor: 'black',
+        fill: false
+      })
+
   }
 
   setNetInPerNodeData() {
@@ -363,6 +383,15 @@ export class ResourceComponent implements OnInit {
       i++;
     }
 
+    this.netInPerNodeData.push({
+         label: 'Average',
+         data: this.netI,
+        borderWidth: 1,
+        borderColor: 'black',
+        backgroundColor: 'black',
+        fill: false
+      })
+
   }
 
   setNetOuPerNodeData() {
@@ -382,6 +411,15 @@ export class ResourceComponent implements OnInit {
       })
       i++;
     }
+
+     this.netOuPerNodeData.push({
+         label: 'Average',
+         data: this.netO,
+        borderWidth: 1,
+        borderColor: 'black',
+        backgroundColor: 'black',
+        fill: false
+      })
 
   }
 
